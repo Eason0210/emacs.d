@@ -9,6 +9,7 @@
 ;;; Code:
 
 (setq package-enable-at-startup nil)
+(setq org-modules-loaded t)
 
 ;; So we can detect this having been loaded
 (provide 'early-init)
