@@ -15,10 +15,10 @@
   (add-hook hook 'sanityinc/show-trailing-whitespace))
 
 
-(require-package 'whitespace-cleanup-mode)
-(add-hook 'after-init-hook 'global-whitespace-cleanup-mode)
-(with-eval-after-load 'whitespace-cleanup-mode
-  (diminish 'whitespace-cleanup-mode))
+;; (require-package 'whitespace-cleanup-mode)
+;; (add-hook 'after-init-hook 'global-whitespace-cleanup-mode)
+;; (with-eval-after-load 'whitespace-cleanup-mode
+;;   (diminish 'whitespace-cleanup-mode))
 
 (global-set-key [remap just-one-space] 'cycle-spacing)
 
