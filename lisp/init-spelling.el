@@ -9,7 +9,7 @@
   (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
   (setq ispell-personal-dictionary
-        (expand-file-name "flyspell/.aspell.en.pws" user-emacs-directory))
+        (expand-file-name "flyspell/.aspell.en.pws" "~/emacs-data/"))
 
   (with-eval-after-load 'flyspell
     (define-key flyspell-mode-map (kbd "C-;") nil)
