@@ -76,6 +76,7 @@ typical word processor."
           (writeroom-mode 1))
         (setq truncate-lines nil)
         (setq word-wrap t)
+        (setq word-wrap-by-category t)
         (setq cursor-type 'bar)
         (when (eq major-mode 'org)
           (kill-local-variable 'buffer-face-mode-face))
@@ -89,6 +90,7 @@ typical word processor."
         (visual-line-mode 1))
     (kill-local-variable 'truncate-lines)
     (kill-local-variable 'word-wrap)
+    (kill-local-variable 'word-wrap-by-category)
     (kill-local-variable 'cursor-type)
     (kill-local-variable 'blink-cursor-interval)
     (kill-local-variable 'show-trailing-whitespace)
@@ -102,7 +104,7 @@ typical word processor."
       (writeroom-mode 0))))
 
 ;;(add-hook 'org-mode-hook 'buffer-face-mode)
-
+(add-hook 'org-mode-hook 'prose-mode)
 
 (setq org-support-shift-select t)
 
@@ -379,6 +381,16 @@ typical word processor."
      (,(if (locate-library "ob-sh") 'sh 'shell) . t)
      (sql . t)
      (sqlite . t))))
+
+;;; custom agenda settings
+
+(setq org-agenda-files (quote ("~/org/agenda")))
+(when (file-directory-p "~/org/agenda/")
+  (setq org-agenda-files (list "~/org/agenda/")))
+
+;; org-capture
+(setq org-directory "~/org/agenda/")
+(setq org-default-notes-file (concat org-directory "inbox.org"))
 
 
 (provide 'init-org)
