@@ -9,7 +9,7 @@
                       (format "%s:pixelsize=%d" (car fonts) 16)))
 
 (when (eq system-type 'windows-nt)
-  (setq fonts '("Consolas" "微软雅黑"))
+  (setq fonts '("Consolas" "Microsoft YaHei"))
   (set-fontset-font t 'unicode "Segoe UI Emoji" nil 'prepend)
   (set-face-attribute 'default nil :font
                       (format "%s:pixelsize=%d" (car fonts) 24)))
