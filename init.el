@@ -190,7 +190,7 @@
 (require 'init-rime)
 (require 'init-eglot)
 (require 'init-quickrun)
-
+(require 'basic-toolkit)
 
 (provide 'init)
 
