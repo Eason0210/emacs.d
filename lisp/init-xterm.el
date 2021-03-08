@@ -17,5 +17,8 @@
 
 (add-hook 'after-make-console-frame-hooks 'sanityinc/console-frame-setup)
 
+(unless (eq system-type 'windows-nt)
+  (require-package 'vterm))
+
 (provide 'init-xterm)
 ;;; init-xterm.el ends here
