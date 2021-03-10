@@ -5,7 +5,6 @@
 (when (maybe-require-package 'rime)
 
   (when (eq system-type 'windows-nt)
-    (setq rime-user-data-dir "~/emacs-data/rime")
     (setq rime-share-data-dir "~/emacs-data/rime/data")
     (setq rime-minibuffer-properties
           (list :background-color "#333333"
@@ -22,12 +21,13 @@
 
   (when (eq system-type 'darwin)
     (setq rime-librime-root  "~/emacs-data/librime/dist")
-    (setq rime-user-data-dir "~/emacs-data/rime/")
     (setq rime-minibuffer-properties
           (list :background-color "#333333"
                 :foreground-color "#dcdccc"
                 :font "冬青黑体简体中文"
                 :internal-border-width 10)))
+  
+  (setq rime-user-data-dir "~/emacs-data/rime")
 
   (setq default-input-method "rime"
         rime-show-candidate nil)
