@@ -291,6 +291,24 @@ This is useful when followed by an immediate kill."
   :hook (flycheck-mode . flycheck-color-mode-line-mode)
   :after flycheck)
 
+;;; minibufer configuration
+(use-package vertico
+  :demand t
+  :init
+  (progn
+    (setq vertico-cycle t))
+  :config
+  (progn
+    (vertico-mode)))
+
+(use-package orderless
+  :hook (minibuffer-setup . sanityinc/use-orderless-in-minibuffer)
+  :config
+  (setq completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion))))
+  :preface
+  (defun sanityinc/use-orderless-in-minibuffer ()
+    (setq-local completion-styles '(substring orderless))))
 
 
 (use-package dash
@@ -317,26 +335,6 @@ This is useful when followed by an immediate kill."
 (use-package help
   :defer t
   :config (temp-buffer-resize-mode))
-
-
-;;; minibufer configuration
-(use-package vertico
-  :demand t
-  :init
-  (progn
-    (setq vertico-cycle t))
-  :config
-  (progn
-    (vertico-mode)))
-
-(use-package orderless
-  :hook (minibuffer-setup . sanityinc/use-orderless-in-minibuffer)
-  :config
-  (setq completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion))))
-  :preface
-  (defun sanityinc/use-orderless-in-minibuffer ()
-    (setq-local completion-styles '(substring orderless))))
 
 
 (use-package lisp-mode
