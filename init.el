@@ -800,6 +800,9 @@ Call a second time to restore the original window configuration."
   :diminish whole-line-or-region-local-mode
   :hook (after-init . whole-line-or-region-global-mode))
 
+;; M-^ is inconvenient, so also bind M-j
+(bind-key "M-j" 'join-line)
+
 
 (use-package dash
   :config (global-dash-fontify-mode 1))
