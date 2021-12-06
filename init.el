@@ -759,6 +759,26 @@ Call a second time to restore the original window configuration."
               ("M-p" . symbol-overlay-jump-prev)))
 
 
+;; Zap *up* to char is a handy pair for zap-to-char
+(bind-key "M-Z" 'zap-up-to-char)
+
+;; Show matching parens
+(add-hook 'after-init-hook 'show-paren-mode)
+
+;; Handy key bindings
+;; (bind-key "C-." 'set-mark-command)
+(bind-key "C-x C-." 'pop-global-mark)
+
+(defun kill-back-to-indentation ()
+  "Kill from point back to the first non-whitespace character on the line."
+  (interactive)
+  (let ((prev-pos (point)))
+    (back-to-indentation)
+    (kill-region (point) prev-pos)))
+
+(bind-key "C-M-<backspace>" 'kill-back-to-indentation)
+
+
 
 (use-package dash
   :config (global-dash-fontify-mode 1))
