@@ -714,6 +714,20 @@ Call a second time to restore the original window configuration."
   :config (save-place-mode))
 
 
+;;; Editing utils
+
+(when (fboundp 'electric-pair-mode)
+  (add-hook 'after-init-hook 'electric-pair-mode))
+(add-hook 'after-init-hook 'electric-indent-mode)
+
+(use-package autorevert
+  :diminish
+  :hook (after-init . global-auto-revert-mode)
+  :config
+  (setq global-auto-revert-non-file-buffers t
+        auto-revert-verbose nil))
+
+
 (use-package dash
   :config (global-dash-fontify-mode 1))
 
