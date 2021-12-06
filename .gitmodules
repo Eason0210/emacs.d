@@ -67,6 +67,9 @@
 	no-byte-compile = lisp/magit-libgit.el
 	recursive-byte-compile = true
 	info-path = Documentation
+[submodule "marginalia"]
+	path = lib/marginalia
+	url = git@github.com:minad/marginalia.git
 [submodule "ns-auto-titlebar"]
 	path = lib/ns-auto-titlebar
 	url = git@github.com:purcell/ns-auto-titlebar.git

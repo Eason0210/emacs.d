@@ -469,6 +469,8 @@ This is useful when followed by an immediate kill."
   :defer t
   :after (consult flycheck))
 
+(use-package marginalia
+  :init (marginalia-mode))
 
 
 (use-package dash
