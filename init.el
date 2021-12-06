@@ -392,9 +392,12 @@ This is useful when followed by an immediate kill."
     (setq indicate-buffer-boundaries 'left))
   (add-hook 'prog-mode-hook 'indicate-buffer-boundaries-left))
 
+;;; Settings for tracking recent files
 (use-package recentf
   :demand t
-  :config (add-to-list 'recentf-exclude "^/\\(?:ssh\\|su\\|sudo\\)?:"))
+  :config
+  (setq-default recentf-max-saved-items 1000)
+  (add-to-list 'recentf-exclude "^/\\(?:ssh\\|su\\|sudo\\)?:"))
 
 
 ;;; Save and restore editor sessions between restarts
