@@ -785,6 +785,15 @@ Call a second time to restore the original window configuration."
          ("C-c C-<" . mc/mark-all-like-this)
          ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 
+;; Shift lines up and down with M-up and M-down. When paredit is enabled,
+;; it will use those keybindings. For this reason, you might prefer to
+;; use M-S-up and M-S-down, which will work even in lisp modes.
+(use-package move-dup
+  :bind (
+         ("C-c d" . move-dup-duplicate-down)
+         ("C-c u" . move-dup-duplicate-up)
+         ([M-up] . move-dup-move-lines-up)
+         ([M-down] . move-dup-move-lines-down)))
 
 (use-package dash
   :config (global-dash-fontify-mode 1))

@@ -79,6 +79,9 @@
 [submodule "marginalia"]
 	path = lib/marginalia
 	url = git@github.com:minad/marginalia.git
+[submodule "move-dup"]
+	path = lib/move-dup
+	url = git@github.com:wyuenho/move-dup.git
 [submodule "multiple-cursors"]
 	path = lib/multiple-cursors
 	url = git@github.com:magnars/multiple-cursors.el.git
