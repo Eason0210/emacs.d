@@ -154,6 +154,13 @@
   (defun sanityinc/display-non-graphic-p ()
     (not (display-graphic-p))))
 
+;;; GUI frames
+
+(when *is-a-mac*
+  (use-package ns-auto-titlebar
+    :config
+    (ns-auto-titlebar-mode 1)))
+
 
 (use-package dash
   :config (global-dash-fontify-mode 1))

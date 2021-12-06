@@ -43,6 +43,9 @@
 	no-byte-compile = lisp/magit-libgit.el
 	recursive-byte-compile = true
 	info-path = Documentation
+[submodule "ns-auto-titlebar"]
+	path = lib/ns-auto-titlebar
+	url = git@github.com:purcell/ns-auto-titlebar.git
 [submodule "orderless"]
 	path = lib/orderless
 	url = git@github.com:oantolin/orderless.git
