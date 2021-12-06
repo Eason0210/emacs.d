@@ -1,5 +1,20 @@
 ;;; init.el --- user-init-file                    -*- lexical-binding: t -*-
 ;;; Early birds
+
+;; Produce backtraces when errors occur: can be helpful to diagnose startup issues
+;; (setq debug-on-error t)
+
+(defconst *spell-check-support-enabled* t) ;; Enable with t if you prefer
+(defconst *is-a-mac* (eq system-type 'darwin))
+
+;; Adjust garbage collection thresholds during startup, and thereafter
+
+(let ((normal-gc-cons-threshold (* 20 1024 1024))
+      (init-gc-cons-threshold (* 128 1024 1024)))
+  (setq gc-cons-threshold init-gc-cons-threshold)
+  (add-hook 'emacs-startup-hook
+            (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
+
 (progn ;     startup
   (defvar before-user-init-time (current-time)
     "Value of `current-time' when Emacs begins loading `user-init-file'.")
@@ -64,12 +79,10 @@
   (message "Loading early birds...done (%.3fs)"
            (float-time (time-subtract (current-time)
                                       before-user-init-time))))
-
-;;; Configure keys specific to MacOS
-
-(when *is-a-mac*
+(progn ;    key
+  (when *is-a-mac*
   (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier 'none))
+  (setq mac-option-modifier 'none)))
 
 ;;; Long tail
 
@@ -114,13 +127,36 @@
   (add-hook 'lisp-interaction-mode-hook 'indent-spaces-mode))
 
 (use-package magit
-  :defer t
-  :commands (magit-add-section-hook)
+  :init
+  (progn
+    (setq magit-diff-refine-hunk t)
+    (setq magit-branch-prefer-remote-upstream '("master"))
+    (setq magit-branch-adjust-remote-upstream-alist '(("origin/master" "master")))
+    (setq magit-module-sections-nested nil)
+    (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+    (setq magit-no-confirm '(amend-published))
+    (setq magit-revision-insert-related-refs nil)
+    (setq magit-revision-show-gravatars t)
+    (setq magit-clone-set-remote.pushDefault t))
   :config
-  (magit-add-section-hook 'magit-status-sections-hook
-                          'magit-insert-modules
-                          'magit-insert-stashes
-                          'append))
+  (progn
+    ;; Enable magit-clean
+    (put 'magit-clean 'disabled nil)
+
+    ;; Add modules in magit status buffer:
+    (magit-add-section-hook 'magit-status-sections-hook
+                            'magit-insert-modules
+                            'magit-insert-unpulled-from-upstream)
+
+    ;; Only show the module sections I'm interested in
+    (with-eval-after-load "magit-submodule"
+      (remove-hook 'magit-module-sections-hook 'magit-insert-modules-overview)
+      (remove-hook 'magit-module-sections-hook 'magit-insert-modules-unpulled-from-pushremote)
+      (remove-hook 'magit-module-sections-hook 'magit-insert-modules-unpushed-to-upstream)
+      (remove-hook 'magit-module-sections-hook 'magit-insert-modules-unpushed-to-pushremote))
+
+    (transient-replace-suffix 'magit-commit 'magit-commit-autofixup
+      '("x" "Absorb changes" magit-commit-absorb))))
 
 (use-package man
   :defer t
