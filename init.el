@@ -533,6 +533,19 @@ targets."
   :bind ("C-;" . avy-goto-char-timer))
 
 
+;;; Settings for hippie-expand
+
+(use-package hippie-exp
+  :bind ("M-/" . hippie-expand)
+  :config
+  (setq hippie-expand-try-functions-list
+        '(try-complete-file-name-partially
+          try-complete-file-name
+          try-expand-dabbrev
+          try-expand-dabbrev-all-buffers
+          try-expand-dabbrev-from-kill)))
+
+
 (use-package dash
   :config (global-dash-fontify-mode 1))
 
