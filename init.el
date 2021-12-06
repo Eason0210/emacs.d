@@ -280,6 +280,18 @@ This is useful when followed by an immediate kill."
   (fullframe ibuffer ibuffer-quit))
 
 
+;;; Configure FlyCheck global behavior
+
+(use-package flycheck
+  :hook (after-init . global-flycheck-mode)
+  :config
+  (setq flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))
+
+(use-package flycheck-color-mode-line
+  :hook (flycheck-mode . flycheck-color-mode-line-mode)
+  :after flycheck)
+
+
 
 (use-package dash
   :config (global-dash-fontify-mode 1))

@@ -40,6 +40,12 @@
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
+[submodule "flycheck"]
+	path = lib/flycheck
+	url = git@github.com:flycheck/flycheck.git
+[submodule "flycheck-color-mode-line"]
+	path = lib/flycheck-color-mode-line
+	url = git@github.com:flycheck/flycheck-color-mode-line.git
 [submodule "fullframe"]
 	path = lib/fullframe
 	url = git@github.com:emacsmirror/fullframe.git
