@@ -545,6 +545,16 @@ targets."
           try-expand-dabbrev-all-buffers
           try-expand-dabbrev-from-kill)))
 
+;;; Working with Windows within frames
+
+;; Navigate window layouts with "M-N" and "M-P"
+(use-package winner
+  :defer 5
+  :bind (("M-N" . winner-redo)
+         ("M-P" . winner-undo))
+  :config
+  (winner-mode 1))
+
 
 (use-package dash
   :config (global-dash-fontify-mode 1))
