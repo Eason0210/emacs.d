@@ -832,6 +832,25 @@ Call a second time to restore the original window configuration."
 (use-package sudo-edit
   :bind ("C-c C-r" . sudo-edit))
 
+;;; Whitespace
+
+(setq-default show-trailing-whitespace nil)
+
+(defun sanityinc/show-trailing-whitespace ()
+  "Enable display of trailing whitespace in this buffer."
+  (setq-local show-trailing-whitespace t))
+
+(dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
+  (add-hook hook 'sanityinc/show-trailing-whitespace))
+
+(bind-key [remap just-one-space] 'cycle-spacing)
+
+;; An unobtrusive way to trim spaces from end of line
+(use-package ws-butler
+  :diminish
+  :hook (after-init . ws-butler-global-mode))
+
+
 (use-package dash
   :config (global-dash-fontify-mode 1))
 
