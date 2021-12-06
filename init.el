@@ -128,6 +128,16 @@
   (progn
     (vertico-mode)))
 
+(use-package orderless
+  :hook (minibuffer-setup . sanityinc/use-orderless-in-minibuffer)
+  :config
+  (setq completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion))))
+  :preface
+  (defun sanityinc/use-orderless-in-minibuffer ()
+    (setq-local completion-styles '(substring orderless))))
+
+
 (use-package lisp-mode
   :config
   (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)

@@ -34,6 +34,9 @@
 	no-byte-compile = lisp/magit-libgit.el
 	recursive-byte-compile = true
 	info-path = Documentation
+[submodule "orderless"]
+	path = lib/orderless
+	url = git@github.com:oantolin/orderless.git
 [submodule "packed"]
 	path = lib/packed
 	url = git@github.com:emacscollective/packed.git
