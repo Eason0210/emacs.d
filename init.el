@@ -746,6 +746,11 @@ Call a second time to restore the original window configuration."
 (progn ;    `text-mode'
   (add-hook 'text-mode-hook 'indicate-buffer-boundaries-left))
 
+
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+
 (use-package dash
   :config (global-dash-fontify-mode 1))
 
