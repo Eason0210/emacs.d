@@ -24,6 +24,9 @@
 [submodule "diminish"]
 	path = lib/diminish
 	url = git@github.com:myrjola/diminish.el.git
+[submodule "dimmer"]
+	path = lib/dimmer
+	url = git@github.com:gonewest818/dimmer.el.git
 [submodule "emacsql"]
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git

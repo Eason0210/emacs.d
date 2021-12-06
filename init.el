@@ -144,6 +144,16 @@
         (light)
       (dark))))
 
+(use-package dimmer
+  :hook (after-init . dimmer-mode)
+  :config
+  (setq-default dimmer-fraction 0.15)
+  (advice-add 'frame-set-background-mode :after (lambda (&rest args) (dimmer-process-all)))
+  (add-to-list 'dimmer-exclusion-predicates 'sanityinc/display-non-graphic-p)
+  :preface
+  (defun sanityinc/display-non-graphic-p ()
+    (not (display-graphic-p))))
+
 
 (use-package dash
   :config (global-dash-fontify-mode 1))
