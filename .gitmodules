@@ -109,6 +109,9 @@
 [submodule "session"]
 	path = lib/session
 	url = git@github.com:emacsorphanage/session.git
+[submodule "sudo-edit"]
+	path = lib/sudo-edit
+	url = git@github.com:nflath/sudo-edit.git
 [submodule "switch-window"]
 	path = lib/switch-window
 	url = git@github.com:dimitri/switch-window.git
