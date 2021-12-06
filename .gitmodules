@@ -43,6 +43,9 @@
 [submodule "packed"]
 	path = lib/packed
 	url = git@github.com:emacscollective/packed.git
+[submodule "scratch"]
+	path = lib/scratch
+	url = git@github.com:ieure/scratch-el.git
 [submodule "transient"]
 	path = lib/transient
 	url = git@github.com:magit/transient.git

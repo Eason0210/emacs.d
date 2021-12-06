@@ -103,6 +103,8 @@
   (add-hook (derived-mode-hook-name mode)
             (apply-partially 'sanityinc/set-major-mode-name name)))
 
+(use-package scratch
+  :defer t)
 
 (use-package dash
   :config (global-dash-fontify-mode 1))
