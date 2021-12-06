@@ -65,6 +65,12 @@
            (float-time (time-subtract (current-time)
                                       before-user-init-time))))
 
+;;; Configure keys specific to MacOS
+
+(when *is-a-mac*
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'none))
+
 ;;; Long tail
 
 (use-package dash
