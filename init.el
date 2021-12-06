@@ -795,6 +795,12 @@ Call a second time to restore the original window configuration."
          ([M-up] . move-dup-move-lines-up)
          ([M-down] . move-dup-move-lines-down)))
 
+;; Cut/copy the current line if no region is active
+(use-package whole-line-or-region
+  :diminish whole-line-or-region-local-mode
+  :hook (after-init . whole-line-or-region-global-mode))
+
+
 (use-package dash
   :config (global-dash-fontify-mode 1))
 

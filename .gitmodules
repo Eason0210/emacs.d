@@ -125,6 +125,9 @@
 [submodule "vertico"]
 	path = lib/vertico
 	url = git@github.com:minad/vertico.git
+[submodule "whole-line-or-region"]
+	path = lib/whole-line-or-region
+	url = git@github.com:purcell/whole-line-or-region.git
 [submodule "with-editor"]
 	path = lib/with-editor
 	url = git@github.com:magit/with-editor.git
