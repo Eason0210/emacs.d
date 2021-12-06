@@ -118,6 +118,16 @@
 (progn ;    `isearch'
   (setq isearch-allow-scroll t))
 
+;;; minibufer configuration
+(use-package vertico
+  :demand t
+  :init
+  (progn
+    (setq vertico-cycle t))
+  :config
+  (progn
+    (vertico-mode)))
+
 (use-package lisp-mode
   :config
   (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
@@ -230,6 +240,7 @@
                                 user-emacs-directory)))
     (when (file-exists-p file)
       (load file))))
+
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
