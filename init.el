@@ -803,6 +803,10 @@ Call a second time to restore the original window configuration."
 ;; M-^ is inconvenient, so also bind M-j
 (bind-key "M-j" 'join-line)
 
+;; Highlight escape sequences
+(use-package highlight-escape-sequences
+  :hook (after-init . hes-mode))
+
 
 (use-package dash
   :config (global-dash-fontify-mode 1))

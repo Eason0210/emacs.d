@@ -70,6 +70,9 @@
 [submodule "git-modes"]
 	path = lib/git-modes
 	url = git@github.com:magit/git-modes.git
+[submodule "highlight-escape-sequences"]
+	path = lib/highlight-escape-sequences
+	url = git@github.com:dgutov/highlight-escape-sequences.git
 [submodule "magit"]
 	path = lib/magit
 	url = git@github.com:magit/magit.git
