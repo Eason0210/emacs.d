@@ -1,0 +1,48 @@
+#+title: My Emacs Configuration
+
+This is my emacs configuration, it work on Mac OS X, Linux and Windows.
+And this config is customized base on [[https://github.com/purcell/emacs.d][Purcell's Emacs config]] which I used for about one year. It's a very nice config for Emacs starter, Thanks Purcell.
+
+** Why create this config?
+
+Because I need to optimize the startup time by [[https://github.com/jwiegley/use-package][use-package]], and remove features that I don't need.
+
+Use [[https://gitlab.com/tarsius/borg][Borg]] to manage packages by submodule of Git.
+
+** Supported Emacs versions
+Emacs itself comes with support for many programming languages. This config adds improved defaults and extended support for the following, listed in the approximate order of how much I use them, from most to least:
+
+- Haskell
+- C/C++
+- Python
+- CSS / LESS / SASS / SCSS
+- Javascript / Typescript
+- HTML
+- Rust
+
+** Supported Emacs versions
+The config should run on Emacs 27.1 or greater. I use Emacs master branch personally(recently is Emacs 29.0.50).
+
+** Installation
+To install, clone this repo to ~$HOME/.emacs.d~, i.e. ensure that the ~init.el~ contained in this repo ends up at ~$HOME/.emacs.d/init.el~:
+
+#+begin_src bash
+git clone https://github.com/Eason0210/emacs.d.git ~/.emacs.d
+#+end_src
+Upon starting up Emacs for the first time, further third-party packages will be automatically downloaded and installed.
+
+*** org-roam
+You need to install ~sqlite3~ in your system.
+
+The default org-roam-directory is ~$HOME/.org/org-roam~
+
+** Updates
+Update the config with git ~pull~. 
+
+** Reference configurations
+1. [[https://github.com/purcell/emacs.d][Purcell/emacs.d]]
+2. [[https://github.com/jwiegley/dot-emacs/blob/master/init.el][jwiegley/dot-emacs]]
+3. [[https://github.com/seagle0128/.emacs.d][Centaur Emacs]]
+4. [[https://github.com/MatthewZMD/.emacs.d][M-EMACS]]
+5. [[https://github.com/douglasdavis/dot-emacs][douglasdavis/dot-emacs]]
+6. [[https://github.com/DamienCassou/emacs.d][DamienCassou/emacs.d]]
