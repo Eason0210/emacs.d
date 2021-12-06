@@ -743,6 +743,9 @@ Call a second time to restore the original window configuration."
   (setq-default display-line-numbers-width 3))
 
 
+(progn ;    `text-mode'
+  (add-hook 'text-mode-hook 'indicate-buffer-boundaries-left))
+
 (use-package dash
   :config (global-dash-fontify-mode 1))
 
@@ -832,9 +835,6 @@ Call a second time to restore the original window configuration."
   (when (>= emacs-major-version 27)
     (set-face-attribute 'smerge-refined-removed nil :extend t)
     (set-face-attribute 'smerge-refined-added   nil :extend t)))
-
-(progn ;    `text-mode'
-  (add-hook 'text-mode-hook 'indicate-buffer-boundaries-left))
 
 (use-package tramp
   :defer t
