@@ -79,6 +79,9 @@
 [submodule "marginalia"]
 	path = lib/marginalia
 	url = git@github.com:minad/marginalia.git
+[submodule "multiple-cursors"]
+	path = lib/multiple-cursors
+	url = git@github.com:magnars/multiple-cursors.el.git
 [submodule "ns-auto-titlebar"]
 	path = lib/ns-auto-titlebar
 	url = git@github.com:purcell/ns-auto-titlebar.git

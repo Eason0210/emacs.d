@@ -778,6 +778,12 @@ Call a second time to restore the original window configuration."
 
 (bind-key "C-M-<backspace>" 'kill-back-to-indentation)
 
+;; Multiple cursors
+(use-package multiple-cursors
+  :bind (("C-<" . mc/mark-previous-like-this)
+         ("C->" . mc/mark-next-like-this)
+         ("C-c C-<" . mc/mark-all-like-this)
+         ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 
 
 (use-package dash
