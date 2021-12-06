@@ -727,6 +727,14 @@ Call a second time to restore the original window configuration."
   (setq global-auto-revert-non-file-buffers t
         auto-revert-verbose nil))
 
+;; A light will shine on top of cursor when window scrolls
+(use-package beacon
+  :init
+  (setq-default beacon-lighter "")
+  (setq-default beacon-size 20)
+  :config
+  (beacon-mode 1))
+
 
 (use-package dash
   :config (global-dash-fontify-mode 1))
