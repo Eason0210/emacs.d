@@ -86,6 +86,8 @@
 
 ;;; Long tail
 
+(use-package diminish)
+
 (use-package dash
   :config (global-dash-fontify-mode 1))
 
