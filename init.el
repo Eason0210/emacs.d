@@ -166,6 +166,11 @@
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
 
+;; Better pixel line scrolling
+(if (boundp 'pixel-scroll-precision-mode)
+    (pixel-scroll-precision-mode t))
+
+
 (use-package dash
   :config (global-dash-fontify-mode 1))
 
