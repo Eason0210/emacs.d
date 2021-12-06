@@ -171,6 +171,20 @@
     (pixel-scroll-precision-mode t))
 
 
+;;; Dired mode
+
+(use-package dired
+  :defer t
+  :config
+  (setq dired-listing-switches "-alh")
+  (setq-default dired-kill-when-opening-new-dired-buffer t)
+  (setq dired-recursive-copies 'always))
+
+(use-package diredfl
+  :config
+  (diredfl-global-mode 1))
+
+
 (use-package dash
   :config (global-dash-fontify-mode 1))
 
@@ -187,10 +201,6 @@
     (set-face-attribute 'diff-refine-changed nil :extend t)
     (set-face-attribute 'diff-refine-removed nil :extend t)
     (set-face-attribute 'diff-refine-added   nil :extend t)))
-
-(use-package dired
-  :defer t
-  :config (setq dired-listing-switches "-alh"))
 
 (use-package eldoc
   :when (version< "25" emacs-version)
