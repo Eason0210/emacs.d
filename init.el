@@ -161,6 +161,10 @@
     :config
     (ns-auto-titlebar-mode 1)))
 
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
 
 (use-package dash
   :config (global-dash-fontify-mode 1))
