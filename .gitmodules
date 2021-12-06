@@ -103,6 +103,9 @@
 [submodule "switch-window"]
 	path = lib/switch-window
 	url = git@github.com:dimitri/switch-window.git
+[submodule "symbol-overlay"]
+	path = lib/symbol-overlay
+	url = git@github.com:wolray/symbol-overlay.git
 [submodule "transient"]
 	path = lib/transient
 	url = git@github.com:magit/transient.git

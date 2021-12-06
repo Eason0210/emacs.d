@@ -750,6 +750,15 @@ Call a second time to restore the original window configuration."
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+(use-package symbol-overlay
+  :diminish
+  :hook ((prog-mode html-mode yaml-mode conf-mode) . symbol-overlay-mode)
+  :bind (:map symbol-overlay-mode
+              ("M-i" . symbol-overlay-put)
+              ("M-n" . symbol-overlay-jump-next)
+              ("M-p" . symbol-overlay-jump-prev)))
+
+
 
 (use-package dash
   :config (global-dash-fontify-mode 1))
