@@ -92,6 +92,18 @@
   (cd "~/")
   (setenv "LANG" "en_US"))
 
+;;; Elisp helper functions and commands
+
+;; Like diminish, but for major modes
+(defun sanityinc/set-major-mode-name (name)
+  "Override the major mode NAME in this buffer."
+  (setq-local mode-name name))
+
+(defun sanityinc/major-mode-lighter (mode name)
+  (add-hook (derived-mode-hook-name mode)
+            (apply-partially 'sanityinc/set-major-mode-name name)))
+
+
 (use-package dash
   :config (global-dash-fontify-mode 1))
 
