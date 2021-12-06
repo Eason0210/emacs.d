@@ -88,6 +88,10 @@
 
 (use-package diminish)
 
+(when (eq system-type 'windows-nt)
+  (cd "~/")
+  (setenv "LANG" "en_US"))
+
 (use-package dash
   :config (global-dash-fontify-mode 1))
 
