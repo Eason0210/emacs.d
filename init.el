@@ -807,6 +807,13 @@ Call a second time to restore the original window configuration."
 (use-package highlight-escape-sequences
   :hook (after-init . hes-mode))
 
+;; Display available keybindings
+(use-package which-key
+  :diminish
+  :hook (after-init . which-key-mode)
+  :config
+  (setq-default which-key-idle-delay 1.5))
+
 
 (use-package dash
   :config (global-dash-fontify-mode 1))
