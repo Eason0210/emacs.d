@@ -290,8 +290,18 @@
   :demand t
   :config (add-to-list 'recentf-exclude "^/\\(?:ssh\\|su\\|sudo\\)?:"))
 
+;; Restore histories and registers after saving
+
 (use-package savehist
   :config (savehist-mode))
+
+(use-package session
+  :hook (after-init . session-initialize)
+  :config
+  (setq session-save-file (locate-user-emacs-file ".session"))
+  (setq session-name-disable-regexp "\\(?:\\`'/tmp\\|\\.git/[A-Z_]+\\'\\)")
+  (setq session-save-file-coding-system 'utf-8))
+
 
 (use-package saveplace
   :when (version< "25" emacs-version)
