@@ -274,6 +274,11 @@ This is useful when followed by an immediate kill."
 
   (setq ibuffer-filter-group-name-face 'font-lock-doc-face))
 
+(use-package fullframe
+  :after ibuffer
+  :config
+  (fullframe ibuffer ibuffer-quit))
+
 
 
 (use-package dash
