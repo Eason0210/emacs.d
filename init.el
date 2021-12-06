@@ -736,6 +736,13 @@ Call a second time to restore the original window configuration."
   (beacon-mode 1))
 
 
+;; Show line number
+(use-package display-line-numbers
+  :hook (prog-mode . display-line-numbers-mode)
+  :config
+  (setq-default display-line-numbers-width 3))
+
+
 (use-package dash
   :config (global-dash-fontify-mode 1))
 
