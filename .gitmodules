@@ -79,6 +79,12 @@
 [submodule "highlight-escape-sequences"]
 	path = lib/highlight-escape-sequences
 	url = git@github.com:dgutov/highlight-escape-sequences.git
+[submodule "highlight-quoted"]
+	path = lib/highlight-quoted
+	url = git@github.com:Fanael/highlight-quoted.git
+[submodule "immortal-scratch"]
+	path = lib/immortal-scratch
+	url = git@github.com:jpkotta/immortal-scratch.git
 [submodule "magit"]
 	path = lib/magit
 	url = git@github.com:magit/magit.git

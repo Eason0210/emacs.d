@@ -32,7 +32,6 @@
   (setq inhibit-startup-screen t)
   (setq inhibit-startup-echo-area-message "locutus")
   (setq initial-buffer-choice t)
-  (setq initial-scratch-message (concat ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
   (when (fboundp 'scroll-bar-mode)
     (scroll-bar-mode 0))
   (when (fboundp 'tool-bar-mode)
@@ -1225,6 +1224,70 @@ typical word processor."
   (eldoc-add-command 'paredit-backward-delete
                      'paredit-close-round))
 
+;;; Emacs lisp settings, and common config for other lisps
+
+;; Make C-x C-e run 'eval-region if the region is active
+
+(use-package lisp-mode
+  :bind (([remap eval-expression] . pp-eval-expression)
+         :map emacs-lisp-mode-map
+         ("C-x C-e" . sanityinc/eval-last-sexp-or-region)
+         ("C-c C-e" . pp-eval-expression)
+         ("C-c C-l" . sanityinc/load-this-file))
+  :hook ((emacs-lisp-mode . (lambda () (setq mode-name "ELisp")))
+         (emacs-lisp-mode . sanityinc/maybe-set-bundled-elisp-readonly))
+  :config
+  (setq-default debugger-bury-or-kill 'kill)
+  (setq-default initial-scratch-message
+                (concat ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
+
+  ;; Make C-x C-e run 'eval-region if the region is active
+  (defun sanityinc/eval-last-sexp-or-region (prefix)
+    "Eval region from BEG to END if active, otherwise the last sexp."
+    (interactive "P")
+    (if (and (mark) (use-region-p))
+        (eval-region (min (point) (mark)) (max (point) (mark)))
+      (pp-eval-last-sexp prefix)))
+
+  (defun sanityinc/make-read-only (expression out-buffer-name)
+    "Enable `view-mode' in the output buffer - if any - so it can be closed with `\"q\"."
+    (when (get-buffer out-buffer-name)
+      (with-current-buffer out-buffer-name
+        (view-mode 1))))
+  (advice-add 'pp-display-expression :after 'sanityinc/make-read-only)
+
+  ;; C-c C-l to load buffer or file
+  (defun sanityinc/load-this-file ()
+    "Load the current file or buffer.
+The current directory is temporarily added to `load-path'.  When
+there is no current file, eval the current buffer."
+    (interactive)
+    (let ((load-path (cons default-directory load-path))
+          (file (buffer-file-name)))
+      (if file
+          (progn
+            (save-some-buffers nil (apply-partially 'derived-mode-p 'emacs-lisp-mode))
+            (load-file (buffer-file-name))
+            (message "Loaded %s" file))
+        (eval-buffer)
+        (message "Evaluated %s" (current-buffer)))))
+
+  (defun sanityinc/maybe-set-bundled-elisp-readonly ()
+    "If this elisp appears to be part of Emacs, then disallow editing."
+    (when (and (buffer-file-name)
+               (string-match-p "\\.el\\.gz\\'" (buffer-file-name)))
+      (setq buffer-read-only t)
+      (view-mode 1)))
+
+  ;;respawn the scratch buffer when it's killed
+  (use-package immortal-scratch
+    :after lisp-mode
+    :hook (after-init . immortal-scratch-mode))
+
+  ;; Extras for theme editing
+  (use-package highlight-quoted
+    :hook (emacs-lisp-mode . highlight-quoted-mode)))
+
 
 ;;; Spell check settings
 
@@ -1403,15 +1466,6 @@ typical word processor."
 (use-package help
   :defer t
   :config (temp-buffer-resize-mode))
-
-
-(use-package lisp-mode
-  :config
-  (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
-  (add-hook 'emacs-lisp-mode-hook 'reveal-mode)
-  (defun indent-spaces-mode ()
-    (setq indent-tabs-mode nil))
-  (add-hook 'lisp-interaction-mode-hook 'indent-spaces-mode))
 
 (use-package magit
   :init
