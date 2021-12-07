@@ -774,7 +774,7 @@ Call a second time to restore the original window configuration."
 (use-package symbol-overlay
   :diminish
   :hook ((prog-mode html-mode yaml-mode conf-mode) . symbol-overlay-mode)
-  :bind (:map symbol-overlay-mode
+  :bind (:map symbol-overlay-mode-map
               ("M-i" . symbol-overlay-put)
               ("M-n" . symbol-overlay-jump-next)
               ("M-p" . symbol-overlay-jump-prev)))
