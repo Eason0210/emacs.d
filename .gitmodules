@@ -37,6 +37,9 @@
 [submodule "consult-flycheck"]
 	path = lib/consult-flycheck
 	url = git@github.com:minad/consult-flycheck.git
+[submodule "crontab-mode"]
+	path = lib/crontab-mode
+	url = git@github.com:emacs-pe/crontab-mode.git
 [submodule "dante"]
 	path = lib/dante
 	url = git@github.com:jyp/dante.git
@@ -57,6 +60,9 @@
 [submodule "diredfl"]
 	path = lib/diredfl
 	url = git@github.com:purcell/diredfl.git
+[submodule "edit-indirect"]
+	path = lib/edit-indirect
+	url = git@github.com:Fanael/edit-indirect.git
 [submodule "emacsql"]
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git
@@ -133,6 +139,9 @@
 [submodule "marginalia"]
 	path = lib/marginalia
 	url = git@github.com:minad/marginalia.git
+[submodule "markdown-mode"]
+	path = lib/markdown-mode
+	url = git@github.com:jrblevin/markdown-mode.git
 [submodule "mmm-mode"]
 	path = lib/mmm-mode
 	url = git@github.com:purcell/mmm-mode.git
@@ -220,6 +229,9 @@
 [submodule "symbol-overlay"]
 	path = lib/symbol-overlay
 	url = git@github.com:wolray/symbol-overlay.git
+[submodule "textile-mode"]
+	path = lib/textile-mode
+	url = git@github.com:juba/textile-mode.git
 [submodule "transient"]
 	path = lib/transient
 	url = git@github.com:magit/transient.git

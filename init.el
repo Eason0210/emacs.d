@@ -1197,6 +1197,25 @@ typical word processor."
         (writeroom-mode 0)))))
 
 
+;;; Working with crontabs
+
+(use-package crontab-mode
+  :mode "\\.?cron\\(tab\\)?\\'")
+
+
+;;; Edit Textile markup
+
+(use-package textile-mode
+  :mode "\\.textile\\'")
+
+
+;;; Markdown support
+
+(use-package markdown-mode
+  :mode (("\\.md\\.html\\'" . markdown-mode)
+         ("README\\.md\\'" . gfm-mode)))
+
+
 ;;; Web configurations
 
 ;; JavaScript
