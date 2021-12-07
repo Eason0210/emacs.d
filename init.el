@@ -1893,5 +1893,6 @@ there is no current file, eval the current buffer."
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
+;; no-byte-compile: t
 ;; End:
 ;;; init.el ends here
