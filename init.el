@@ -1300,6 +1300,9 @@ there is no current file, eval the current buffer."
 (use-package macrostep
   :bind ("C-c e m" . macrostep-expand))
 
+(use-package ert
+  :bind (:map ert-results-mode-map
+              ("g" . ert-results-rerun-all-tests)))
 
 ;;; Spell check settings
 
