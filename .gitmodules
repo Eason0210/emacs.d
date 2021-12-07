@@ -124,6 +124,9 @@
 [submodule "session"]
 	path = lib/session
 	url = git@github.com:emacsorphanage/session.git
+[submodule "shift-number"]
+	path = lib/shift-number
+	url = git@github.com:alezost/shift-number.el.git
 [submodule "sis"]
 	path = lib/sis
 	url = git@github.com:laishulu/emacs-smart-input-source.git

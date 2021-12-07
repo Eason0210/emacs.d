@@ -1221,6 +1221,19 @@ typical word processor."
   :after flyspell
   :bind (:map flyspell-mode-map ("C-," . flyspell-correct-wrapper)))
 
+;;; Miscellaneous config
+
+(defalias 'yes-or-no-p #'y-or-n-p)
+
+(use-package goto-addr
+  :hook (prog-mode . goto-address-prog-mode)
+  :config
+  (setq goto-address-mail-face 'link))
+
+(use-package shift-number
+  :bind (("C-c +" . shift-number-up)
+         ("C-c -" . shift-number-down)))
+
 
 ;;; Support code and region folding
 
