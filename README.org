@@ -28,6 +28,8 @@ To install, clone this repo to ~$HOME/.emacs.d~, i.e. ensure that the ~init.el~ 
 
 #+begin_src bash
 git clone https://github.com/Eason0210/emacs.d.git ~/.emacs.d
+make bootstrap-borg  # = bootstrap borg itself
+make bootstrap       # = bootstrap collective or new drones
 #+end_src
 Upon starting up Emacs for the first time, further third-party packages will be automatically downloaded and installed.
 
