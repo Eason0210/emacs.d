@@ -1222,6 +1222,24 @@ typical word processor."
   :bind (:map flyspell-mode-map ("C-," . flyspell-correct-wrapper)))
 
 
+;;; Toggle system input method automatically
+(use-package sis
+  :bind ("C-<f9>" . sis-switch)
+  :config
+  (when (eq system-type 'windows-nt)
+    (sis-ism-lazyman-config "1033" "2052" 'im-select))
+  (when *is-a-mac*
+    (sis-ism-lazyman-config "com.apple.keylayout.ABC" "com.apple.inputmethod.SCIM.ITABC"))
+
+  (setq sis-other-cursor-color "orange")
+  (sis-global-cursor-color-mode t)
+
+  (sis-global-respect-mode t)
+  (sis-global-context-mode t)
+  (sis-global-inline-mode t))
+
+
+
 (use-package dash
   :config (global-dash-fontify-mode 1))
 
