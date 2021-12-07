@@ -773,8 +773,15 @@ Call a second time to restore the original window configuration."
   :config
   (setq-default display-line-numbers-width 3))
 
+;; Display buffer boundaries and fill column indicator
+(use-package prog-mode
+  :config (global-prettify-symbols-mode)
+  (defun indicate-buffer-boundaries-left ()
+    (setq indicate-buffer-boundaries 'left))
+  (add-hook 'prog-mode-hook 'indicate-buffer-boundaries-left))
 
-(progn ;    `text-mode'
+
+(progn ;;    `text-mode'
   (add-hook 'text-mode-hook 'indicate-buffer-boundaries-left))
 
 
@@ -1828,13 +1835,6 @@ there is no current file, eval the current buffer."
 (use-package man
   :defer t
   :config (setq Man-width 80))
-
-(use-package prog-mode
-  :config (global-prettify-symbols-mode)
-  (defun indicate-buffer-boundaries-left ()
-    (setq indicate-buffer-boundaries 'left))
-  (add-hook 'prog-mode-hook 'indicate-buffer-boundaries-left))
-
 
 (use-package smerge-mode
   :defer t
