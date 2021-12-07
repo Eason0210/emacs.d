@@ -837,6 +837,16 @@ Call a second time to restore the original window configuration."
   :hook (after-init . ws-butler-global-mode))
 
 
+;;; Version control
+
+(use-package diff-hl
+  :bind (:map diff-hl-mode
+              ("<left-fringe> <mouse-1>" . diff-hl-diff-goto-hunk))
+  :hook ((magit-post-refresh . diff-hl-magit-post-refresh)
+         (after-init . global-diff-hl-mode)
+         (dired-mode . diff-hl-dired-mode)))
+
+
 ;;; Org-mode config
 
 ;; Among settings for many aspects of `org-mode', this code includes
@@ -1685,12 +1695,6 @@ there is no current file, eval the current buffer."
 
 (use-package dash
   :config (global-dash-fontify-mode 1))
-
-(use-package diff-hl
-  :config
-  (setq diff-hl-draw-borders nil)
-  (global-diff-hl-mode)
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh t))
 
 (use-package diff-mode
   :defer t
