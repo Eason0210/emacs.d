@@ -64,6 +64,9 @@
 [submodule "flycheck-color-mode-line"]
 	path = lib/flycheck-color-mode-line
 	url = git@github.com:flycheck/flycheck-color-mode-line.git
+[submodule "flycheck-package"]
+	path = lib/flycheck-package
+	url = git@github.com:purcell/flycheck-package.git
 [submodule "flyspell-correct"]
 	path = lib/flyspell-correct
 	url = git@github.com:d12frosted/flyspell-correct.git
@@ -115,6 +118,9 @@
 [submodule "origami"]
 	path = lib/origami
 	url = git@github.com:gregsexton/origami.el.git
+[submodule "package-lint"]
+	path = lib/package-lint
+	url = git@github.com:purcell/package-lint.git
 [submodule "packed"]
 	path = lib/packed
 	url = git@github.com:emacscollective/packed.git

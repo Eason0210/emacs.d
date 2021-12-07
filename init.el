@@ -1304,6 +1304,12 @@ there is no current file, eval the current buffer."
   :bind (:map ert-results-mode-map
               ("g" . ert-results-rerun-all-tests)))
 
+(use-package flycheck-package
+  :after (flycheck elisp-mode)
+  :config
+  (flycheck-package-setup))
+
+
 ;;; Spell check settings
 
 (use-package flyspell
