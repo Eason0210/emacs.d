@@ -846,6 +846,44 @@ Call a second time to restore the original window configuration."
          (after-init . global-diff-hl-mode)
          (dired-mode . diff-hl-dired-mode)))
 
+;; Git SCM support
+(use-package magit
+  ;; Hint: customize `magit-repository-directories' so that you can use C-u M-F12 to
+  ;; quickly open magit on any one of your projects.
+  :bind (([(meta f12)] . magit-status)
+         ("C-x g" . magit-status)
+         ("C-x M-g" . magit-dispatch))
+  :init
+  (progn
+    (setq magit-diff-refine-hunk t)
+    (setq magit-branch-prefer-remote-upstream '("master"))
+    (setq magit-branch-adjust-remote-upstream-alist '(("origin/master" "master")))
+    (setq magit-module-sections-nested nil)
+    (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+    (setq magit-no-confirm '(amend-published))
+    (setq magit-revision-insert-related-refs nil)
+    (setq magit-revision-show-gravatars t)
+    (setq magit-clone-set-remote.pushDefault t))
+  :config
+  (progn
+    ;; Enable magit-clean
+    (put 'magit-clean 'disabled nil)
+
+    ;; Add modules in magit status buffer:
+    (magit-add-section-hook 'magit-status-sections-hook
+                            'magit-insert-modules
+                            'magit-insert-unpulled-from-upstream)
+
+    ;; Only show the module sections I'm interested in
+    (with-eval-after-load "magit-submodule"
+      (remove-hook 'magit-module-sections-hook 'magit-insert-modules-overview)
+      (remove-hook 'magit-module-sections-hook 'magit-insert-modules-unpulled-from-pushremote)
+      (remove-hook 'magit-module-sections-hook 'magit-insert-modules-unpushed-to-upstream)
+      (remove-hook 'magit-module-sections-hook 'magit-insert-modules-unpushed-to-pushremote))
+
+    (transient-replace-suffix 'magit-commit 'magit-commit-autofixup
+      '("x" "Absorb changes" magit-commit-absorb))))
+
 
 ;;; Org-mode config
 
@@ -1711,38 +1749,6 @@ there is no current file, eval the current buffer."
 (use-package help
   :defer t
   :config (temp-buffer-resize-mode))
-
-(use-package magit
-  :init
-  (progn
-    (setq magit-diff-refine-hunk t)
-    (setq magit-branch-prefer-remote-upstream '("master"))
-    (setq magit-branch-adjust-remote-upstream-alist '(("origin/master" "master")))
-    (setq magit-module-sections-nested nil)
-    (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
-    (setq magit-no-confirm '(amend-published))
-    (setq magit-revision-insert-related-refs nil)
-    (setq magit-revision-show-gravatars t)
-    (setq magit-clone-set-remote.pushDefault t))
-  :config
-  (progn
-    ;; Enable magit-clean
-    (put 'magit-clean 'disabled nil)
-
-    ;; Add modules in magit status buffer:
-    (magit-add-section-hook 'magit-status-sections-hook
-                            'magit-insert-modules
-                            'magit-insert-unpulled-from-upstream)
-
-    ;; Only show the module sections I'm interested in
-    (with-eval-after-load "magit-submodule"
-      (remove-hook 'magit-module-sections-hook 'magit-insert-modules-overview)
-      (remove-hook 'magit-module-sections-hook 'magit-insert-modules-unpulled-from-pushremote)
-      (remove-hook 'magit-module-sections-hook 'magit-insert-modules-unpushed-to-upstream)
-      (remove-hook 'magit-module-sections-hook 'magit-insert-modules-unpushed-to-pushremote))
-
-    (transient-replace-suffix 'magit-commit 'magit-commit-autofixup
-      '("x" "Absorb changes" magit-commit-absorb))))
 
 (use-package man
   :defer t
