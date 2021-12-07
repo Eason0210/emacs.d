@@ -1494,6 +1494,13 @@ typical word processor."
   :bind (:map nix-mode-map
               ("C-c C-f" . nixpkgs-fmt)))
 
+
+;;; Support for the Rust language
+(use-package rust-mode
+  :mode "\\.rs\\'")
+
+
+
 ;;; Configure paredit structured editing
 
 (use-package paredit

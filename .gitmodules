@@ -226,6 +226,9 @@
 [submodule "reformatter"]
 	path = lib/reformatter
 	url = git@github.com:purcell/emacs-reformatter.git
+[submodule "rust-mode"]
+	path = lib/rust-mode
+	url = git@github.com:rust-lang/rust-mode.git
 [submodule "s"]
 	path = lib/s
 	url = git@github.com:magnars/s.el.git
