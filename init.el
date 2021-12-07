@@ -1250,6 +1250,29 @@ typical word processor."
   (setq python-indent-guess-indent-offset-verbose nil))
 
 
+;;; Support Yaml files
+
+(use-package yaml-mode
+  :mode "\\.ya?ml\\'"
+  :hook (yaml-mode . goto-address-prog-mode))
+
+
+;;; Lua mode
+
+(use-package lua-mode
+  :mode "\\.lua\\'")
+
+
+;;; Support for the Nix package manager
+
+(use-package nix-mode
+  :mode "\\.nix\\'")
+
+(use-package nixpkgs-fmt
+  :after nix-mode
+  :bind (:map nix-mode-map
+              ("C-c C-f" . nixpkgs-fmt)))
+
 ;;; Configure paredit structured editing
 
 (use-package paredit

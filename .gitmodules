@@ -106,6 +106,9 @@
 [submodule "lcr"]
 	path = lib/lcr
 	url = git@github.com:jyp/lcr.git
+[submodule "lua-mode"]
+	path = lib/lua-mode
+	url = git@github.com:immerrr/lua-mode.git
 [submodule "macrostep"]
 	path = lib/macrostep
 	url = git@github.com:joddie/macrostep.git
@@ -118,6 +121,9 @@
 [submodule "marginalia"]
 	path = lib/marginalia
 	url = git@github.com:minad/marginalia.git
+[submodule "mmm-mode"]
+	path = lib/mmm-mode
+	url = git@github.com:purcell/mmm-mode.git
 [submodule "modern-cpp-font-lock"]
 	path = lib/modern-cpp-font-lock
 	url = git@github.com:ludwigpacifici/modern-cpp-font-lock.git
@@ -127,6 +133,12 @@
 [submodule "multiple-cursors"]
 	path = lib/multiple-cursors
 	url = git@github.com:magnars/multiple-cursors.el.git
+[submodule "nix-mode"]
+	path = lib/nix-mode
+	url = git@github.com:NixOS/nix-mode.git
+[submodule "nixpkgs-fmt"]
+	path = lib/nixpkgs-fmt
+	url = git@github.com:purcell/emacs-nixpkgs-fmt.git
 [submodule "ns-auto-titlebar"]
 	path = lib/ns-auto-titlebar
 	url = git@github.com:purcell/ns-auto-titlebar.git
@@ -221,6 +233,9 @@
 [submodule "xterm-color"]
 	path = lib/xterm-color
 	url = git@github.com:atomontage/xterm-color.git
+[submodule "yaml-mode"]
+	path = lib/yaml-mode
+	url = git@github.com:yoshiki/yaml-mode.git
 [submodule "yasnippet"]
 	path = lib/yasnippet
 	url = git@github.com:joaotavora/yasnippet.git
