@@ -133,6 +133,9 @@
 [submodule "sudo-edit"]
 	path = lib/sudo-edit
 	url = git@github.com:nflath/sudo-edit.git
+[submodule "super-save"]
+	path = lib/super-save
+	url = git@github.com:bbatsov/super-save.git
 [submodule "switch-window"]
 	path = lib/switch-window
 	url = git@github.com:dimitri/switch-window.git

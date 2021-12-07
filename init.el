@@ -1234,6 +1234,16 @@ typical word processor."
   :bind (("C-c +" . shift-number-up)
          ("C-c -" . shift-number-down)))
 
+;; Auto save
+(use-package super-save
+  :diminish
+  :defer 0.5
+  :config
+  (add-to-list 'super-save-triggers 'switch-window)
+  ;; (setq super-save-idle-duration 1)
+  (setq super-save-auto-save-when-idle t)
+  (setq save-silently t)
+  (super-save-mode 1))
 
 ;;; Support code and region folding
 
