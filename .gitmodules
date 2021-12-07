@@ -97,9 +97,15 @@
 [submodule "flyspell-correct"]
 	path = lib/flyspell-correct
 	url = git@github.com:d12frosted/flyspell-correct.git
+[submodule "forge"]
+	path = lib/forge
+	url = git@github.com:magit/forge.git
 [submodule "fullframe"]
 	path = lib/fullframe
 	url = git@github.com:emacsmirror/fullframe.git
+[submodule "ghub"]
+	path = lib/ghub
+	url = git@github.com:magit/ghub.git
 [submodule "git-modes"]
 	path = lib/git-modes
 	url = git@github.com:magit/git-modes.git
@@ -284,6 +290,9 @@
 [submodule "xterm-color"]
 	path = lib/xterm-color
 	url = git@github.com:atomontage/xterm-color.git
+[submodule "yaml"]
+	path = lib/yaml
+	url = git@github.com:zkry/yaml.el.git
 [submodule "yaml-mode"]
 	path = lib/yaml-mode
 	url = git@github.com:yoshiki/yaml-mode.git
