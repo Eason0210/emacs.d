@@ -1,6 +1,9 @@
 [borg]
 	pushDefault = locutus
 	collective = emacsg
+[submodule "aggressive-indent"]
+	path = lib/aggressive-indent
+	url = git@github.com:Malabarba/aggressive-indent-mode.git
 [submodule "anzu"]
 	path = lib/anzu
 	url = git@github.com:emacsorphanage/anzu.git

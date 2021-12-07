@@ -1309,6 +1309,58 @@ there is no current file, eval the current buffer."
   :config
   (flycheck-package-setup))
 
+;; Enable desired features for all lisp modes
+
+(defun set-up-hippie-expand-for-elisp ()
+  "Locally set `hippie-expand' completion functions for use with Emacs Lisp."
+  (make-local-variable 'hippie-expand-try-functions-list)
+  (add-to-list 'hippie-expand-try-functions-list 'try-complete-lisp-symbol t)
+  (add-to-list 'hippie-expand-try-functions-list 'try-complete-lisp-symbol-partially t))
+
+(defun sanityinc/enable-check-parens-on-save ()
+  "Run `check-parens' when the current buffer is saved."
+  (add-hook 'after-save-hook #'check-parens nil t))
+
+(defvar sanityinc/lispy-modes-hook
+  '(enable-paredit-mode
+    sanityinc/enable-check-parens-on-save)
+  "Hook run in all Lisp modes.")
+
+(use-package aggressive-indent
+  :config
+  (add-to-list 'sanityinc/lispy-modes-hook 'aggressive-indent-mode))
+
+(defun sanityinc/lisp-setup ()
+  "Enable features useful in any Lisp mode."
+  (run-hooks 'sanityinc/lispy-modes-hook))
+
+(defun sanityinc/emacs-lisp-setup ()
+  "Enable features useful when working with elisp."
+  (set-up-hippie-expand-for-elisp))
+
+(defconst sanityinc/elispy-modes
+  '(emacs-lisp-mode ielm-mode)
+  "Major modes relating to elisp.")
+
+(defconst sanityinc/lispy-modes
+  (append sanityinc/elispy-modes
+          '(lisp-mode inferior-lisp-mode lisp-interaction-mode))
+  "All lispy major modes.")
+
+(require 'derived)
+
+(dolist (hook (mapcar #'derived-mode-hook-name sanityinc/lispy-modes))
+  (add-hook hook 'sanityinc/lisp-setup))
+
+(dolist (hook (mapcar #'derived-mode-hook-name sanityinc/elispy-modes))
+  (add-hook hook 'sanityinc/emacs-lisp-setup))
+
+(when (boundp 'eval-expression-minibuffer-setup-hook)
+  (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode))
+
+(add-to-list 'auto-mode-alist '("\\.emacs-project\\'" . emacs-lisp-mode))
+(add-to-list 'auto-mode-alist '("archive-contents\\'" . emacs-lisp-mode))
+
 
 ;;; Spell check settings
 
