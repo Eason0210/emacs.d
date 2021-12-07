@@ -1281,15 +1281,6 @@ Call a second time to restore the original window configuration."
       (message "Convert finish: %s" docx-file))))
 
 
-(use-package org-pomodoro
-  :bind (:map sanityinc/org-global-prefix-map
-              ("p" . org-pomodoro))
-  :config
-  (setq org-pomodoro-keep-killed-pomodoro-time t)
-  (with-eval-after-load 'org-agenda
-    (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro)))
-
-
 ;; Writing mode similar to the famous Writeroom editor for OS X
 (use-package writeroom-mode
   :hook (org-mode . prose-mode)

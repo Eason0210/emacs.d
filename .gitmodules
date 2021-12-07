@@ -193,9 +193,6 @@
 [submodule "orderless"]
 	path = lib/orderless
 	url = git@github.com:oantolin/orderless.git
-[submodule "org-pomodoro"]
-	path = lib/org-pomodoro
-	url = git@github.com:marcinkoziej/org-pomodoro.git
 [submodule "org-roam"]
 	path = lib/org-roam
 	url = git@github.com:org-roam/org-roam.git
