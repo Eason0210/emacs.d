@@ -1242,6 +1242,14 @@ typical word processor."
                       :lighter " Orm"))
 
 
+;;; Python mode
+(use-package python
+  :defer t
+  :config
+  (setq python-shell-interpreter "python3")
+  (setq python-indent-guess-indent-offset-verbose nil))
+
+
 ;;; Configure paredit structured editing
 
 (use-package paredit
