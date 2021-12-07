@@ -1196,6 +1196,23 @@ typical word processor."
       (when (fboundp 'writeroom-mode)
         (writeroom-mode 0)))))
 
+;;;; Programming languages support
+
+;;; C/C++ Mode
+
+(use-package cc-mode
+  :bind (:map c-mode-base-map
+              ("C-c c" . compile))
+  :hook (c-mode-common . (lambda () (c-set-style "stroustrup")))
+  :init (setq-default c-basic-offset 4))
+
+(use-package modern-cpp-font-lock
+  :diminish modern-c++-font-lock-mode
+  :hook (c++-mode . modern-c++-font-lock-mode))
+
+(use-package cmake-mode
+  :defer t)
+
 
 ;;; Configure paredit structured editing
 
