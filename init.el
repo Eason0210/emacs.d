@@ -723,12 +723,6 @@ Call a second time to restore the original window configuration."
   (setq session-name-disable-regexp "\\(?:\\`'/tmp\\|\\.git/[A-Z_]+\\'\\)")
   (setq session-save-file-coding-system 'utf-8))
 
-
-(use-package saveplace
-  :when (version< "25" emacs-version)
-  :config (save-place-mode))
-
-
 ;;; Editing utils
 
 (when (fboundp 'electric-pair-mode)
