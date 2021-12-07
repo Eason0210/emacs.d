@@ -109,6 +109,9 @@
 [submodule "packed"]
 	path = lib/packed
 	url = git@github.com:emacscollective/packed.git
+[submodule "paredit"]
+	path = lib/paredit
+	url = https://mumble.net/~campbell/git/paredit.git
 [submodule "projectile"]
 	path = lib/projectile
 	url = git@github.com:bbatsov/projectile.git
