@@ -134,6 +134,9 @@
 [submodule "vertico"]
 	path = lib/vertico
 	url = git@github.com:minad/vertico.git
+[submodule "visual-fill-column"]
+	path = lib/visual-fill-column
+	url = https://codeberg.org/joostkremers/visual-fill-column.git
 [submodule "which-key"]
 	path = lib/which-key
 	url = git@github.com:justbur/emacs-which-key.git
