@@ -719,6 +719,28 @@ Call a second time to restore the original window configuration."
   (add-hook 'after-init-hook 'electric-pair-mode))
 (add-hook 'after-init-hook 'electric-indent-mode)
 
+(setq-default
+ blink-cursor-interval 0.4
+ bookmark-default-file (locate-user-emacs-file ".bookmarks.el")
+ buffers-menu-max-size 30
+ column-number-mode t
+ indent-tabs-mode nil
+ create-lockfiles nil
+ auto-save-default nil
+ make-backup-files nil
+ mouse-yank-at-point t
+ save-interprogram-paste-before-kill t
+ scroll-preserve-screen-position 'always
+ set-mark-command-repeat-pop t
+ ;; truncate-lines nil
+ truncate-partial-width-windows nil
+ tooltip-delay 1.5)
+
+(bind-key "C-x x p" 'pop-to-mark-command)
+
+(add-hook 'after-init-hook 'delete-selection-mode)
+
+
 (use-package autorevert
   :diminish
   :hook (after-init . global-auto-revert-mode)
@@ -1814,9 +1836,6 @@ there is no current file, eval the current buffer."
     (setq indicate-buffer-boundaries 'left))
   (add-hook 'prog-mode-hook 'indicate-buffer-boundaries-left))
 
-
-(use-package simple
-  :config (column-number-mode))
 
 (use-package smerge-mode
   :defer t
