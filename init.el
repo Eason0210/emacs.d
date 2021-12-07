@@ -31,7 +31,7 @@
   (setq inhibit-startup-buffer-menu t)
   (setq inhibit-startup-screen t)
   (setq inhibit-startup-echo-area-message "locutus")
-  (setq initial-buffer-choice t)
+  ;; (setq initial-buffer-choice t)
   (when (fboundp 'scroll-bar-mode)
     (scroll-bar-mode 0))
   (when (fboundp 'tool-bar-mode)
