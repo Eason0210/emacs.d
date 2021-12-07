@@ -103,6 +103,9 @@
 [submodule "org-pomodoro"]
 	path = lib/org-pomodoro
 	url = git@github.com:marcinkoziej/org-pomodoro.git
+[submodule "origami"]
+	path = lib/origami
+	url = git@github.com:gregsexton/origami.el.git
 [submodule "packed"]
 	path = lib/packed
 	url = git@github.com:emacscollective/packed.git
@@ -112,6 +115,9 @@
 [submodule "rainbow-delimiters"]
 	path = lib/rainbow-delimiters
 	url = git@github.com:Fanael/rainbow-delimiters.git
+[submodule "s"]
+	path = lib/s
+	url = git@github.com:magnars/s.el.git
 [submodule "scratch"]
 	path = lib/scratch
 	url = git@github.com:ieure/scratch-el.git

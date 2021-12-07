@@ -1222,6 +1222,15 @@ typical word processor."
   :bind (:map flyspell-mode-map ("C-," . flyspell-correct-wrapper)))
 
 
+;;; Support code and region folding
+
+(use-package origami
+  :bind (("C-c f" . origami-recursively-toggle-node)
+         ("C-c F" . origami-toggle-all-nodes))
+  :config
+  (origami-mode 1))
+
+
 ;;; Toggle system input method automatically
 (use-package sis
   :bind ("C-<f9>" . sis-switch)
