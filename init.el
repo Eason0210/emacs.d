@@ -998,7 +998,6 @@ Call a second time to restore the original window configuration."
 ;; TODO states, which should make sense to GTD adherents.
 
 (use-package org
-  :ensure nil
   :bind (("C-c a" . org-agenda)
          ("C-c l" . org-store-link)
          ("C-c x" . org-capture)
@@ -1664,7 +1663,6 @@ there is no current file, eval the current buffer."
 
 (use-package flyspell
   :diminish
-  :ensure nil
   :if (and (executable-find "aspell") *spell-check-support-enabled*)
   ;; Add spell-checking in comments for all programming language modes
   :hook ((prog-mode . flyspell-prog-mode)
