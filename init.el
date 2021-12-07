@@ -794,7 +794,8 @@ Call a second time to restore the original window configuration."
 (bind-key "M-Z" 'zap-up-to-char)
 
 ;; Show matching parens
-(add-hook 'after-init-hook 'show-paren-mode)
+(use-package paren
+  :config (show-paren-mode))
 
 ;; Handy key bindings
 ;; (bind-key "C-." 'set-mark-command)
@@ -1827,9 +1828,6 @@ there is no current file, eval the current buffer."
 (use-package man
   :defer t
   :config (setq Man-width 80))
-
-(use-package paren
-  :config (show-paren-mode))
 
 (use-package prog-mode
   :config (global-prettify-symbols-mode)
