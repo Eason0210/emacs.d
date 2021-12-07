@@ -15,7 +15,7 @@
   (add-hook 'emacs-startup-hook
             (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
-(progn ;     startup
+(progn ;;     startup
   (defvar before-user-init-time (current-time)
     "Value of `current-time' when Emacs begins loading `user-init-file'.")
   (message "Loading Emacs...done (%.3fs)"
@@ -43,7 +43,7 @@
   (require 'borg)
   (borg-initialize))
 
-(progn ;    `use-package'
+(progn ;;    `use-package'
   (require  'use-package)
   (setq use-package-verbose t))
 
@@ -74,14 +74,14 @@
   :commands (server-running-p)
   :config (or (server-running-p) (server-mode)))
 
-(progn ;     startup
+(progn ;;     startup
   (message "Loading early birds...done (%.3fs)"
            (float-time (time-subtract (current-time)
                                       before-user-init-time))))
-(progn ;    key
+(progn ;;    key
   (when *is-a-mac*
-  (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier 'none)))
+    (setq mac-command-modifier 'meta)
+    (setq mac-option-modifier 'none)))
 
 ;;; Long tail
 
@@ -1861,7 +1861,7 @@ there is no current file, eval the current buffer."
 
 ;;; Tequila worms
 
-(progn ;     startup
+(progn ;;     startup
   (message "Loading %s...done (%.3fs)" user-init-file
            (float-time (time-subtract (current-time)
                                       before-user-init-time)))
@@ -1873,7 +1873,7 @@ there is no current file, eval the current buffer."
                                           before-user-init-time))))
             t))
 
-(progn ;     personalize
+(progn ;;     personalize
   (let ((file (expand-file-name (concat (user-real-login-name) ".el")
                                 user-emacs-directory)))
     (when (file-exists-p file)
