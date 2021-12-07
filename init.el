@@ -884,6 +884,11 @@ Call a second time to restore the original window configuration."
     (transient-replace-suffix 'magit-commit 'magit-commit-autofixup
       '("x" "Absorb changes" magit-commit-absorb))))
 
+(use-package fullframe
+  :after magit
+  :config
+  (fullframe magit-status magit-mode-quit-window))
+
 
 ;;; Org-mode config
 
