@@ -7,7 +7,7 @@ And this config is customized base on [[https://github.com/purcell/emacs.d][Purc
 
 Because I need to optimize the startup time by [[https://github.com/jwiegley/use-package][use-package]], and remove features that I don't need.
 
-Use [[https://gitlab.com/tarsius/borg][Borg]] to manage packages by submodule of Git.
+Use [[https://github.com/emacscollective/borg][Borg]] to manage packages by submodule of Git.
 
 ** Supported Emacs versions
 Emacs itself comes with support for many programming languages. This config adds improved defaults and extended support for the following, listed in the approximate order of how much I use them, from most to least:
@@ -31,8 +31,9 @@ git clone https://github.com/Eason0210/emacs.d.git ~/.emacs.d
 make bootstrap-borg  # = bootstrap borg itself
 make bootstrap       # = bootstrap collective or new drones
 #+end_src
-Upon starting up Emacs for the first time, further third-party packages will be automatically downloaded and installed.
+After ~make bootstrap~, all the third-party packages will be automatically cloned as git submodule and autoloads.
 
+See more commands on [[https://github.com/emacscollective/borg/blob/master/borg.org][Borg Manual]].
 *** org-roam
 You need to install ~sqlite3~ in your system.
 
