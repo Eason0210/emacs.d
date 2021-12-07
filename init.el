@@ -889,6 +889,10 @@ Call a second time to restore the original window configuration."
   :config
   (fullframe magit-status magit-mode-quit-window))
 
+(use-package magit-todos
+  :defer t
+  :after magit)
+
 ;; Github integration
 (use-package forge
   :defer t

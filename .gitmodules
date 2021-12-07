@@ -7,6 +7,9 @@
 [submodule "anzu"]
 	path = lib/anzu
 	url = git@github.com:emacsorphanage/anzu.git
+[submodule "async"]
+	path = lib/async
+	url = git@github.com:jwiegley/emacs-async.git
 [submodule "auto-compile"]
 	path = lib/auto-compile
 	url = git@github.com:emacscollective/auto-compile.git
@@ -121,6 +124,9 @@
 [submodule "highlight-quoted"]
 	path = lib/highlight-quoted
 	url = git@github.com:Fanael/highlight-quoted.git
+[submodule "hl-todo"]
+	path = lib/hl-todo
+	url = git@github.com:tarsius/hl-todo.git
 [submodule "immortal-scratch"]
 	path = lib/immortal-scratch
 	url = git@github.com:jpkotta/immortal-scratch.git
@@ -151,6 +157,9 @@
 	no-byte-compile = lisp/magit-libgit.el
 	recursive-byte-compile = true
 	info-path = Documentation
+[submodule "magit-todos"]
+	path = lib/magit-todos
+	url = git@github.com:alphapapa/magit-todos.git
 [submodule "marginalia"]
 	path = lib/marginalia
 	url = git@github.com:minad/marginalia.git
@@ -199,6 +208,9 @@
 [submodule "paredit"]
 	path = lib/paredit
 	url = https://mumble.net/~campbell/git/paredit.git
+[submodule "pcre2el"]
+	path = lib/pcre2el
+	url = git@github.com:joddie/pcre2el.git
 [submodule "projectile"]
 	path = lib/projectile
 	url = git@github.com:bbatsov/projectile.git
