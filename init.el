@@ -45,7 +45,7 @@
 
 (progn ;;    `use-package'
   (require  'use-package)
-  (setq use-package-verbose t))
+  (setq use-package-verbose nil))
 
 (use-package dash)
 (use-package eieio)
