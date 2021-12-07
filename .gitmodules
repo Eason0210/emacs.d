@@ -37,6 +37,9 @@
 [submodule "consult-flycheck"]
 	path = lib/consult-flycheck
 	url = git@github.com:minad/consult-flycheck.git
+[submodule "dante"]
+	path = lib/dante
+	url = git@github.com:jyp/dante.git
 [submodule "dash"]
 	path = lib/dash
 	url = git@github.com:magnars/dash.el.git
@@ -64,6 +67,9 @@
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
+[submodule "f"]
+	path = lib/f
+	url = git@github.com:rejeep/f.el.git
 [submodule "flycheck"]
 	path = lib/flycheck
 	url = git@github.com:flycheck/flycheck.git
@@ -85,6 +91,9 @@
 [submodule "go-translate"]
 	path = lib/go-translate
 	url = git@github.com:lorniu/go-translate.git
+[submodule "haskell-mode"]
+	path = lib/haskell-mode
+	url = git@github.com:haskell/haskell-mode.git
 [submodule "highlight-escape-sequences"]
 	path = lib/highlight-escape-sequences
 	url = git@github.com:dgutov/highlight-escape-sequences.git
@@ -94,6 +103,9 @@
 [submodule "immortal-scratch"]
 	path = lib/immortal-scratch
 	url = git@github.com:jpkotta/immortal-scratch.git
+[submodule "lcr"]
+	path = lib/lcr
+	url = git@github.com:jyp/lcr.git
 [submodule "macrostep"]
 	path = lib/macrostep
 	url = git@github.com:joddie/macrostep.git
@@ -145,6 +157,9 @@
 [submodule "rainbow-mode"]
 	path = lib/rainbow-mode
 	url = git@github.com:emacsmirror/rainbow-mode.git
+[submodule "reformatter"]
+	path = lib/reformatter
+	url = git@github.com:purcell/emacs-reformatter.git
 [submodule "s"]
 	path = lib/s
 	url = git@github.com:magnars/s.el.git
