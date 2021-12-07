@@ -1196,6 +1196,50 @@ typical word processor."
       (when (fboundp 'writeroom-mode)
         (writeroom-mode 0)))))
 
+
+;;; Web configurations
+
+;; JavaScript
+(use-package js2-mode
+  :mode "\\.js\\'"
+  :init
+  (setq-default js-indent-level 2)
+  :config
+  (add-to-list 'flycheck-disabled-checkers #'javascript-jshint)
+  (flycheck-add-mode 'javascript-eslint 'js2-mode)
+  (with-eval-after-load 'js2-mode
+    (sanityinc/major-mode-lighter 'js2-mode "JS2")
+    (sanityinc/major-mode-lighter 'js2-jsx-mode "JSX2")))
+
+;; JSON mode
+(use-package json-mode
+  :mode "\\.json\\'")
+
+(use-package json-reformat
+  :bind (:map json-mode-map
+              ("C-c C-f" . json-reformat-region))
+  :after json-mode)
+
+(use-package json-snatcher
+  :after json-mode)
+
+;; Live browser JavaScript, CSS, and HTML interaction
+(use-package skewer-mode
+  :diminish
+  :hook (((js-mode js2-mode). skewer-mode)
+         (css-mode . skewer-css-mode)
+         (web-mode . skewer-html-mode)
+         (html-mode . skewer-html-mode)))
+
+;; LESS
+(use-package skewer-less
+  :hook (less-css-mode . skewer-less-mode))
+
+
+(use-package typescript-mode
+  :mode ("\\.ts[x]\\'" . typescript-mode))
+
+
 ;;;; Programming languages support
 
 ;;; C/C++ Mode
@@ -1232,14 +1276,14 @@ typical word processor."
   :after haskell-mode
   :config
   (reformatter-define hindent
-                      :program "hindent"
-                      :lighter " Hin")
+    :program "hindent"
+    :lighter " Hin")
 
   (defalias 'hindent-mode 'hindent-on-save-mode)
 
   (reformatter-define ormolu
-                      :program "ormolu"
-                      :lighter " Orm"))
+    :program "ormolu"
+    :lighter " Orm"))
 
 
 ;;; Python mode

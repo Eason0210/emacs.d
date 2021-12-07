@@ -103,6 +103,18 @@
 [submodule "immortal-scratch"]
 	path = lib/immortal-scratch
 	url = git@github.com:jpkotta/immortal-scratch.git
+[submodule "js2-mode"]
+	path = lib/js2-mode
+	url = git@github.com:mooz/js2-mode.git
+[submodule "json-mode"]
+	path = lib/json-mode
+	url = git@github.com:joshwnj/json-mode.git
+[submodule "json-reformat"]
+	path = lib/json-reformat
+	url = git@github.com:gongo/json-reformat.git
+[submodule "json-snatcher"]
+	path = lib/json-snatcher
+	url = git@github.com:Sterlingg/json-snatcher.git
 [submodule "lcr"]
 	path = lib/lcr
 	url = git@github.com:jyp/lcr.git
@@ -184,9 +196,18 @@
 [submodule "shift-number"]
 	path = lib/shift-number
 	url = git@github.com:alezost/shift-number.el.git
+[submodule "simple-httpd"]
+	path = lib/simple-httpd
+	url = git@github.com:skeeto/emacs-web-server.git
 [submodule "sis"]
 	path = lib/sis
 	url = git@github.com:laishulu/emacs-smart-input-source.git
+[submodule "skewer-less"]
+	path = lib/skewer-less
+	url = git@github.com:purcell/skewer-less.git
+[submodule "skewer-mode"]
+	path = lib/skewer-mode
+	url = git@github.com:skeeto/skewer-mode.git
 [submodule "sudo-edit"]
 	path = lib/sudo-edit
 	url = git@github.com:nflath/sudo-edit.git
@@ -206,6 +227,9 @@
 [submodule "treepy"]
 	path = lib/treepy
 	url = git@github.com:volrath/treepy.el.git
+[submodule "typescript-mode"]
+	path = lib/typescript-mode
+	url = git@github.com:emacs-typescript/typescript.el.git
 [submodule "use-package"]
 	path = lib/use-package
 	url = git@github.com:jwiegley/use-package.git
