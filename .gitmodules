@@ -64,6 +64,9 @@
 [submodule "flycheck-color-mode-line"]
 	path = lib/flycheck-color-mode-line
 	url = git@github.com:flycheck/flycheck-color-mode-line.git
+[submodule "flyspell-correct"]
+	path = lib/flyspell-correct
+	url = git@github.com:d12frosted/flyspell-correct.git
 [submodule "fullframe"]
 	path = lib/fullframe
 	url = git@github.com:emacsmirror/fullframe.git

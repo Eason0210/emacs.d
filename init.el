@@ -1198,6 +1198,29 @@ typical word processor."
         (writeroom-mode 0)))))
 
 
+;;; Spell check settings
+
+(use-package flyspell
+  :diminish
+  :ensure nil
+  :if (and (executable-find "aspell") *spell-check-support-enabled*)
+  ;; Add spell-checking in comments for all programming language modes
+  :hook ((prog-mode . flyspell-prog-mode)
+         (flyspell-mode . (lambda ()
+                            (dolist (key '("C-;" "C-."))
+                              (unbind-key key flyspell-mode-map)))))
+  :init
+  (setq flyspell-issue-message-flag nil
+        ispell-program-name "aspell"
+        ispell-extra-args '("--sug-mode=fast" "--lang=en_US" "--camel-case")
+        ispell-personal-dictionary
+        (expand-file-name "en_US.personal" "~/.config/aspell/")))
+
+;; Correcting words with flyspell via completing-read
+(use-package flyspell-correct
+  :after flyspell
+  :bind (:map flyspell-mode-map ("C-," . flyspell-correct-wrapper)))
+
 
 (use-package dash
   :config (global-dash-fontify-mode 1))
