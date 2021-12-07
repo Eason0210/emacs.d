@@ -19,6 +19,9 @@
 [submodule "borg"]
 	path = lib/borg
 	url = git@github.com:emacscollective/borg.git
+[submodule "buttercup"]
+	path = lib/buttercup
+	url = git@github.com:jorgenschaefer/emacs-buttercup.git
 [submodule "closql"]
 	path = lib/closql
 	url = git@github.com:emacscollective/closql.git
@@ -67,6 +70,12 @@
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git
 	no-byte-compile = emacsql-pg.el
+[submodule "emacsql-libsqlite3"]
+	path = lib/emacsql-libsqlite3
+	url = git@github.com:emacscollective/emacsql-libsqlite3.git
+[submodule "emacsql-sqlite3"]
+	path = lib/emacsql-sqlite3
+	url = git@github.com:cireu/emacsql-sqlite3.git
 [submodule "embark"]
 	path = lib/embark
 	url = git@github.com:oantolin/embark.git
@@ -169,6 +178,9 @@
 [submodule "org-pomodoro"]
 	path = lib/org-pomodoro
 	url = git@github.com:marcinkoziej/org-pomodoro.git
+[submodule "org-roam"]
+	path = lib/org-roam
+	url = git@github.com:org-roam/org-roam.git
 [submodule "origami"]
 	path = lib/origami
 	url = git@github.com:gregsexton/origami.el.git
@@ -217,6 +229,9 @@
 [submodule "skewer-mode"]
 	path = lib/skewer-mode
 	url = git@github.com:skeeto/skewer-mode.git
+[submodule "sqlite3"]
+	path = lib/sqlite3
+	url = git@github.com:pekingduck/emacs-sqlite3-api.git
 [submodule "sudo-edit"]
 	path = lib/sudo-edit
 	url = git@github.com:nflath/sudo-edit.git
