@@ -1297,6 +1297,9 @@ there is no current file, eval the current buffer."
     (when (and (buffer-file-name) (string-match-p "\\(color-theme-\\|-theme\\.el\\)" (buffer-file-name)))
       (rainbow-mode))))
 
+(use-package macrostep
+  :bind ("C-c e m" . macrostep-expand))
+
 
 ;;; Spell check settings
 
