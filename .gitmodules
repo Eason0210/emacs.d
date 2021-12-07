@@ -127,6 +127,9 @@
 [submodule "hl-todo"]
 	path = lib/hl-todo
 	url = git@github.com:tarsius/hl-todo.git
+[submodule "ibuffer-projectile"]
+	path = lib/ibuffer-projectile
+	url = git@github.com:purcell/ibuffer-projectile.git
 [submodule "immortal-scratch"]
 	path = lib/immortal-scratch
 	url = git@github.com:jpkotta/immortal-scratch.git

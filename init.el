@@ -899,6 +899,23 @@ Call a second time to restore the original window configuration."
   :after magit)
 
 
+;;; Use Projectile for navigation within projects
+
+(use-package projectile
+  :hook (after-init . projectile-mode)
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  ;; Shorter modeline
+  (setq-default projectile-mode-line-prefix " Proj")
+
+  (when (executable-find "rg")
+    (setq-default projectile-generic-command "rg --files --hidden")))
+
+(use-package ibuffer-projectile
+  :after ibuffer projectile)
+
+
 ;;; Org-mode config
 
 ;; Among settings for many aspects of `org-mode', this code includes
