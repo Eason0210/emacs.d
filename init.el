@@ -858,6 +858,20 @@ Call a second time to restore the original window configuration."
 (use-package sudo-edit
   :bind ("C-c C-r" . sudo-edit))
 
+;; Treat undo history as a tree
+(use-package undo-tree
+  :diminish
+  :hook (after-init . global-undo-tree-mode)
+  :init
+  (setq undo-tree-visualizer-timestamps t
+        undo-tree-enable-undo-in-region nil
+        undo-tree-auto-save-history nil)
+
+  ;; HACK: keep the diff window
+  (with-no-warnings
+    (make-variable-buffer-local 'undo-tree-visualizer-diff)
+    (setq-default undo-tree-visualizer-diff t)))
+
 ;;; Whitespace
 
 (setq-default show-trailing-whitespace nil)
