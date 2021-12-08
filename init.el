@@ -758,6 +758,32 @@ Call a second time to restore the original window configuration."
   (setq global-auto-revert-non-file-buffers t
         auto-revert-verbose nil))
 
+
+;; Huge files
+
+(use-package so-long
+  :config
+  (progn
+    ;; webpack adds quite a few short lines of initialization in its
+    ;; build files. We should let so-long ignore those and still find
+    ;; the long ones:
+    (setq so-long-max-lines 100)
+    ;; we have some very long strings in Monitor:
+    (setq so-long-threshold 500)
+    (global-so-long-mode)))
+
+(use-package vlf
+  :defer t
+  :preface
+  (defun ffap-vlf ()
+    "Find file at point with VLF."
+    (interactive)
+    (require 'ffap)
+    (let ((file (ffap-file-at-point)))
+      (unless (file-exists-p file)
+        (error "File does not exist: %s" file))
+      (vlf file))))
+
 ;; A simple visible bell which works in all terminal types
 (use-package mode-line-bell
   :hook (after-init . mode-line-bell-mode))
