@@ -304,6 +304,7 @@ This is useful when followed by an immediate kill."
     (vertico-mode)))
 
 (use-package orderless
+  :demand t
   :hook (minibuffer-setup . sanityinc/use-orderless-in-minibuffer)
   :config
   (setq completion-category-defaults nil
