@@ -141,6 +141,9 @@
 [submodule "ibuffer-projectile"]
 	path = lib/ibuffer-projectile
 	url = git@github.com:purcell/ibuffer-projectile.git
+[submodule "ibuffer-vc"]
+	path = lib/ibuffer-vc
+	url = git@github.com:purcell/ibuffer-vc.git
 [submodule "immortal-scratch"]
 	path = lib/immortal-scratch
 	url = git@github.com:jpkotta/immortal-scratch.git
