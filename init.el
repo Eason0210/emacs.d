@@ -39,12 +39,12 @@
     (tool-bar-mode 0))
   (menu-bar-mode 0))
 
-(eval-and-compile ; `borg'
+(eval-and-compile ;; `borg'
   (add-to-list 'load-path (expand-file-name "lib/borg" user-emacs-directory))
   (require 'borg)
   (borg-initialize))
 
-(progn ;;    `use-package'
+(progn ;; `use-package'
   (setq use-package-enable-imenu-support t)
   (setq use-package-minimum-reported-time 0)
   (setq use-package-verbose nil)
@@ -82,7 +82,7 @@
   (message "Loading early birds...done (%.3fs)"
            (float-time (time-subtract (current-time)
                                       before-user-init-time))))
-(progn ;;    key
+(progn ;; `ns-win'
   (when *is-a-mac*
     (setq mac-command-modifier 'meta)
     (setq mac-option-modifier 'none)))
@@ -169,9 +169,9 @@
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
 
-;; Better pixel line scrolling
-(if (boundp 'pixel-scroll-precision-mode)
-    (pixel-scroll-precision-mode t))
+(progn ;; `pixel-scroll'
+  (if (boundp 'pixel-scroll-precision-mode)
+      (pixel-scroll-precision-mode t)))
 
 
 ;;; Dired mode
@@ -822,7 +822,7 @@ Call a second time to restore the original window configuration."
   (add-hook 'prog-mode-hook 'indicate-buffer-boundaries-left))
 
 
-(progn ;;    `text-mode'
+(progn ;; `text-mode'
   (add-hook 'text-mode-hook 'indicate-buffer-boundaries-left))
 
 
@@ -1767,7 +1767,8 @@ there is no current file, eval the current buffer."
 
 ;;; Miscellaneous config
 
-(defalias 'yes-or-no-p #'y-or-n-p)
+(progn ;; `map-ynp'
+  (defalias 'yes-or-no-p #'y-or-n-p))
 
 (use-package goto-addr
   :hook (prog-mode . goto-address-prog-mode)
@@ -1846,53 +1847,51 @@ there is no current file, eval the current buffer."
                     :render (gts-kill-ring-render)))))
 
 
-;;; Font
+(progn ;; `faces'
+  (defvar font-list
+    (cond
+     ((eq system-type 'darwin)
+      '(("SF Mono" . 130) ("Monaco" . 130) ("Menlo" . 130)))
+     ((eq system-type 'windows-nt)
+      '(("SF Mono" . 110) ("Consolas" . 120) ("Cascadia Mono" . 110)))
+     (t
+      '(("SF Mono" . 110) ("Consolas" . 120) ("Cascadia Mono" . 110))))
+    "List of fonts and sizes.  The first one available will be used.")
 
-(defvar font-list
-  (cond
-   ((eq system-type 'darwin)
-    '(("SF Mono" . 130) ("Monaco" . 130) ("Menlo" . 130)))
-   ((eq system-type 'windows-nt)
-    '(("SF Mono" . 110) ("Consolas" . 120) ("Cascadia Mono" . 110)))
-   (t
-    '(("SF Mono" . 110) ("Consolas" . 120) ("Cascadia Mono" . 110))))
-  "List of fonts and sizes.  The first one available will be used.")
+  (defun font-installed-p (font-name)
+    "Check if font with FONT-NAME is available."
+    (find-font (font-spec :name font-name)))
 
-(defun font-installed-p (font-name)
-  "Check if font with FONT-NAME is available."
-  (find-font (font-spec :name font-name)))
+  (defun change-font ()
+    "Set English font from the `font-list'."
+    (interactive)
+    (let* (available-fonts font-name font-size)
+      (dolist (font font-list
+                    (setq available-fonts (nreverse available-fonts)))
+        (when (font-installed-p (car font))
+          (push font available-fonts)))
+      (if (not available-fonts)
+          (message "No fonts from the chosen set are available")
+        (if (called-interactively-p 'interactive)
+            (let* ((chosen (assoc-string
+                            (completing-read "What font to use? " available-fonts nil t)
+                            available-fonts)))
+              (setq font-name (car chosen)
+                    font-size (read-number "Font size: " (cdr chosen))))
+          (setq font-name (caar available-fonts)
+                font-size (cdar available-fonts)))
+        (set-face-attribute 'default nil :font font-name :height font-size))))
 
-(defun change-font ()
-  "Set English font from the `font-list'."
-  (interactive)
-  (let* (available-fonts font-name font-size)
-    (dolist (font font-list
-                  (setq available-fonts (nreverse available-fonts)))
-      (when (font-installed-p (car font))
-        (push font available-fonts)))
-    (if (not available-fonts)
-        (message "No fonts from the chosen set are available")
-      (if (called-interactively-p 'interactive)
-          (let* ((chosen (assoc-string
-                          (completing-read "What font to use? " available-fonts nil t)
-                          available-fonts)))
-            (setq font-name (car chosen)
-                  font-size (read-number "Font size: " (cdr chosen))))
-        (setq font-name (caar available-fonts)
-              font-size (cdar available-fonts)))
-      (set-face-attribute 'default nil :font font-name :height font-size))))
+  (when (display-graphic-p)
+    (change-font)
 
-(when (display-graphic-p)
-  (change-font)
+    (dolist (font '("Segoe UI Symbol" "Apple Color Emoji" "Noto Color Emoji"))
+      (if (font-installed-p font)
+          (set-fontset-font t 'unicode font nil 'prepend)))
 
-  (dolist (font '("Segoe UI Symbol" "Apple Color Emoji" "Noto Color Emoji"))
-    (if (font-installed-p font)
-        (set-fontset-font t 'unicode font nil 'prepend)))
-
-  (dolist (font '("Microsoft Yahei" "Hiragino Sans GB" "Noto Sans Mono CJK SC"))
-    (if (font-installed-p font)
-        (set-fontset-font t '(#x4e00 . #x9fff) font))))
-
+    (dolist (font '("Microsoft Yahei" "Hiragino Sans GB" "Noto Sans Mono CJK SC"))
+      (if (font-installed-p font)
+          (set-fontset-font t '(#x4e00 . #x9fff) font)))))
 
 
 (use-package dash
@@ -1955,7 +1954,7 @@ there is no current file, eval the current buffer."
                                           before-user-init-time))))
             t))
 
-(progn ;;     personalize
+(progn ;; personalize
   (let ((file (expand-file-name (concat (user-real-login-name) ".el")
                                 user-emacs-directory)))
     (when (file-exists-p file)
@@ -1963,12 +1962,13 @@ there is no current file, eval the current buffer."
 
 ;;; Configure default locale
 
-(when (fboundp 'set-charset-priority)
-  (set-charset-priority 'unicode))
-(prefer-coding-system 'utf-8)
-(setq locale-coding-system 'utf-8)
-(unless (eq system-type 'windows-nt)
-  (set-selection-coding-system 'utf-8))
+(progn ;; `charset'
+  (when (fboundp 'set-charset-priority)
+    (set-charset-priority 'unicode))
+  (prefer-coding-system 'utf-8)
+  (setq locale-coding-system 'utf-8)
+  (unless (eq system-type 'windows-nt)
+    (set-selection-coding-system 'utf-8)))
 
 
 ;; Local Variables:
