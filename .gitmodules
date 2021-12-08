@@ -183,6 +183,9 @@
 [submodule "mmm-mode"]
 	path = lib/mmm-mode
 	url = git@github.com:purcell/mmm-mode.git
+[submodule "mode-line-bell"]
+	path = lib/mode-line-bell
+	url = git@github.com:purcell/mode-line-bell.git
 [submodule "modern-cpp-font-lock"]
 	path = lib/modern-cpp-font-lock
 	url = git@github.com:ludwigpacifici/modern-cpp-font-lock.git

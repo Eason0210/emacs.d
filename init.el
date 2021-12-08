@@ -758,6 +758,10 @@ Call a second time to restore the original window configuration."
   (setq global-auto-revert-non-file-buffers t
         auto-revert-verbose nil))
 
+;; A simple visible bell which works in all terminal types
+(use-package mode-line-bell
+  :hook (after-init . mode-line-bell-mode))
+
 ;; A light will shine on top of cursor when window scrolls
 (use-package beacon
   :init
