@@ -887,6 +887,9 @@ Call a second time to restore the original window configuration."
          (dired-mode . diff-hl-dired-mode)))
 
 ;; Git SCM support
+(use-package git-timemachine
+  :bind ("C-x v t" . git-timemachine-toggle))
+
 (use-package magit
   ;; Hint: customize `magit-repository-directories' so that you can use C-u M-F12 to
   ;; quickly open magit on any one of your projects.

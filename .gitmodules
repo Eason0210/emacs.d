@@ -115,6 +115,9 @@
 [submodule "git-modes"]
 	path = lib/git-modes
 	url = git@github.com:magit/git-modes.git
+[submodule "git-timemachine"]
+	path = lib/git-timemachine
+	url = git@gitlab.com:pidu/git-timemachine.git
 [submodule "go-translate"]
 	path = lib/go-translate
 	url = git@github.com:lorniu/go-translate.git
