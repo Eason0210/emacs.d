@@ -568,7 +568,7 @@ targets."
 
 ;; Navigate window layouts with "M-N" and "M-P"
 (use-package winner
-  :defer 5
+  :defer 0.5
   :bind (("M-N" . winner-redo)
          ("M-P" . winner-undo))
   :config
