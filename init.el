@@ -1558,6 +1558,7 @@ typical word processor."
               ("C-c l d" . eldoc))
   :hook (eglot-managed-mode . (lambda () (flymake-mode -1)))
   :config
+  (add-to-list 'eglot-server-programs '(python-mode . ("pyright-langserver" "--stdio")))
   (add-to-list 'eglot-server-programs '(rust-mode "rust-analyzer"))
   (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
 
