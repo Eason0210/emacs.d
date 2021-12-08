@@ -648,12 +648,17 @@ Call a second time to restore the original window configuration."
 
 
 ;;; Settings for tracking recent files
+
 (use-package recentf
   :demand t
+  :init
+  (progn
+    (setq recentf-auto-cleanup 300)
+    (setq recentf-max-saved-items 1000)
+    (setq recentf-exclude `("/tmp/" "/ssh:" ,(concat user-emacs-directory "lib/.*-autoloads\\.el\\'"))))
   :config
-  (setq-default recentf-max-saved-items 1000)
-  (add-to-list 'recentf-exclude "^/\\(?:ssh\\|su\\|sudo\\)?:"))
-
+  (progn
+    (recentf-mode)))
 
 ;;; Save and restore editor sessions between restarts
 
