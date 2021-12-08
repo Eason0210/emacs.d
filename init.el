@@ -15,7 +15,7 @@
   (add-hook 'emacs-startup-hook
             (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
-(progn ;;     startup
+(progn ;; `startup'
   (defvar before-user-init-time (current-time)
     "Value of `current-time' when Emacs begins loading `user-init-file'.")
   (message "Loading Emacs...done (%.3fs)"
@@ -77,7 +77,7 @@
   :commands (server-running-p)
   :config (or (server-running-p) (server-mode)))
 
-(progn ;;     startup
+(progn ;; `startup'
   (message "Loading early birds...done (%.3fs)"
            (float-time (time-subtract (current-time)
                                       before-user-init-time))))
@@ -1942,7 +1942,7 @@ there is no current file, eval the current buffer."
 
 ;;; Tequila worms
 
-(progn ;;     startup
+(progn ;; `startup'
   (message "Loading %s...done (%.3fs)" user-init-file
            (float-time (time-subtract (current-time)
                                       before-user-init-time)))
