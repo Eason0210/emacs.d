@@ -1070,7 +1070,8 @@ Call a second time to restore the original window configuration."
   :bind-keymap ("C-c o" . sanityinc/org-global-prefix-map)
   :config
   ;; Various preferences
-  (setq org-log-done 'time
+  (setq org-modules nil                 ; Faster loading
+        org-log-done 'time
         org-fontify-done-headline nil
         org-edit-timestamp-down-means-later t
         org-catch-invisible-edits 'show
