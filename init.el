@@ -1549,6 +1549,10 @@ typical word processor."
   :bind (:map nix-mode-map
               ("C-c C-f" . nixpkgs-fmt)))
 
+;;; Support MSCL mode
+
+(use-package mscl-mode
+  :mode "\\.pwx?macro\\'")
 
 ;;; Support for the Rust language
 (use-package rust-mode
