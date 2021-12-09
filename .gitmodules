@@ -1,6 +1,9 @@
 [borg]
 	pushDefault = locutus
 	collective = emacsg
+[submodule "a"]
+	path = lib/a
+	url = git@github.com:plexus/a.el.git
 [submodule "aggressive-indent"]
 	path = lib/aggressive-indent
 	url = git@github.com:Malabarba/aggressive-indent-mode.git
@@ -31,6 +34,9 @@
 [submodule "cmake-mode"]
 	path = lib/cmake-mode
 	url = git@github.com:emacsmirror/cmake-mode.git
+[submodule "code-review"]
+	path = lib/code-review
+	url = git@github.com:wandersoncferreira/code-review.git
 [submodule "color-theme-sanityinc-tomorrow"]
 	path = lib/color-theme-sanityinc-tomorrow
 	url = git@github.com:purcell/color-theme-sanityinc-tomorrow.git
@@ -54,6 +60,9 @@
 	url = git@github.com:magnars/dash.el.git
 	no-byte-compile = dash-functional.el
 	no-makeinfo = dash-template.texi
+[submodule "deferred"]
+	path = lib/deferred
+	url = git@github.com:kiwanami/emacs-deferred.git
 [submodule "diff-hl"]
 	path = lib/diff-hl
 	url = git@github.com:dgutov/diff-hl.git
@@ -85,6 +94,9 @@
 [submodule "embark"]
 	path = lib/embark
 	url = git@github.com:oantolin/embark.git
+[submodule "emojify"]
+	path = lib/emojify
+	url = git@github.com:iqbalansari/emacs-emojify.git
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
@@ -138,6 +150,9 @@
 [submodule "hl-todo"]
 	path = lib/hl-todo
 	url = git@github.com:tarsius/hl-todo.git
+[submodule "ht"]
+	path = lib/ht
+	url = git@github.com:Wilfred/ht.el.git
 [submodule "ibuffer-projectile"]
 	path = lib/ibuffer-projectile
 	url = git@github.com:purcell/ibuffer-projectile.git
@@ -310,6 +325,9 @@
 [submodule "use-package"]
 	path = lib/use-package
 	url = git@github.com:jwiegley/use-package.git
+[submodule "uuidgen"]
+	path = lib/uuidgen
+	url = git@github.com:kanru/uuidgen-el.git
 [submodule "vertico"]
 	path = lib/vertico
 	url = git@github.com:minad/vertico.git
