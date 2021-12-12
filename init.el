@@ -1944,6 +1944,159 @@ there is no current file, eval the current buffer."
   :defer t
   :config (cl-pushnew 'tramp-own-remote-path tramp-remote-path))
 
+;;; Email setup with Mu4e
+
+(when (and (executable-find "mu") *is-a-mac*)
+  (use-package mu4e
+    :bind ("C-c g" . mu4e)
+    :config
+    (setq mu4e-mu-binary (executable-find "mu"))
+    (setq mu4e-maildir "~/.maildir")
+    (setq mu4e-get-mail-command (concat (executable-find "mbsync") " -a"))
+    (setq mu4e-update-interval 300)
+    (setq mu4e-attachment-dir (concat mu4e-maildir "/attachment"))
+    (setq mu4e-change-filenames-when-moving t)
+    (setq mu4e-user-mail-address-list '("aqua0210@gmail.com"
+                                        "aqua0210@qq.com"))
+
+    ;; check your ~/.maildir to see how the subdirectories are called
+    ;; for the generic imap account:
+    ;; e.g `ls ~/.maildir/QQmail'
+    (setq mu4e-maildir-shortcuts
+          '(("/gmail/INBOX" . ?g)
+            ("/gmail/[Gmail]/Sent Mail" . ?G)
+            ("/QQmail/INBOX" . ?i)
+            ("/QQmail/Sent Messages" . ?I)))
+
+    ;; the following is to show shortcuts in the main view
+    (add-to-list 'mu4e-bookmarks
+                 (make-mu4e-bookmark
+                  :name "Inbox - Gmail"
+                  :query "maildir:/gmail/INBOX"
+                  :key ?g))
+    (add-to-list 'mu4e-bookmarks
+                 (make-mu4e-bookmark
+                  :name "Inbox - QQmail"
+                  :query "maildir:/QQmail/INBOX"
+                  :key ?i))
+
+    (setq mu4e-contexts
+          `(,(make-mu4e-context
+              :name "Gmail"
+              :enter-func
+              (lambda () (mu4e-message "Enter aqua0210@gmail.com context"))
+              :leave-func
+              (lambda () (mu4e-message "Leave aqua0210@gmail.com context"))
+              :match-func
+              (lambda (msg)
+                (when msg
+                  (mu4e-message-contact-field-matches msg
+                                                      :to "aqua0210@gmail.com")))
+              :vars '((user-mail-address . "aqua0210@gmail.com")
+                      (user-full-name . "Eason Huang")
+                      (mu4e-drafts-folder . "/Gmail/Drafts")
+                      (mu4e-refile-folder . "/Gmail/Archive")
+                      (mu4e-sent-folder . "/Gmail/Sent")
+                      (mu4e-trash-folder . "/Gmail/Trash")))
+
+            ,(make-mu4e-context
+              :name "QQmail"
+              :enter-func
+              (lambda () (mu4e-message "Enter aqua0210@qq.com context"))
+              :leave-func
+              (lambda () (mu4e-message "Leave aqua0210@qq.com context"))
+              :match-func
+              (lambda (msg)
+                (when msg
+                  (mu4e-message-contact-field-matches msg
+                                                      :to "aqua0210@qq.com")))
+              :vars '((user-mail-address . "aqua0210@qq.com")
+                      (user-full-name . "Eason Huang")
+                      ;; check your ~/.maildir to see how the subdirectories are called
+                      ;; e.g `ls ~/.maildir/QQmail'
+                      (mu4e-drafts-folder . "/QQmail/Drafts")
+                      (mu4e-refile-folder . "/QQmail/Archive")
+                      (mu4e-sent-folder . "/QQmail/Sent Messages")
+                      (mu4e-trash-folder . "/QQmail/Junk")))))
+
+    (setq mu4e-context-policy 'pick-first) ;; start with the first (default) context;
+    (setq mu4e-compose-context-policy 'ask) ;; ask for context if no context matches;
+
+    ;;; Sending
+    ;; gpg encryptiom & decryption:
+    ;; this can be left alone
+    (require 'epa-file)
+    (epa-file-enable)
+    (setq epa-pinentry-mode 'loopback)
+    (auth-source-forget-all-cached)
+
+    ;; don't keep message compose buffers around after sending:
+    (setq message-kill-buffer-on-exit t)
+
+    ;; send function:
+    (setq send-mail-function 'sendmail-send-it
+          message-send-mail-function 'sendmail-send-it)
+
+    ;; send program:
+    ;; this is exeranal. remember we installed it before.
+    (setq sendmail-program (executable-find "msmtp"))
+
+    ;; select the right sender email from the context.
+    (setq message-sendmail-envelope-from 'header)
+
+    ;; chose from account before sending
+    ;; this is a custom function that works for me.
+    ;; well I stole it somewhere long ago.
+    ;; I suggest using it to make matters easy
+    ;; of course adjust the email adresses and account descriptions
+    (defun aqua/set-msmtp-account ()
+      (if (message-mail-p)
+          (save-excursion
+            (let*
+                ((from (save-restriction
+                         (message-narrow-to-headers)
+                         (message-fetch-field "from")))
+                 (account
+                  (cond
+                   ((string-match "aqua0210@gmail.com" from) "Gmail")
+                   ((string-match "aqua0210@qq.com" from) "QQmail"))))
+              (setq message-sendmail-extra-arguments (list '"-a" account))))))
+
+    (add-hook 'message-send-mail-hook 'aqua/set-msmtp-account)
+
+    ;; mu4e cc & bcc
+    ;; this is custom as well
+    (add-hook 'mu4e-compose-mode-hook
+              (defun aqua/add-cc-and-bcc ()
+                "My Function to automatically add Cc & Bcc: headers.
+    This is in the mu4e compose mode."
+                (save-excursion (message-add-header "Cc:\n"))
+                (save-excursion (message-add-header "Bcc:\n"))))
+
+    ;; mu4e address completion
+    (add-hook 'mu4e-compose-mode-hook 'company-mode)
+
+    ;;; options
+    ;; store link to message if in header view, not to header query:
+    (setq org-mu4e-link-query-in-headers-mode nil)
+    ;; don't have to confirm when quitting:
+    (setq mu4e-confirm-quit nil)
+    ;; number of visible headers in horizontal split view:
+    (setq mu4e-headers-visible-lines 20)
+    ;; don't show threading by default:
+    (setq mu4e-headers-show-threads nil)
+    ;; hide annoying "mu4e Retrieving mail..." msg in mini buffer:
+    (setq mu4e-hide-index-messages t)
+    ;; customize the reply-quote-string:
+    (setq message-citation-line-format "%N @ %Y-%m-%d %H:%M :\n")
+    ;; M-x find-function RET message-citation-line-format for docs:
+    (setq message-citation-line-function 'message-insert-formatted-citation-line)
+    ;; by default do not show related emails:
+    (setq mu4e-headers-include-related nil)
+    ;; by default do not show threads:
+    (setq mu4e-headers-show-threads nil)))
+
+
 ;;; Tequila worms
 
 (progn ;; `startup'
