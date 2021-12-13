@@ -1957,27 +1957,27 @@ there is no current file, eval the current buffer."
     (setq mu4e-attachment-dir (concat mu4e-maildir "/attachment"))
     (setq mu4e-change-filenames-when-moving t)
     (setq mu4e-user-mail-address-list '("aqua0210@gmail.com"
-                                        "aqua0210@qq.com"))
+                                        "aqua0210@foxmail.com"))
 
     ;; check your ~/.maildir to see how the subdirectories are called
     ;; for the generic imap account:
-    ;; e.g `ls ~/.maildir/QQmail'
+    ;; e.g `ls ~/.maildir/Foxmail'
     (setq mu4e-maildir-shortcuts
-          '(("/gmail/INBOX" . ?g)
-            ("/gmail/[Gmail]/Sent Mail" . ?G)
-            ("/QQmail/INBOX" . ?i)
-            ("/QQmail/Sent Messages" . ?I)))
+          '(("/Gmail/INBOX" . ?g)
+            ("/Gmail/[Gmail]/Sent Mail" . ?G)
+            ("/Foxmail/INBOX" . ?i)
+            ("/Foxmail/Sent Messages" . ?I)))
 
     ;; the following is to show shortcuts in the main view
     (add-to-list 'mu4e-bookmarks
                  (make-mu4e-bookmark
                   :name "Inbox - Gmail"
-                  :query "maildir:/gmail/INBOX"
+                  :query "maildir:/Gmail/INBOX"
                   :key ?g))
     (add-to-list 'mu4e-bookmarks
                  (make-mu4e-bookmark
-                  :name "Inbox - QQmail"
-                  :query "maildir:/QQmail/INBOX"
+                  :name "Inbox - Foxmail"
+                  :query "maildir:/Foxmail/INBOX"
                   :key ?i))
 
     (setq mu4e-contexts
@@ -2000,24 +2000,24 @@ there is no current file, eval the current buffer."
                       (mu4e-trash-folder . "/Gmail/Trash")))
 
             ,(make-mu4e-context
-              :name "QQmail"
+              :name "Foxmail"
               :enter-func
-              (lambda () (mu4e-message "Enter aqua0210@qq.com context"))
+              (lambda () (mu4e-message "Enter aqua0210@foxmail.com context"))
               :leave-func
-              (lambda () (mu4e-message "Leave aqua0210@qq.com context"))
+              (lambda () (mu4e-message "Leave aqua0210@foxmail.com context"))
               :match-func
               (lambda (msg)
                 (when msg
                   (mu4e-message-contact-field-matches msg
-                                                      :to "aqua0210@qq.com")))
-              :vars '((user-mail-address . "aqua0210@qq.com")
+                                                      :to "aqua0210@foxmail.com")))
+              :vars '((user-mail-address . "aqua0210@foxmail.com")
                       (user-full-name . "Eason Huang")
                       ;; check your ~/.maildir to see how the subdirectories are called
-                      ;; e.g `ls ~/.maildir/QQmail'
-                      (mu4e-drafts-folder . "/QQmail/Drafts")
-                      (mu4e-refile-folder . "/QQmail/Archive")
-                      (mu4e-sent-folder . "/QQmail/Sent Messages")
-                      (mu4e-trash-folder . "/QQmail/Junk")))))
+                      ;; e.g `ls ~/.maildir/Foxmail'
+                      (mu4e-drafts-folder . "/Foxmail/Drafts")
+                      (mu4e-refile-folder . "/Foxmail/Archive")
+                      (mu4e-sent-folder . "/Foxmail/Sent Messages")
+                      (mu4e-trash-folder . "/Foxmail/Junk")))))
 
     (setq mu4e-context-policy 'pick-first) ;; start with the first (default) context;
     (setq mu4e-compose-context-policy 'ask) ;; ask for context if no context matches;
@@ -2059,7 +2059,7 @@ there is no current file, eval the current buffer."
                  (account
                   (cond
                    ((string-match "aqua0210@gmail.com" from) "Gmail")
-                   ((string-match "aqua0210@qq.com" from) "QQmail"))))
+                   ((string-match "aqua0210@foxmail.com" from) "Foxmail"))))
               (setq message-sendmail-extra-arguments (list '"-a" account))))))
 
     (add-hook 'message-send-mail-hook 'aqua/set-msmtp-account)
