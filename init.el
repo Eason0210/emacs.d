@@ -2102,6 +2102,7 @@ there is no current file, eval the current buffer."
   (use-package telega
     :bind (("C-c t t" . telega)
            ("C-c t f" . telega-buffer-file-send))
+    :hook (telega-chat-mode . goto-address-mode)
     :config
     (setq telega-proxies
           (list
