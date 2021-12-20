@@ -48,9 +48,11 @@
 [submodule "consult"]
 	path = lib/consult
 	url = git@github.com:minad/consult.git
+	branch = main
 [submodule "consult-flycheck"]
 	path = lib/consult-flycheck
 	url = git@github.com:minad/consult-flycheck.git
+	branch = main
 [submodule "crontab-mode"]
 	path = lib/crontab-mode
 	url = git@github.com:emacs-pe/crontab-mode.git
@@ -90,6 +92,7 @@
 [submodule "emacsql-libsqlite3"]
 	path = lib/emacsql-libsqlite3
 	url = git@github.com:emacscollective/emacsql-libsqlite3.git
+	branch = main
 [submodule "emacsql-sqlite3"]
 	path = lib/emacsql-sqlite3
 	url = git@github.com:cireu/emacsql-sqlite3.git
@@ -201,6 +204,7 @@
 [submodule "marginalia"]
 	path = lib/marginalia
 	url = git@github.com:minad/marginalia.git
+	branch = main
 [submodule "markdown-mode"]
 	path = lib/markdown-mode
 	url = git@github.com:jrblevin/markdown-mode.git
@@ -338,9 +342,11 @@
 [submodule "vertico"]
 	path = lib/vertico
 	url = git@github.com:minad/vertico.git
+	branch = main
 [submodule "visual-fill-column"]
 	path = lib/visual-fill-column
 	url = https://codeberg.org/joostkremers/visual-fill-column.git
+	branch = main
 [submodule "vlf"]
 	path = lib/vlf
 	url = git@github.com:m00natic/vlfi.git
