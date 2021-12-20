@@ -1,6 +1,6 @@
 [borg]
-	pushDefault = locutus
-	collective = emacsg
+	pushDefault = Eason0210
+	collective = emacsd
 [submodule "a"]
 	path = lib/a
 	url = git@github.com:plexus/a.el.git
