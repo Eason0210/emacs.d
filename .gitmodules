@@ -25,6 +25,7 @@
 [submodule "borg"]
 	path = lib/borg
 	url = git@github.com:emacscollective/borg.git
+	info-path = docs
 [submodule "buttercup"]
 	path = lib/buttercup
 	url = git@github.com:jorgenschaefer/emacs-buttercup.git
@@ -43,6 +44,7 @@
 [submodule "company"]
 	path = lib/company
 	url = git@github.com:company-mode/company-mode.git
+	info-path = doc
 [submodule "consult"]
 	path = lib/consult
 	url = git@github.com:minad/consult.git
@@ -100,6 +102,7 @@
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
+	info-path = docs
 [submodule "f"]
 	path = lib/f
 	url = git@github.com:rejeep/f.el.git
@@ -123,12 +126,14 @@
 [submodule "forge"]
 	path = lib/forge
 	url = git@github.com:magit/forge.git
+	info-path = docs
 [submodule "fullframe"]
 	path = lib/fullframe
 	url = git@github.com:emacsmirror/fullframe.git
 [submodule "ghub"]
 	path = lib/ghub
 	url = git@github.com:magit/ghub.git
+	info-path = docs
 [submodule "git-modes"]
 	path = lib/git-modes
 	url = git@github.com:magit/git-modes.git
@@ -141,6 +146,7 @@
 [submodule "haskell-mode"]
 	path = lib/haskell-mode
 	url = git@github.com:haskell/haskell-mode.git
+	info-path = doc
 [submodule "highlight-escape-sequences"]
 	path = lib/highlight-escape-sequences
 	url = git@github.com:dgutov/highlight-escape-sequences.git
@@ -188,7 +194,7 @@
 	url = git@github.com:magit/magit.git
 	no-byte-compile = lisp/magit-libgit.el
 	recursive-byte-compile = true
-	info-path = Documentation
+	info-path = docs
 [submodule "magit-todos"]
 	path = lib/magit-todos
 	url = git@github.com:alphapapa/magit-todos.git
@@ -231,6 +237,7 @@
 [submodule "org-roam"]
 	path = lib/org-roam
 	url = git@github.com:org-roam/org-roam.git
+	info-path = doc
 [submodule "origami"]
 	path = lib/origami
 	url = git@github.com:gregsexton/origami.el.git
@@ -346,6 +353,7 @@
 [submodule "with-editor"]
 	path = lib/with-editor
 	url = git@github.com:magit/with-editor.git
+	info-path = docs
 [submodule "writeroom-mode"]
 	path = lib/writeroom-mode
 	url = git@github.com:joostkremers/writeroom-mode.git
