@@ -106,6 +106,9 @@
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
 	info-path = docs
+[submodule "epl"]
+	path = lib/epl
+	url = git@github.com:cask/epl.git
 [submodule "f"]
 	path = lib/f
 	url = git@github.com:rejeep/f.el.git
@@ -257,6 +260,9 @@
 [submodule "pcre2el"]
 	path = lib/pcre2el
 	url = git@github.com:joddie/pcre2el.git
+[submodule "pkg-info"]
+	path = lib/pkg-info
+	url = git@github.com:emacsorphanage/pkg-info.git
 [submodule "projectile"]
 	path = lib/projectile
 	url = git@github.com:bbatsov/projectile.git
