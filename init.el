@@ -1520,8 +1520,15 @@ typical word processor."
   :defer t
   :config
   (setq python-shell-interpreter "python3")
-  (setq python-indent-guess-indent-offset-verbose nil))
+  (setq python-indent-guess-indent-offset-verbose nil)
 
+  (defun python-doctest-on-current-buffer ()
+    "Run doctest on current Python buffer."
+    (interactive)
+    (shell-command (format "python -m doctest -v %s" (file-name-nondirectory (buffer-file-name))))
+    (switch-to-buffer-other-window "*Shell Command Output*")
+    (read-only-mode +1)
+    (keymap-local-set "q" 'quit-window)))
 
 ;;; Support Yaml files
 
