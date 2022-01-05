@@ -1337,6 +1337,8 @@ Call a second time to restore the original window configuration."
 ;; Writing mode similar to the famous Writeroom editor for OS X
 (use-package writeroom-mode
   :hook (org-mode . prose-mode)
+  :config
+  (setq writeroom-fullscreen-effect 'maximized)
   :preface
   (define-minor-mode prose-mode
     "Set up a buffer for prose editing.
