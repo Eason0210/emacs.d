@@ -1530,6 +1530,22 @@ typical word processor."
     (read-only-mode +1)
     (keymap-local-set "q" 'quit-window)))
 
+(use-package pyvenv
+  :after python
+  :hook (python-mode . pyvenv-mode)
+  :config
+  ;; Set correct Python interpreter
+  (setq pyvenv-post-activate-hooks
+        (list (lambda ()
+                (setq python-shell-interpreter
+                      (concat pyvenv-virtual-env (if (eq system-type 'windows-nt)
+                                                     "scripts/python"
+                                                   "bin/python"))))))
+  (setq pyvenv-post-deactivate-hooks
+        (list (lambda ()
+                (setq python-shell-interpreter "python3")))))
+
+
 ;;; Support Yaml files
 
 (use-package yaml-mode
