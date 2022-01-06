@@ -85,6 +85,17 @@
     (setq mac-command-modifier 'meta)
     (setq mac-option-modifier 'none)))
 
+(use-package exec-path-from-shell
+  :init
+  (with-eval-after-load 'exec-path-from-shell
+    (dolist (var '("GPG_AGENT_INFO" "LANG" "LC_CTYPE"))
+      (add-to-list 'exec-path-from-shell-variables var)))
+
+  (when (or (memq window-system '(mac ns x))
+            (unless (memq system-type '(ms-dos windows-nt))
+              (daemonp)))
+    (exec-path-from-shell-initialize)))
+
 ;;; Long tail
 
 (use-package diminish)
