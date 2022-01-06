@@ -15,7 +15,7 @@
   (add-hook 'emacs-startup-hook
             (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
-(progn ;; `startup'
+(progn ; `startup'
   (defvar before-user-init-time (current-time)
     "Value of `current-time' when Emacs begins loading `user-init-file'.")
   (message "Loading Emacs...done (%.3fs)"
@@ -37,12 +37,12 @@
     (tool-bar-mode 0))
   (menu-bar-mode 0))
 
-(eval-and-compile ;; `borg'
+(eval-and-compile ; `borg'
   (add-to-list 'load-path (expand-file-name "lib/borg" user-emacs-directory))
   (require 'borg)
   (borg-initialize))
 
-(progn ;; `use-package'
+(progn ; `use-package'
   (setq use-package-enable-imenu-support t)
   (setq use-package-minimum-reported-time 0)
   (setq use-package-verbose nil)
@@ -88,11 +88,11 @@
   :commands (server-running-p)
   :config (or (server-running-p) (server-mode)))
 
-(progn ;; `startup'
+(progn ; `startup'
   (message "Loading early birds...done (%.3fs)"
            (float-time (time-subtract (current-time)
                                       before-user-init-time))))
-(progn ;; `ns-win'
+(progn ; `ns-win'
   (when *is-a-mac*
     (setq mac-command-modifier 'meta)
     (setq mac-option-modifier 'none)))
@@ -175,7 +175,7 @@
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
 
-(progn ;; `pixel-scroll'
+(progn ; `pixel-scroll'
   (if (boundp 'pixel-scroll-precision-mode)
       (pixel-scroll-precision-mode t)))
 
@@ -1882,7 +1882,7 @@ there is no current file, eval the current buffer."
                     :render (gts-kill-ring-render)))))
 
 
-(progn ;; `faces'
+(progn ; `faces'
   (defvar font-list
     (cond
      ((eq system-type 'darwin)
@@ -1991,7 +1991,7 @@ there is no current file, eval the current buffer."
 
 ;;; Tequila worms
 
-(progn ;; `startup'
+(progn ; `startup'
   (message "Loading %s...done (%.3fs)" user-init-file
            (float-time (time-subtract (current-time)
                                       before-user-init-time)))
@@ -2011,7 +2011,7 @@ there is no current file, eval the current buffer."
 
 ;;; Configure default locale
 
-(progn ;; `charset'
+(progn ; `charset'
   (when (fboundp 'set-charset-priority)
     (set-charset-priority 'unicode))
   (prefer-coding-system 'utf-8)
