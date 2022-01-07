@@ -1390,6 +1390,10 @@ typical word processor."
       (when (fboundp 'writeroom-mode)
         (writeroom-mode 0)))))
 
+;; Align tables containing variable-pitch font, CJK characters and images
+(use-package valign
+  :hook (org-mode . valign-mode))
+
 ;; Roam
 (when (and (executable-find "sqlite3") (executable-find "cc"))
   (use-package org-roam

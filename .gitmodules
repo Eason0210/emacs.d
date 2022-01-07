@@ -351,6 +351,9 @@
 [submodule "uuidgen"]
 	path = lib/uuidgen
 	url = git@github.com:kanru/uuidgen-el.git
+[submodule "valign"]
+	path = lib/valign
+	url = git@github.com:casouri/valign.git
 [submodule "vertico"]
 	path = lib/vertico
 	url = git@github.com:minad/vertico.git
