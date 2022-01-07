@@ -660,7 +660,6 @@ Call a second time to restore the original window configuration."
   :demand t
   :init
   (progn
-    (setq recentf-auto-cleanup 300)
     (setq recentf-max-saved-items 1000)
     (setq recentf-exclude `("/tmp/" "/ssh:" ,(concat user-emacs-directory "lib/.*-autoloads\\.el\\'"))))
   :config
