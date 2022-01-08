@@ -1846,6 +1846,8 @@ there is no current file, eval the current buffer."
     (sis-ism-lazyman-config "1033" "2052" 'im-select))
   (when *is-a-mac*
     (sis-ism-lazyman-config "com.apple.keylayout.ABC" "com.apple.inputmethod.SCIM.ITABC"))
+  (when (eq system-type 'gnu/linux)
+    (sis-ism-lazyman-config "1" "2" 'fcitx5))
 
   (setq sis-other-cursor-color "orange")
   (sis-global-cursor-color-mode t)
