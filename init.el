@@ -485,11 +485,7 @@ This is useful when followed by an immediate kill."
 
   ;; Optionally configure the narrowing key.
   ;; Both < and C-+ work reasonably well.
-  (setq consult-narrow-key "<") ;; (kbd "C-+")
-
-  ;; Configure `projectile' returns the project root directory.
-  (autoload 'projectile-project-root "projectile")
-  (setq consult-project-root-function #'projectile-project-root))
+  (setq consult-narrow-key "<"))
 
 
 (use-package consult-flycheck
@@ -1000,22 +996,6 @@ Call a second time to restore the original window configuration."
   :after magit
   :bind (:map magit-mode-map
               ("C-c r" . code-review-forge-pr-at-point)))
-
-;;; Use Projectile for navigation within projects
-
-(use-package projectile
-  :hook (after-init . projectile-mode)
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
-  :init
-  ;; Shorter modeline
-  (setq-default projectile-mode-line-prefix " Proj")
-
-  (when (executable-find "rg")
-    (setq-default projectile-generic-command "rg --files --hidden")))
-
-(use-package ibuffer-projectile
-  :after ibuffer projectile)
 
 
 ;;; Helpers for M-x compile
