@@ -1894,11 +1894,6 @@ there is no current file, eval the current buffer."
 
   (when (display-graphic-p)
     (change-font)
-
-    (dolist (font '("Segoe UI Symbol" "Apple Color Emoji" "Noto Color Emoji"))
-      (if (font-installed-p font)
-          (set-fontset-font t 'unicode font nil 'prepend)))
-
     (dolist (font '("Microsoft Yahei" "Hiragino Sans GB" "Noto Sans Mono CJK SC"))
       (if (font-installed-p font)
           (set-fontset-font t '(#x4e00 . #x9fff) font)))))
