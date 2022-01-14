@@ -734,6 +734,7 @@ Call a second time to restore the original window configuration."
 (add-hook 'after-init-hook 'electric-indent-mode)
 
 (setq-default
+ use-short-answers t
  blink-cursor-interval 0.4
  bookmark-default-file (locate-user-emacs-file ".bookmarks.el")
  buffers-menu-max-size 30
@@ -1775,9 +1776,6 @@ there is no current file, eval the current buffer."
   :bind (:map flyspell-mode-map ("C-," . flyspell-correct-wrapper)))
 
 ;;; Miscellaneous config
-
-(progn ;; `map-ynp'
-  (defalias 'yes-or-no-p #'y-or-n-p))
 
 (use-package goto-addr
   :hook (prog-mode . goto-address-prog-mode)
