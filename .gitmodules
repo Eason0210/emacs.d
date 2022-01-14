@@ -13,9 +13,6 @@
 [submodule "async"]
 	path = lib/async
 	url = git@github.com:jwiegley/emacs-async.git
-[submodule "auto-compile"]
-	path = lib/auto-compile
-	url = git@github.com:emacscollective/auto-compile.git
 [submodule "avy"]
 	path = lib/avy
 	url = git@github.com:abo-abo/avy.git
@@ -251,9 +248,6 @@
 [submodule "package-lint"]
 	path = lib/package-lint
 	url = git@github.com:purcell/package-lint.git
-[submodule "packed"]
-	path = lib/packed
-	url = git@github.com:emacscollective/packed.git
 [submodule "paredit"]
 	path = lib/paredit
 	url = https://mumble.net/~campbell/git/paredit.git
