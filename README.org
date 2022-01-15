@@ -23,20 +23,21 @@ Emacs itself comes with support for many programming languages. This config adds
 ** Supported Emacs versions
 The config should run on Emacs 28 or greater. I use Emacs master branch personally(recently is Emacs 29.0.50).
 *** Install Emacs 29
-1.  [[https://github.com/jimeh/emacs-builds][jimeh/emacs-builds]] on macOS
+-  [[https://github.com/jimeh/emacs-builds][jimeh/emacs-builds]] on macOS
 #+begin_src sh
 brew tap jimeh/emacs-builds
+
 brew install --cask emacs-app-nightly # --with-native-compilation
 # or
 brew install --cask emacs-app-good # --with-native-compilation
 #+end_src
-2. Arch Linux
+- Arch Linux
 #+begin_src bash
 sudo pacman -S emacs-native-comp-git # --with-native-compilation
-# Or
+# or
 sudo pacman -S emacs-git
 #+end_src
-3. Windows
+- Windows
 [[https://eason0210.github.io/post/install-gccemacs/][Build by msys2]]
 
 ** Installation
