@@ -46,6 +46,9 @@
 	path = lib/consult-flycheck
 	url = git@github.com:minad/consult-flycheck.git
 	branch = main
+[submodule "corfu"]
+	path = lib/corfu
+	url = git@github.com:minad/corfu.git
 [submodule "crontab-mode"]
 	path = lib/crontab-mode
 	url = git@github.com:emacs-pe/crontab-mode.git

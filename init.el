@@ -351,6 +351,14 @@ This is useful when followed by an immediate kill."
   :defer t
   :after yasnippet)
 
+(use-package corfu
+  :init
+  (setq corfu-cycle t)
+  (setq corfu-auto t)
+  (setq corfu-quit-at-boundary t)
+  (setq corfu-quit-no-match t)
+  (setq corfu-preview-current nil)
+  (corfu-global-mode))
 
 (use-package consult
   :defer 0.5
