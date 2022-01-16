@@ -352,52 +352,6 @@ This is useful when followed by an immediate kill."
   :after yasnippet)
 
 
-;; Completion with company
-;; WAITING: haskell-mode sets tags-table-list globally, breaks tags-completion-at-point-function
-;; TODO: Default sort order should place [a-z] before punctuation
-
-(use-package company
-  :diminish
-  :hook (after-init . global-company-mode)
-  :bind (("M-C-/" . company-complete)
-         :map company-mode-map
-         ("M-/" . company-complete)
-         ([remap completion-at-point] . company-complete)
-         ([remap indent-for-tab-command] . company-indent-or-complete-common)
-         :map company-active-map
-         ("M-/" . company-other-backend)
-         ("C-n" . company-select-next)
-         ("C-p" . company-select-previous)
-         ("C-d" . company-show-doc-buffer)
-         ("M-." . company-show-location)
-         ("<tab>" . smarter-tab-to-complete))
-  :init
-  (setq tab-always-indent 'complete)
-  (add-to-list 'completion-styles 'initials t)
-  :config
-  (setq-default company-dabbrev-other-buffers 'all
-                company-tooltip-align-annotations t)
-  :preface
-  (defun smarter-tab-to-complete ()
-    "Try to `org-cycle', `yas-expand', and `yas-next-field' at current
- cursor position. If all failed, try to complete the common part with
- `company-complete-common'"
-    (interactive)
-    (when yas-minor-mode
-      (let ((old-point (point))
-            (old-tick (buffer-chars-modified-tick))
-            (func-list
-             (if (equal major-mode 'org-mode) '(org-cycle yas-expand yas-next-field)
-               '(yas-expand yas-next-field))))
-        (catch 'func-suceed
-          (dolist (func func-list)
-            (ignore-errors (call-interactively func))
-            (unless (and (eq old-point (point))
-                         (eq old-tick (buffer-chars-modified-tick)))
-              (throw 'func-suceed t)))
-          (company-complete-common))))))
-
-
 (use-package consult
   :defer 0.5
   :bind (;; C-c bindings (mode-specific-map)

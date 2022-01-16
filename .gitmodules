@@ -38,10 +38,6 @@
 [submodule "color-theme-sanityinc-tomorrow"]
 	path = lib/color-theme-sanityinc-tomorrow
 	url = git@github.com:purcell/color-theme-sanityinc-tomorrow.git
-[submodule "company"]
-	path = lib/company
-	url = git@github.com:company-mode/company-mode.git
-	info-path = doc
 [submodule "consult"]
 	path = lib/consult
 	url = git@github.com:minad/consult.git
