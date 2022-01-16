@@ -1565,7 +1565,7 @@ typical word processor."
               ("C-c ( j"   . paredit-join-with-next-list)
               ("C-c ( J"   . paredit-join-with-previous-list))
   :bind (:map lisp-mode-map       ("<return>" . paredit-newline))
-  :bind (:map emacs-lisp-mode-map ("<return>" . paredit-newline))
+  ;; :bind (:map emacs-lisp-mode-map ("<return>" . paredit-newline))
   :hook (paredit-mode
          . (lambda ()
              (unbind-key [M-up] paredit-mode-map)
