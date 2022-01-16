@@ -1550,7 +1550,6 @@ typical word processor."
   :hook (eglot-managed-mode . (lambda () (flymake-mode -1)))
   :config
   (add-to-list 'eglot-server-programs '(rust-mode "rust-analyzer"))
-  (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
 
   (setq read-process-output-max (* 1024 1024))
   (push :documentHighlightProvider eglot-ignored-server-capabilities)
