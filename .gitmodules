@@ -182,6 +182,9 @@
 [submodule "json-snatcher"]
 	path = lib/json-snatcher
 	url = git@github.com:Sterlingg/json-snatcher.git
+[submodule "kind-icon"]
+	path = lib/kind-icon
+	url = https://github.com/jdtsmith/kind-icon
 [submodule "lcr"]
 	path = lib/lcr
 	url = git@github.com:jyp/lcr.git

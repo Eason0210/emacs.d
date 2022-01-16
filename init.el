@@ -360,6 +360,13 @@ This is useful when followed by an immediate kill."
   (setq corfu-preview-current nil)
   (corfu-global-mode))
 
+(use-package kind-icon
+  :after corfu
+  :custom
+  (kind-icon-default-face 'corfu-default)
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
 (use-package consult
   :defer 0.5
   :bind (;; C-c bindings (mode-specific-map)
