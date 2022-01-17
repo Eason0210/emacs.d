@@ -52,9 +52,6 @@
 [submodule "crontab-mode"]
 	path = lib/crontab-mode
 	url = git@github.com:emacs-pe/crontab-mode.git
-[submodule "dante"]
-	path = lib/dante
-	url = git@github.com:jyp/dante.git
 [submodule "dash"]
 	path = lib/dash
 	url = git@github.com:magnars/dash.el.git

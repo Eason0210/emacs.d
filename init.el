@@ -1454,12 +1454,6 @@ typical word processor."
          (haskell-mode . haskell-indentation-mode)
          (haskell-mode . haskell-auto-insert-module-template)))
 
-(use-package dante
-  :after (haskell-mode flycheck)
-  :hook (haskell-mode . dante-mode)
-  :config
-  (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint)))
-
 (use-package reformatter
   :after haskell-mode
   :config
