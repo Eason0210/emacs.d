@@ -304,14 +304,10 @@ This is useful when followed by an immediate kill."
 
 (use-package orderless
   :demand t
-  :hook (minibuffer-setup . sanityinc/use-orderless-in-minibuffer)
   :config
-  (setq completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion))))
-  :preface
-  (defun sanityinc/use-orderless-in-minibuffer ()
-    (setq-local completion-styles '(substring orderless))))
-
+  (setq completion-styles '(substring orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles . (partial-completion))))))
 
 ;; A few more useful configurations...
 (use-package emacs
@@ -353,11 +349,7 @@ This is useful when followed by an immediate kill."
 
 (use-package corfu
   :init
-  (setq corfu-cycle t)
   (setq corfu-auto t)
-  (setq corfu-quit-at-boundary t)
-  (setq corfu-quit-no-match t)
-  (setq corfu-preview-current nil)
   (corfu-global-mode))
 
 (use-package kind-icon
