@@ -66,9 +66,6 @@
 [submodule "diminish"]
 	path = lib/diminish
 	url = git@github.com:myrjola/diminish.el.git
-[submodule "dimmer"]
-	path = lib/dimmer
-	url = git@github.com:gonewest818/dimmer.el.git
 [submodule "diredfl"]
 	path = lib/diredfl
 	url = git@github.com:purcell/diredfl.git
