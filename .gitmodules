@@ -26,6 +26,9 @@
 [submodule "buttercup"]
 	path = lib/buttercup
 	url = git@github.com:jorgenschaefer/emacs-buttercup.git
+[submodule "cape"]
+	path = lib/cape
+	url = git@github.com:minad/cape.git
 [submodule "closql"]
 	path = lib/closql
 	url = git@github.com:emacscollective/closql.git
