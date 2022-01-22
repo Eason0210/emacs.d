@@ -346,6 +346,7 @@ This is useful when followed by an immediate kill."
 (use-package corfu
   :init
   (setq corfu-auto t)
+  (setq corfu-quit-at-boundary t)
   (corfu-global-mode))
 
 (use-package kind-icon
