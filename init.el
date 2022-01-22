@@ -1553,8 +1553,6 @@ typical word processor."
               ("C-c l d" . eldoc))
   :hook (eglot-managed-mode . (lambda () (flymake-mode -1)))
   :config
-  (add-to-list 'eglot-server-programs '(rust-mode "rust-analyzer"))
-
   (setq read-process-output-max (* 1024 1024))
   (push :documentHighlightProvider eglot-ignored-server-capabilities)
   (setq eldoc-echo-area-use-multiline-p nil))
