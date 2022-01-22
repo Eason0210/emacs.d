@@ -338,6 +338,11 @@ This is useful when followed by an immediate kill."
   :defer t
   :after yasnippet)
 
+(use-package consult-yasnippet
+  :defer t
+  :after (consult yasnippet)
+  :bind ("M-s y" . consult-yasnippet))
+
 (use-package corfu
   :init
   (setq corfu-auto t)
