@@ -296,7 +296,7 @@ This is useful when followed by an immediate kill."
 (use-package orderless
   :demand t
   :config
-  (setq completion-styles '(substring orderless)
+  (setq completion-styles '(orderless partial-completion)
         completion-category-defaults nil
         completion-category-overrides '((file (styles . (partial-completion))))))
 
