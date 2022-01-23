@@ -277,7 +277,8 @@ This is useful when followed by an immediate kill."
 (use-package flycheck
   :hook (after-init . global-flycheck-mode)
   :config
-  (setq flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))
+  (setq flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list
+        flycheck-check-syntax-automatically '(idle-change new-line mode-enabled)))
 
 (use-package flycheck-color-mode-line
   :hook (flycheck-mode . flycheck-color-mode-line-mode)
