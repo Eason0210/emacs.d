@@ -468,7 +468,13 @@ This is useful when followed by an immediate kill."
 
   ;; Optionally configure the narrowing key.
   ;; Both < and C-+ work reasonably well.
-  (setq consult-narrow-key "<"))
+  (setq consult-narrow-key "<")
+
+  ;; Optionally configure a function which returns the project root directory
+  (setq consult-project-root-function
+        (lambda ()
+          (when-let (project (project-current))
+            (car (project-roots project))))))
 
 
 (use-package consult-flycheck
