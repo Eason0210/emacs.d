@@ -345,9 +345,18 @@ This is useful when followed by an immediate kill."
   :bind ("M-s y" . consult-yasnippet))
 
 (use-package corfu
+  :custom
+  (corfu-auto t)
+  (corfu-cycle t)
+  (corfu-quit-at-boundary t)
+  (corfu-preselect-first nil)
+  :bind
+  (:map corfu-map
+        ("TAB" . corfu-next)
+        ([tab] . corfu-next)
+        ("S-TAB" . corfu-previous)
+        ([backtab] . corfu-previous))
   :init
-  (setq corfu-auto t)
-  (setq corfu-quit-at-boundary t)
   (corfu-global-mode))
 
 (use-package kind-icon
