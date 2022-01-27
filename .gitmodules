@@ -185,9 +185,6 @@
 [submodule "kind-icon"]
 	path = lib/kind-icon
 	url = https://github.com/jdtsmith/kind-icon
-[submodule "lcr"]
-	path = lib/lcr
-	url = git@github.com:jyp/lcr.git
 [submodule "lua-mode"]
 	path = lib/lua-mode
 	url = git@github.com:immerrr/lua-mode.git
