@@ -1811,6 +1811,9 @@ there is no current file, eval the current buffer."
 
   (sis-global-respect-mode t)
   (sis-global-context-mode t)
+
+  (setq sis-inline-tighten-head-rule 0)
+  (setq sis-inline-tighten-tail-rule 0)
   (sis-global-inline-mode t))
 
 ;;; Dictionaries
