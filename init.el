@@ -349,7 +349,6 @@ This is useful when followed by an immediate kill."
   (corfu-auto t)
   (corfu-cycle t)
   (corfu-quit-at-boundary 'separator)
-  (corfu-preselect-first nil)
   :bind
   (:map corfu-map
         ("TAB" . corfu-next)
