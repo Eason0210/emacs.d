@@ -1,4 +1,7 @@
 ;;; init.el --- user-init-file                    -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 ;;; Early birds
 
 ;; Produce backtraces when errors occur: can be helpful to diagnose startup issues

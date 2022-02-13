@@ -1,4 +1,6 @@
 ;;; early-init.el --- earliest birds               -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 (setq load-prefer-newer t)
 
