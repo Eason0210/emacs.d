@@ -347,16 +347,30 @@ This is useful when followed by an immediate kill."
 (use-package corfu
   :custom
   (corfu-auto t)
-  (corfu-cycle t)
-  (corfu-quit-at-boundary 'separator)
   :bind
   (:map corfu-map
-        ("TAB" . corfu-next)
-        ([tab] . corfu-next)
-        ("S-TAB" . corfu-previous)
-        ([backtab] . corfu-previous))
+        ([tab] . smarter-tab-to-complete)
+        ("TAB" . smarter-tab-to-complete))
   :init
-  (corfu-global-mode))
+  (corfu-global-mode)
+  :preface
+  (defun smarter-tab-to-complete ()
+    "Try to `org-cycle', `yas-expand', and `yas-next-field' at current cursor position.
+If all failed, try to complete the common part with `corfu-complete'"
+    (interactive)
+    (when yas-minor-mode
+      (let ((old-point (point))
+            (old-tick (buffer-chars-modified-tick))
+            (func-list
+             (if (equal major-mode 'org-mode) '(org-cycle yas-expand yas-next-field)
+               '(yas-expand yas-next-field))))
+        (catch 'func-suceed
+          (dolist (func func-list)
+            (ignore-errors (call-interactively func))
+            (unless (and (eq old-point (point))
+                         (eq old-tick (buffer-chars-modified-tick)))
+              (throw 'func-suceed t)))
+          (corfu-complete))))))
 
 (use-package kind-icon
   :after corfu
