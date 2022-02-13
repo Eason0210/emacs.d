@@ -1584,7 +1584,7 @@ typical word processor."
               ("C-c l r" . eglot-rename)
               ("C-c l f" . eglot-format)
               ("C-c l d" . eldoc))
-  :hook (eglot-managed-mode . (lambda () (flymake-mode -1)))
+  :hook (eglot-managed-mode . (lambda () (flycheck-mode -1)))
   :config
   (setq read-process-output-max (* 1024 1024))
   (push :documentHighlightProvider eglot-ignored-server-capabilities)
