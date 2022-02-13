@@ -23,10 +23,10 @@ Emacs itself comes with support for many programming languages. This config adds
 ** Supported Emacs versions
 The config should run on Emacs 28 or greater. I use Emacs master branch personally(recently is Emacs 29.0.50).
 *** Install Emacs 29
-- macOS
+**** macOS
 You can build Emacs 29 from source(which I preferred) or install by home-brew.
 
-1. build from source
+- build from source
 #+begin_src bash
 # Install compile dependencies
 brew install autoconf automake texinfo gnutls pkg-config libxml2 librsvg jansson giflib libtiff
@@ -56,21 +56,23 @@ if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
 fi
 #+end_src
 
-2. Install with home-brew: [[https://github.com/jimeh/emacs-builds][jimeh/emacs-builds]]
+- Install with home-brew:
+See details on [[https://github.com/jimeh/emacs-builds][jimeh/emacs-builds]]
 #+begin_src sh
 brew tap jimeh/emacs-builds
-
 brew install --cask emacs-app-nightly # --with-native-compilation
 # or
 brew install --cask emacs-app-good # --with-native-compilation
 #+end_src
-- Arch Linux
+
+**** Arch Linux
 #+begin_src bash
 sudo pacman -S emacs-native-comp-git # --with-native-compilation
 # or
 sudo pacman -S emacs-git
 #+end_src
-- Windows
+
+**** Windows
 [[https://eason0210.github.io/post/install-gccemacs/][Build by msys2]]
 
 ** Installation
