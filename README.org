@@ -101,4 +101,3 @@ Update the config with git ~pull~.
 4. [[https://github.com/MatthewZMD/.emacs.d][M-EMACS]]
 5. [[https://github.com/douglasdavis/dot-emacs][douglasdavis/dot-emacs]]
 6. [[https://github.com/DamienCassou/emacs.d][DamienCassou/emacs.d]]
-7. [[https://github.com/hlissner/doom-emacs/blob/master/modules/tools/lsp/autoload/flycheck-eglot.el][hlissnee/doom-emacs]]
