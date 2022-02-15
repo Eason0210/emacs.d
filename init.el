@@ -275,17 +275,10 @@ This is useful when followed by an immediate kill."
   (fullframe ibuffer ibuffer-quit))
 
 
-;;; Configure FlyCheck global behavior
+;;; Configure Flymake
+(use-package flymake
+  :hook (emacs-lisp-mode . flymake-mode))
 
-(use-package flycheck
-  :hook (after-init . global-flycheck-mode)
-  :config
-  (setq flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list
-        flycheck-check-syntax-automatically '(idle-change new-line mode-enabled)))
-
-(use-package flycheck-color-mode-line
-  :hook (flycheck-mode . flycheck-color-mode-line-mode)
-  :after flycheck)
 
 ;;; minibufer configuration
 (use-package vertico
@@ -426,7 +419,7 @@ If all failed, try to complete the common part with `corfu-complete'"
          ("<help> a" . consult-apropos) ;; orig. apropos-command
          ;; M-g bindings (goto-map)
          ("M-g e" . consult-compile-error)
-         ("M-g f" . consult-flycheck)  ;; Alternative: consult-flymake
+         ("M-g f" . consult-flymake)  ;; Alternative: consult-flycheck
          ("M-g g" . consult-goto-line) ;; orig. goto-line
          ("M-g M-g" . consult-goto-line) ;; orig. goto-line
          ("M-g o" . consult-outline) ;; Alternative: consult-org-heading
@@ -492,10 +485,6 @@ If all failed, try to complete the common part with `corfu-complete'"
           (when-let (project (project-current))
             (car (project-roots project))))))
 
-
-(use-package consult-flycheck
-  :defer t
-  :after (consult flycheck))
 
 (use-package marginalia
   :init (marginalia-mode))
@@ -1439,8 +1428,6 @@ typical word processor."
   :init
   (setq-default js-indent-level 2)
   :config
-  (add-to-list 'flycheck-disabled-checkers #'javascript-jshint)
-  (flycheck-add-mode 'javascript-eslint 'js2-mode)
   (with-eval-after-load 'js2-mode
     (sanityinc/major-mode-lighter 'js2-mode "JS2")
     (sanityinc/major-mode-lighter 'js2-jsx-mode "JSX2")))
@@ -1587,7 +1574,6 @@ typical word processor."
               ("C-c l r" . eglot-rename)
               ("C-c l f" . eglot-format)
               ("C-c l d" . eldoc))
-  :hook (eglot-managed-mode . (lambda () (flycheck-mode -1)))
   :config
   (setq read-process-output-max (* 1024 1024))
   (push :documentHighlightProvider eglot-ignored-server-capabilities)
@@ -1701,10 +1687,6 @@ there is no current file, eval the current buffer."
   :bind (:map ert-results-mode-map
               ("g" . ert-results-rerun-all-tests)))
 
-(use-package flycheck-package
-  :after (flycheck elisp-mode)
-  :config
-  (flycheck-package-setup))
 
 ;; Enable desired features for all lisp modes
 
