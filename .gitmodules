@@ -45,10 +45,6 @@
 	path = lib/consult
 	url = git@github.com:minad/consult.git
 	branch = main
-[submodule "consult-flycheck"]
-	path = lib/consult-flycheck
-	url = git@github.com:minad/consult-flycheck.git
-	branch = main
 [submodule "consult-yasnippet"]
 	path = lib/consult-yasnippet
 	url = git@github.com:mohkale/consult-yasnippet.git
@@ -111,15 +107,6 @@
 [submodule "f"]
 	path = lib/f
 	url = git@github.com:rejeep/f.el.git
-[submodule "flycheck"]
-	path = lib/flycheck
-	url = git@github.com:flycheck/flycheck.git
-[submodule "flycheck-color-mode-line"]
-	path = lib/flycheck-color-mode-line
-	url = git@github.com:flycheck/flycheck-color-mode-line.git
-[submodule "flycheck-package"]
-	path = lib/flycheck-package
-	url = git@github.com:purcell/flycheck-package.git
 [submodule "flyspell-correct"]
 	path = lib/flyspell-correct
 	url = git@github.com:d12frosted/flyspell-correct.git
