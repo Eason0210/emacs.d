@@ -833,7 +833,10 @@ Call a second time to restore the original window configuration."
 
 ;; Show matching parens
 (use-package paren
-  :config (show-paren-mode))
+  :custom
+  (show-paren-context-when-offscreen t)
+  :config
+  (show-paren-mode))
 
 ;; Handy key bindings
 ;; (bind-key "C-." 'set-mark-command)
