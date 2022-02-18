@@ -1718,7 +1718,11 @@ there is no current file, eval the current buffer."
 
 (defun sanityinc/emacs-lisp-setup ()
   "Enable features useful when working with elisp."
-  (set-up-hippie-expand-for-elisp))
+  (set-up-hippie-expand-for-elisp)
+  ;; require error
+  (setq elisp-flymake-byte-compile-load-path
+        (append elisp-flymake-byte-compile-load-path
+                load-path)))
 
 (defconst sanityinc/elispy-modes
   '(emacs-lisp-mode ielm-mode)
