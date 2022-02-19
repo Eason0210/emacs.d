@@ -270,9 +270,6 @@
 [submodule "scratch"]
 	path = lib/scratch
 	url = git@github.com:ieure/scratch-el.git
-[submodule "session"]
-	path = lib/session
-	url = git@github.com:emacsorphanage/session.git
 [submodule "shift-number"]
 	path = lib/shift-number
 	url = git@github.com:alezost/shift-number.el.git
