@@ -1656,16 +1656,15 @@ there is no current file, eval the current buffer."
     (when (and (buffer-file-name)
                (string-match-p "\\.el\\.gz\\'" (buffer-file-name)))
       (setq buffer-read-only t)
-      (view-mode 1)))
+      (view-mode 1))))
 
-  ;;respawn the scratch buffer when it's killed
-  (use-package immortal-scratch
-    :after lisp-mode
-    :hook (after-init . immortal-scratch-mode))
+;; respawn the scratch buffer when it's killed
+(use-package immortal-scratch
+  :hook (after-init . immortal-scratch-mode))
 
-  ;; Extras for theme editing
-  (use-package highlight-quoted
-    :hook (emacs-lisp-mode . highlight-quoted-mode)))
+;; Extras for theme editing
+(use-package highlight-quoted
+  :hook (emacs-lisp-mode . highlight-quoted-mode))
 
 (use-package rainbow-mode
   :diminish
