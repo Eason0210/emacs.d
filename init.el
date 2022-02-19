@@ -687,6 +687,7 @@ Call a second time to restore the original window configuration."
           (regexp-search-ring       . 20)
           register-alist
           (search-ring              . 20)
+          (kill-ring                . 20)
           (shell-command-history    . 50)
           tags-file-name
           tags-table-list))
@@ -719,12 +720,11 @@ Call a second time to restore the original window configuration."
 (use-package savehist
   :config (savehist-mode))
 
-(use-package session
-  :hook (after-init . session-initialize)
+(use-package saveplace
+  :demand t
   :config
-  (setq session-save-file (locate-user-emacs-file ".session"))
-  (setq session-name-disable-regexp "\\(?:\\`'/tmp\\|\\.git/[A-Z_]+\\'\\)")
-  (setq session-save-file-coding-system 'utf-8))
+  (progn
+    (save-place-mode)))
 
 ;;; Editing utils
 
