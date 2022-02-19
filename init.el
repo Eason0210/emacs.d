@@ -336,6 +336,7 @@ This is useful when followed by an immediate kill."
   :bind ("M-s y" . consult-yasnippet))
 
 (use-package corfu
+  :demand t
   :custom
   (corfu-auto t)
   :bind
@@ -371,6 +372,7 @@ If all failed, try to complete the common part with `corfu-complete'"
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package cape
+  :demand t
   :bind (("C-c p p" . completion-at-point)
          ("C-c p t" . complete-tag)
          ("C-c p d" . cape-dabbrev)
