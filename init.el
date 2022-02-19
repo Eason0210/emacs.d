@@ -1574,8 +1574,7 @@ typical word processor."
               ("C-c l d" . eldoc))
   :config
   (setq read-process-output-max (* 1024 1024))
-  (push :documentHighlightProvider eglot-ignored-server-capabilities)
-  (setq eldoc-echo-area-use-multiline-p nil))
+  (push :documentHighlightProvider eglot-ignored-server-capabilities))
 
 
 ;;; Configure paredit structured editing
@@ -1601,7 +1600,6 @@ typical word processor."
              (unbind-key "M-r" paredit-mode-map)
              (unbind-key "M-s" paredit-mode-map)))
   :config
-  (require 'eldoc)
   (eldoc-add-command 'paredit-backward-delete
                      'paredit-close-round))
 
@@ -1904,8 +1902,8 @@ there is no current file, eval the current buffer."
     (set-face-attribute 'diff-refine-added   nil :extend t)))
 
 (use-package eldoc
-  :when (version< "25" emacs-version)
-  :config (global-eldoc-mode))
+  :custom
+  (eldoc-echo-area-use-multiline-p nil))
 
 (use-package help
   :defer t
