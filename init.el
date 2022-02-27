@@ -99,6 +99,7 @@
   (setq-local mode-name name))
 
 (defun sanityinc/major-mode-lighter (mode name)
+  "Override the major MODE with a new NAME."
   (add-hook (derived-mode-hook-name mode)
             (apply-partially 'sanityinc/set-major-mode-name name)))
 
@@ -578,6 +579,7 @@ targets."
 
 ;; When splitting window, show (other-buffer) in the new window
 (defun split-window-func-with-other-buffer (split-function)
+  "Use SPLIT-FUNCTION to split window."
   (lambda (&optional arg)
     "Split this window and switch to the new window unless ARG is provided."
     (interactive "P")
