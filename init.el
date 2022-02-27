@@ -339,6 +339,7 @@ This is useful when followed by an immediate kill."
   :demand t
   :custom
   (corfu-auto t)
+  (corfu-max-width 110)
   :bind
   (:map corfu-map
         ([tab] . smarter-tab-to-complete)
