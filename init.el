@@ -288,9 +288,8 @@ This is useful when followed by an immediate kill."
 (use-package orderless
   :demand t
   :config
-  (setq completion-styles '(orderless partial-completion)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles . (partial-completion))))))
+  (setq completion-styles '(orderless flex)
+        completion-category-overrides '((eglot (styles . (orderless flex))))))
 
 ;; A few more useful configurations...
 (use-package emacs
