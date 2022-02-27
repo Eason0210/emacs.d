@@ -1940,19 +1940,6 @@ there is no current file, eval the current buffer."
   :config (cl-pushnew 'tramp-own-remote-path tramp-remote-path))
 
 
-;;; Unofficial client for Telegram platform
-(when *is-a-mac*
-  (use-package telega
-    :bind (("C-c t t" . telega)
-           ("C-c t f" . telega-buffer-file-send))
-    :hook (telega-chat-mode . goto-address-mode)
-    :config
-    (setq telega-proxies
-          (list
-           '(:server "127.0.0.1" :port 1080 :enable t
-                     :type (:@type "proxyTypeSocks5"))))))
-
-
 ;;; Tequila worms
 
 (progn ; `startup'
