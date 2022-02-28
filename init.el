@@ -1577,8 +1577,7 @@ typical word processor."
               ("C-c l f" . eglot-format)
               ("C-c l d" . eldoc))
   :config
-  (setq read-process-output-max (* 1024 1024))
-  (push :documentHighlightProvider eglot-ignored-server-capabilities))
+  (setq read-process-output-max (* 1024 1024)))
 
 
 ;;; Configure paredit structured editing
