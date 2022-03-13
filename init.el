@@ -289,8 +289,7 @@ This is useful when followed by an immediate kill."
 (use-package orderless
   :demand t
   :config
-  (setq completion-styles '(orderless flex)
-        completion-category-overrides '((eglot (styles . (orderless flex))))))
+  (setq completion-styles '(orderless)))
 
 ;; A few more useful configurations...
 (use-package emacs
@@ -1577,7 +1576,8 @@ typical word processor."
               ("C-c l f" . eglot-format)
               ("C-c l d" . eldoc))
   :config
-  (setq read-process-output-max (* 1024 1024)))
+  (setq read-process-output-max (* 1024 1024))
+  (setq completion-category-defaults nil))
 
 
 ;;; Configure paredit structured editing
