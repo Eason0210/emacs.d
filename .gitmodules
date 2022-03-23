@@ -7,9 +7,6 @@
 [submodule "anzu"]
 	path = lib/anzu
 	url = git@github.com:emacsorphanage/anzu.git
-[submodule "async"]
-	path = lib/async
-	url = git@github.com:jwiegley/emacs-async.git
 [submodule "avy"]
 	path = lib/avy
 	url = git@github.com:abo-abo/avy.git
@@ -92,9 +89,6 @@
 [submodule "exec-path-from-shell"]
 	path = lib/exec-path-from-shell
 	url = git@github.com:purcell/exec-path-from-shell.git
-[submodule "f"]
-	path = lib/f
-	url = git@github.com:rejeep/f.el.git
 [submodule "flyspell-correct"]
 	path = lib/flyspell-correct
 	url = git@github.com:d12frosted/flyspell-correct.git
@@ -133,9 +127,6 @@
 [submodule "highlight-quoted"]
 	path = lib/highlight-quoted
 	url = git@github.com:Fanael/highlight-quoted.git
-[submodule "hl-todo"]
-	path = lib/hl-todo
-	url = git@github.com:tarsius/hl-todo.git
 [submodule "ht"]
 	path = lib/ht
 	url = git@github.com:Wilfred/ht.el.git
@@ -172,9 +163,6 @@
 	no-byte-compile = lisp/magit-libgit.el
 	recursive-byte-compile = true
 	info-path = docs
-[submodule "magit-todos"]
-	path = lib/magit-todos
-	url = git@github.com:alphapapa/magit-todos.git
 [submodule "marginalia"]
 	path = lib/marginalia
 	url = git@github.com:minad/marginalia.git
@@ -226,9 +214,6 @@
 [submodule "paredit"]
 	path = lib/paredit
 	url = https://mumble.net/~campbell/git/paredit.git
-[submodule "pcre2el"]
-	path = lib/pcre2el
-	url = git@github.com:joddie/pcre2el.git
 [submodule "pkg-info"]
 	path = lib/pkg-info
 	url = git@github.com:emacsorphanage/pkg-info.git
