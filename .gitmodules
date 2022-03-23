@@ -124,9 +124,6 @@
 [submodule "highlight-quoted"]
 	path = lib/highlight-quoted
 	url = git@github.com:Fanael/highlight-quoted.git
-[submodule "ht"]
-	path = lib/ht
-	url = git@github.com:Wilfred/ht.el.git
 [submodule "ibuffer-vc"]
 	path = lib/ibuffer-vc
 	url = git@github.com:purcell/ibuffer-vc.git
