@@ -208,9 +208,6 @@
 [submodule "origami"]
 	path = lib/origami
 	url = git@github.com:gregsexton/origami.el.git
-[submodule "package-lint"]
-	path = lib/package-lint
-	url = git@github.com:purcell/package-lint.git
 [submodule "paredit"]
 	path = lib/paredit
 	url = https://mumble.net/~campbell/git/paredit.git
