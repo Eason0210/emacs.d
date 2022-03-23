@@ -83,9 +83,6 @@
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
 	info-path = docs
-[submodule "epl"]
-	path = lib/epl
-	url = git@github.com:cask/epl.git
 [submodule "exec-path-from-shell"]
 	path = lib/exec-path-from-shell
 	url = git@github.com:purcell/exec-path-from-shell.git
@@ -211,9 +208,6 @@
 [submodule "paredit"]
 	path = lib/paredit
 	url = https://mumble.net/~campbell/git/paredit.git
-[submodule "pkg-info"]
-	path = lib/pkg-info
-	url = git@github.com:emacsorphanage/pkg-info.git
 [submodule "pyvenv"]
 	path = lib/pyvenv
 	url = git@github.com:jorgenschaefer/pyvenv.git
