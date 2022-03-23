@@ -202,9 +202,6 @@
 	path = lib/org-roam
 	url = git@github.com:org-roam/org-roam.git
 	info-path = doc
-[submodule "origami"]
-	path = lib/origami
-	url = git@github.com:gregsexton/origami.el.git
 [submodule "paredit"]
 	path = lib/paredit
 	url = https://mumble.net/~campbell/git/paredit.git
@@ -229,9 +226,6 @@
 [submodule "rust-mode"]
 	path = lib/rust-mode
 	url = git@github.com:rust-lang/rust-mode.git
-[submodule "s"]
-	path = lib/s
-	url = git@github.com:magnars/s.el.git
 [submodule "scratch"]
 	path = lib/scratch
 	url = git@github.com:ieure/scratch-el.git

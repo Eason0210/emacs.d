@@ -1778,14 +1778,6 @@ there is no current file, eval the current buffer."
   (setq save-silently t)
   (super-save-mode 1))
 
-;;; Support code and region folding
-
-(use-package origami
-  :bind (("C-c f" . origami-recursively-toggle-node)
-         ("C-c F" . origami-toggle-all-nodes))
-  :config
-  (origami-mode 1))
-
 
 ;;; Toggle system input method automatically
 (use-package sis
