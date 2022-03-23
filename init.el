@@ -987,12 +987,6 @@ Call a second time to restore the original window configuration."
   :defer t
   :after magit)
 
-(use-package code-review
-  :defer t
-  :after magit
-  :bind (:map magit-mode-map
-              ("C-c r" . code-review-forge-pr-at-point)))
-
 
 ;;; Helpers for M-x compile
 
