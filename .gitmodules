@@ -94,17 +94,9 @@
 	no-byte-compile = flyspell-correct-ido.el
 	no-byte-compile = flyspell-correct-ivy.el
 	no-byte-compile = flyspell-correct-popup.el
-[submodule "forge"]
-	path = lib/forge
-	url = git@github.com:magit/forge.git
-	info-path = docs
 [submodule "fullframe"]
 	path = lib/fullframe
 	url = git@github.com:emacsmirror/fullframe.git
-[submodule "ghub"]
-	path = lib/ghub
-	url = git@github.com:magit/ghub.git
-	info-path = docs
 [submodule "git-modes"]
 	path = lib/git-modes
 	url = git@github.com:magit/git-modes.git
@@ -264,9 +256,6 @@
 	path = lib/transient
 	url = git@github.com:magit/transient.git
 	info-path = docs
-[submodule "treepy"]
-	path = lib/treepy
-	url = git@github.com:volrath/treepy.el.git
 [submodule "typescript-mode"]
 	path = lib/typescript-mode
 	url = git@github.com:emacs-typescript/typescript.el.git
@@ -309,9 +298,6 @@
 [submodule "xterm-color"]
 	path = lib/xterm-color
 	url = git@github.com:atomontage/xterm-color.git
-[submodule "yaml"]
-	path = lib/yaml
-	url = git@github.com:zkry/yaml.el.git
 [submodule "yaml-mode"]
 	path = lib/yaml-mode
 	url = git@github.com:yoshiki/yaml-mode.git
