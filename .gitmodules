@@ -156,9 +156,6 @@
 [submodule "markdown-mode"]
 	path = lib/markdown-mode
 	url = git@github.com:jrblevin/markdown-mode.git
-[submodule "mmm-mode"]
-	path = lib/mmm-mode
-	url = git@github.com:purcell/mmm-mode.git
 [submodule "mode-line-bell"]
 	path = lib/mode-line-bell
 	url = git@github.com:purcell/mode-line-bell.git
@@ -174,13 +171,6 @@
 [submodule "multiple-cursors"]
 	path = lib/multiple-cursors
 	url = git@github.com:magnars/multiple-cursors.el.git
-[submodule "nix-mode"]
-	path = lib/nix-mode
-	url = git@github.com:NixOS/nix-mode.git
-	no-byte-compile = nix-company.el
-[submodule "nixpkgs-fmt"]
-	path = lib/nixpkgs-fmt
-	url = git@github.com:purcell/emacs-nixpkgs-fmt.git
 [submodule "ns-auto-titlebar"]
 	path = lib/ns-auto-titlebar
 	url = git@github.com:purcell/ns-auto-titlebar.git
