@@ -1817,48 +1817,6 @@ there is no current file, eval the current buffer."
                     :render (gts-kill-ring-render)))))
 
 
-(progn ; `faces'
-  (defvar font-list
-    (cond
-     ((eq system-type 'darwin)
-      '(("SF Mono" . 130) ("Monaco" . 130) ("Menlo" . 130)))
-     ((eq system-type 'windows-nt)
-      '(("SF Mono" . 110) ("Consolas" . 120) ("Cascadia Mono" . 110)))
-     (t
-      '(("SF Mono" . 110) ("Consolas" . 120) ("Cascadia Mono" . 110))))
-    "List of fonts and sizes.  The first one available will be used.")
-
-  (defun font-installed-p (font-name)
-    "Check if font with FONT-NAME is available."
-    (find-font (font-spec :name font-name)))
-
-  (defun change-font ()
-    "Set English font from the `font-list'."
-    (interactive)
-    (let* (available-fonts font-name font-size)
-      (dolist (font font-list
-                    (setq available-fonts (nreverse available-fonts)))
-        (when (font-installed-p (car font))
-          (push font available-fonts)))
-      (if (not available-fonts)
-          (message "No fonts from the chosen set are available")
-        (if (called-interactively-p 'interactive)
-            (let* ((chosen (assoc-string
-                            (completing-read "What font to use? " available-fonts nil t)
-                            available-fonts)))
-              (setq font-name (car chosen)
-                    font-size (read-number "Font size: " (cdr chosen))))
-          (setq font-name (caar available-fonts)
-                font-size (cdar available-fonts)))
-        (set-face-attribute 'default nil :font font-name :height font-size))))
-
-  (when (display-graphic-p)
-    (change-font)
-    (dolist (font '("Microsoft Yahei" "Hiragino Sans GB" "Noto Sans Mono CJK SC"))
-      (if (font-installed-p font)
-          (set-fontset-font t '(#x4e00 . #x9fff) font)))))
-
-
 (use-package dash
   :config (global-dash-fontify-mode 1))
 
@@ -1905,6 +1863,39 @@ there is no current file, eval the current buffer."
   :defer t
   :config (cl-pushnew 'tramp-own-remote-path tramp-remote-path))
 
+
+(progn ; `fontset'
+  (defun font-installed-p (font)
+    "Check if the FONT is available."
+    (find-font (font-spec :name font)))
+
+  (defun change-font ()
+    "Change the font of frame from an available `font-list'."
+    (interactive)
+    (let* (available-fonts font-name font-size font-set)
+      (dolist (font font-list (setq available-fonts (nreverse available-fonts)))
+        (when (font-installed-p (car font))
+          (push font available-fonts)))
+      (if (not available-fonts)
+          (message "No fonts from the chosen set are available")
+        (if (called-interactively-p 'interactive)
+            (let* ((chosen (assoc-string (completing-read "What font to use? " available-fonts nil t)
+                                         available-fonts)))
+              (setq font-name (car chosen) font-size (read-number "Font size: " (cdr chosen))))
+          (setq font-name (caar available-fonts) font-size (cdar available-fonts)))
+        (setq font-set (format "%s-%d" font-name font-size))
+        (set-frame-font font-set nil t)
+        (add-to-list 'default-frame-alist (cons 'font font-set)))))
+
+  (when window-system
+    (change-font)
+    (cl-loop for font in '("Microsoft Yahei" "Hiragino Sans GB" "Noto Sans Mono CJK SC")
+             when (font-installed-p font)
+             return (dolist (charset '(kana han hangul cjk-misc bopomofo))
+                      (set-fontset-font t charset font)))
+    (cl-loop for font in '("Segoe UI Emoji" "Apple Color Emoji" "Noto Color Emoji")
+             when (font-installed-p font)
+             return (set-fontset-font t 'unicode font nil 'prepend))))
 
 ;;; Tequila worms
 
