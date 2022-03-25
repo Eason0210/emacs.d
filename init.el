@@ -1895,7 +1895,10 @@ there is no current file, eval the current buffer."
                       (set-fontset-font t charset font)))
     (cl-loop for font in '("Segoe UI Emoji" "Apple Color Emoji" "Noto Color Emoji")
              when (font-installed-p font)
-             return (set-fontset-font t 'unicode font nil 'prepend))))
+             return (set-fontset-font t 'unicode font nil 'prepend))
+    (dolist (font '("HanaMinA" "HanaMinB"))
+      (when (font-installed-p font)
+        (set-fontset-font t 'unicode font nil 'append)))))
 
 ;;; Tequila worms
 
