@@ -97,6 +97,9 @@
 [submodule "fullframe"]
 	path = lib/fullframe
 	url = git@github.com:emacsmirror/fullframe.git
+[submodule "git-link"]
+	path = lib/git-link
+	url = git@github.com:sshaw/git-link.git
 [submodule "git-modes"]
 	path = lib/git-modes
 	url = git@github.com:magit/git-modes.git
