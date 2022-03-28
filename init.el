@@ -263,11 +263,6 @@ This is useful when followed by an immediate kill."
 
   (setq ibuffer-filter-group-name-face 'font-lock-doc-face))
 
-(use-package fullframe
-  :after ibuffer
-  :config
-  (fullframe ibuffer ibuffer-quit))
-
 
 ;;; Configure Flymake
 (use-package flymake
@@ -975,11 +970,6 @@ Call a second time to restore the original window configuration."
 
     (transient-replace-suffix 'magit-commit 'magit-commit-autofixup
       '("x" "Absorb changes" magit-commit-absorb))))
-
-(use-package fullframe
-  :after magit
-  :config
-  (fullframe magit-status magit-mode-quit-window))
 
 
 ;;; Helpers for M-x compile
