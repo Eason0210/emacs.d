@@ -187,9 +187,6 @@
 [submodule "pyvenv"]
 	path = lib/pyvenv
 	url = git@github.com:jorgenschaefer/pyvenv.git
-[submodule "queue"]
-	path = lib/queue
-	url = git@github.com:emacsmirror/queue.git
 [submodule "quickrun"]
 	path = lib/quickrun
 	url = git@github.com:emacsorphanage/quickrun.git
@@ -249,9 +246,6 @@
 [submodule "typescript-mode"]
 	path = lib/typescript-mode
 	url = git@github.com:emacs-typescript/typescript.el.git
-[submodule "undo-tree"]
-	path = lib/undo-tree
-	url = git@gitlab.com:tsc25/undo-tree.git
 [submodule "use-package"]
 	path = lib/use-package
 	url = git@github.com:jwiegley/use-package.git
