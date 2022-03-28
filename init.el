@@ -1747,6 +1747,9 @@ there is no current file, eval the current buffer."
 (use-package sis
   :bind ("C-<f9>" . sis-switch)
   :config
+  (add-to-list 'sis-prefix-override-keys "M-s")
+  (add-to-list 'sis-prefix-override-keys "M-g")
+
   (when (eq system-type 'windows-nt)
     (sis-ism-lazyman-config "1033" "2052" 'im-select))
   (when *is-a-mac*
