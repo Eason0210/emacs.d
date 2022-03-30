@@ -1745,6 +1745,7 @@ there is no current file, eval the current buffer."
 
 ;;; Toggle system input method automatically
 (use-package sis
+  :demand t
   :bind ("C-<f9>" . sis-switch)
   :config
   (add-to-list 'sis-prefix-override-keys "M-s")
@@ -1760,12 +1761,7 @@ there is no current file, eval the current buffer."
   (setq sis-other-cursor-color "orange")
   (sis-global-cursor-color-mode t)
 
-  (sis-global-respect-mode t)
-  (sis-global-context-mode t)
-
-  (setq sis-inline-tighten-head-rule 0)
-  (setq sis-inline-tighten-tail-rule 0)
-  (sis-global-inline-mode t))
+  (sis-global-respect-mode t))
 
 ;;; Dictionaries
 
