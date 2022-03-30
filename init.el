@@ -1717,7 +1717,9 @@ there is no current file, eval the current buffer."
 ;; Correcting words with flyspell via completing-read
 (use-package flyspell-correct
   :after flyspell
-  :bind (:map flyspell-mode-map ("C-," . flyspell-correct-wrapper)))
+  :bind (:map flyspell-mode-map
+              ("C-," . flyspell-correct-wrapper)
+              ("C-，" . flyspell-correct-wrapper)))
 
 ;;; Miscellaneous config
 
