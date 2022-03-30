@@ -1867,7 +1867,7 @@ there is no current file, eval the current buffer."
 
   (when window-system
     (change-font)
-    (cl-loop for font in '("Microsoft Yahei" "Hiragino Sans GB" "Noto Sans Mono CJK SC")
+    (cl-loop for font in '("Microsoft Yahei" "PingFang SC" "Noto Sans Mono CJK SC")
              when (font-installed-p font)
              return (dolist (charset '(kana han hangul cjk-misc bopomofo))
                       (set-fontset-font t charset font)))
