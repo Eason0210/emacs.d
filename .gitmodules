@@ -36,6 +36,7 @@
 	path = lib/consult
 	url = git@github.com:minad/consult.git
 	branch = main
+	no-byte-compile = consult-selectrum.el
 [submodule "consult-yasnippet"]
 	path = lib/consult-yasnippet
 	url = git@github.com:mohkale/consult-yasnippet.git
