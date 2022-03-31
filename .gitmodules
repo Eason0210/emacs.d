@@ -237,6 +237,9 @@
 [submodule "symbol-overlay"]
 	path = lib/symbol-overlay
 	url = git@github.com:wolray/symbol-overlay.git
+[submodule "terminal-focus-reporting"]
+	path = lib/terminal-focus-reporting
+	url = git@github.com:veelenga/terminal-focus-reporting.el.git
 [submodule "textile-mode"]
 	path = lib/textile-mode
 	url = git@github.com:juba/textile-mode.git
