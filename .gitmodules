@@ -67,10 +67,6 @@
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git
 	no-byte-compile = emacsql-pg.el
-[submodule "emacsql-libsqlite3"]
-	path = lib/emacsql-libsqlite3
-	url = git@github.com:emacscollective/emacsql-libsqlite3.git
-	branch = main
 [submodule "emacsql-sqlite3"]
 	path = lib/emacsql-sqlite3
 	url = git@github.com:cireu/emacsql-sqlite3.git
