@@ -1777,7 +1777,9 @@ there is no current file, eval the current buffer."
   (cl-defmethod gts-out :after ((_ gts-buffer-render) _)
     (with-current-buffer gts-buffer-name
       (read-only-mode 1)
-      (variable-pitch-mode 1)))
+      (variable-pitch-mode 1)
+      (if (featurep 'sis)
+          (sis-set-english))))
 
   (setq gts-translate-list '(("en" "zh")))
   (setq gts-default-translator
