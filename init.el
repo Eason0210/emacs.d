@@ -1768,10 +1768,17 @@ there is no current file, eval the current buffer."
 ;;; Dictionaries
 
 (use-package go-translate
+  :commands (gts-buffer-render)
   :bind (("C-c t g" . gts-do-translate)
          ("C-c t p" . go-translate-at-point)
          ("C-c t s" . go-translate-save-kill-ring))
   :config
+  ;; HACK: https://github.com/lorniu/go-translate/issues/31
+  (cl-defmethod gts-out :after ((_ gts-buffer-render) _)
+    (with-current-buffer gts-buffer-name
+      (read-only-mode 1)
+      (variable-pitch-mode 1)))
+
   (setq gts-translate-list '(("en" "zh")))
   (setq gts-default-translator
         (gts-translator
