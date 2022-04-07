@@ -282,7 +282,8 @@ This is useful when followed by an immediate kill."
 (use-package orderless
   :demand t
   :config
-  (setq completion-styles '(orderless)))
+  (setq completion-styles '(orderless basic)
+        completion-category-overrides '((file (styles basic partial-completion)))))
 
 ;; A few more useful configurations...
 (use-package emacs
