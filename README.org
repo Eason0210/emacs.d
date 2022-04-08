@@ -20,6 +20,8 @@ Emacs itself comes with support for many programming languages. This config adds
 - HTML
 - Rust
 
+Most of the Languages are supported by [[https://github.com/joaotavora/eglot][Eglot]] which is a lightweight LSP client for Emacs.
+
 ** Supported Emacs versions
 Suggest to use Emacs 29 to get the full features.
 *** Install Emacs 29
@@ -28,7 +30,7 @@ You can build Emacs 29 from source  or install by home-brew.
 
 - build with script
 #+begin_src bash
-clone https://github.com/jimeh/build-emacs-for-macos
+git clone https://github.com/jimeh/build-emacs-for-macos
 cd build-emacs-for-macos
 brew bundle
 brew services start dbus
@@ -57,8 +59,7 @@ cd ~/src/emacs
 
 # build Emacs
 ./autogen.sh
-./configure --with-native-compilation # --with-xwidgets
-
+./configure --with-native-compilation --with-xwidgets
 make -j14 # the number is the cores of your CPU
 make install
 #+end_src
@@ -74,12 +75,12 @@ ln -s /Applications/Emacs.app/Contents/MacOS/bin/emacs /usr/local/bin/emacs
 See details on [[https://github.com/jimeh/emacs-builds][jimeh/emacs-builds]]
 #+begin_src sh
 brew tap jimeh/emacs-builds
-brew install --cask emacs-app-nightly # --with-native-compilation
+brew install --cask emacs-app-nightly
 #+end_src
 
 **** Arch Linux
 #+begin_src bash
-sudo pacman -S emacs-native-comp-git # --with-native-compilation
+sudo pacman -S emacs-native-comp-git
 # or
 sudo pacman -S emacs-git
 #+end_src
@@ -104,8 +105,13 @@ You need to install ~sqlite3~ in your system.
 
 The default org-roam-directory is ~$HOME/.org/org-roam~
 
-** Updates
-Update the config with git ~pull~. 
+**  Update the config
+#+begin_src bash
+git pull
+git submodule init ./lib/<package-name> # Optionally
+git submodule foreach git pull # Update each submodule
+make clean all
+#+end_src
 
 ** Reference configurations
 1. [[https://github.com/purcell/emacs.d][Purcell/emacs.d]]
