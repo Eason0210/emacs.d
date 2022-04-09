@@ -964,7 +964,10 @@ Call a second time to restore the original window configuration."
 (use-package compile
   :bind ([f6] . recompile)
   :config
-  (setq-default compilation-scroll-output t))
+  (setq-default compilation-scroll-output 'first-error)
+  (setq compilation-finish-functions
+        (lambda (buffer &optional args)
+          (select-window (get-buffer-window buffer)))))
 
 ;;Configuration for quickrun
 (use-package quickrun
