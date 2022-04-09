@@ -975,11 +975,68 @@ Call a second time to restore the original window configuration."
          ("C-<f5>" . quickrun-shell))
   :config
   (quickrun-add-command "c++/c1z"
-                        '((:command . "g++")
-                          (:exec    . ("%c -std=c++1z %o -o %e %s"
-                                       "%e %a"))
-                          (:remove  . ("%e")))
-                        :default "c++"))
+    '((:command . "g++")
+      (:exec    . ("%c -std=c++1z %o -o %e %s"
+                   "%e %a"))
+      (:remove  . ("%e")))
+    :default "c++"))
+
+
+;;; Terminal
+(use-package vterm
+  :when (memq window-system '(mac ns x))
+  :bind (([f8] . vterm)
+         :map vterm-mode-map
+         ("C-y" . vterm-yank)
+         ("M-y" . vterm-yank-pop)
+         ("C-k" . vterm-send-C-k-and-kill)
+         :map compilation-minor-mode-map
+         ([return] . compile-goto-error)
+         ("C-SPC" . set-mark-command)
+         ("C-p" . previous-line)
+         ("C-n" . next-line)
+         ("C-a" . move-beginning-of-line)
+         ("C-e" . move-end-of-line)
+         ("M-<" . beginning-of-buffer)
+         ("M->" . end-of-buffer)
+         ("M-w" . whole-line-or-region-kill-ring-save))
+  :init
+  (setq vterm-shell "/bin/zsh")
+  :config
+  (setq vterm-always-compile-module t)
+  (setq vterm-kill-buffer-on-exit nil)
+
+  ;; Like normal `C-k'. Send `C-k' to libvterm but also put content in kill-ring
+  (defun vterm-send-C-k-and-kill ()
+    "Send `C-k' to libvterm."
+    (interactive)
+    (kill-ring-save (point) (vterm-end-of-line))
+    (vterm-send-key "k" nil nil t))
+
+  ;; Run a shell command in vterm with compilation-minor-mode
+  (defun vterm-compile (command &optional name)
+    (interactive
+     (list
+      (let ((command (eval compile-command)))
+        (if (or compilation-read-command current-prefix-arg)
+	    (compilation-read-command command)
+	  command))
+      (consp current-prefix-arg)))
+    (kill-matching-buffers "^\*vterm-compilation*\*" nil t)
+    (let ((buffer (generate-new-buffer (or name "*vterm-compilation*"))))
+      (with-current-buffer buffer
+        (let ((vterm-shell command))
+          (insert "-*- mode: vterm-mode"
+		  "; default-directory: "
+                  (prin1-to-string (abbreviate-file-name default-directory))
+		  " -*-\n"
+		  (format "%s started at %s\n\n"
+                          mode-name
+			  (substring (current-time-string) 0 19))
+		  command "\n")
+          (vterm-mode)
+          (compilation-minor-mode))
+        (pop-to-buffer buffer)))))
 
 
 ;;; Org-mode config
