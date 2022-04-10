@@ -986,6 +986,7 @@ Call a second time to restore the original window configuration."
 (use-package vterm
   :when (memq window-system '(mac ns x))
   :bind (([f8] . vterm)
+         ("C-c v" . vterm-compile)
          :map vterm-mode-map
          ("C-y" . vterm-yank)
          ("M-y" . vterm-yank-pop)
@@ -1026,7 +1027,7 @@ Call a second time to restore the original window configuration."
     (let ((buffer (generate-new-buffer (or name "*vterm-compilation*"))))
       (with-current-buffer buffer
         (let ((vterm-shell command))
-          (insert "-*- mode: vterm-mode"
+          (insert "-*- mode: vterm"
 		  "; default-directory: "
                   (prin1-to-string (abbreviate-file-name default-directory))
 		  " -*-\n"
