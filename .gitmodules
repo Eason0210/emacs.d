@@ -264,6 +264,9 @@
 	build-step = cd build && cmake .. && make
 	build-step = borg-compile
         build-step = borg-update-autoloads
+[submodule "vterm-toggle"]
+	path = lib/vterm-toggle
+	url = git@github.com:jixiuf/vterm-toggle.git
 [submodule "which-key"]
 	path = lib/which-key
 	url = git@github.com:justbur/emacs-which-key.git
