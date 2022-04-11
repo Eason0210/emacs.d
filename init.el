@@ -985,59 +985,56 @@ Call a second time to restore the original window configuration."
 ;;; Terminal
 (use-package vterm
   :when (memq window-system '(mac ns x))
-  :bind (([f8] . vterm)
-         ("C-c v" . vterm-compile)
-         :map vterm-mode-map
-         ("C-y" . vterm-yank)
-         ("M-y" . vterm-yank-pop)
-         ("C-k" . vterm-send-C-k-and-kill)
-         :map compilation-minor-mode-map
-         ([return] . compile-goto-error)
-         ("C-SPC" . set-mark-command)
-         ("C-p" . previous-line)
-         ("C-n" . next-line)
-         ("C-a" . move-beginning-of-line)
-         ("C-e" . move-end-of-line)
-         ("M-<" . beginning-of-buffer)
-         ("M->" . end-of-buffer)
-         ("M-w" . whole-line-or-region-kill-ring-save))
+  :bind (:map vterm-mode-map
+              ("C-y" . vterm-yank)
+              ("M-y" . vterm-yank-pop)
+              ("C-k" . vterm-send-C-k-and-kill))
   :init
-  (setq vterm-shell "/bin/zsh")
+  (setq vterm-shell "zsh")
   :config
   (setq vterm-always-compile-module t)
-  (setq vterm-kill-buffer-on-exit nil)
-
-  ;; Like normal `C-k'. Send `C-k' to libvterm but also put content in kill-ring
   (defun vterm-send-C-k-and-kill ()
-    "Send `C-k' to libvterm."
+    "Send `C-k' to libvterm, and put content in kill-ring."
     (interactive)
     (kill-ring-save (point) (vterm-end-of-line))
-    (vterm-send-key "k" nil nil t))
+    (vterm-send-key "k" nil nil t)))
 
-  ;; Run a shell command in vterm with compilation-minor-mode
-  (defun vterm-compile (command &optional name)
-    (interactive
-     (list
-      (let ((command (eval compile-command)))
-        (if (or compilation-read-command current-prefix-arg)
-	    (compilation-read-command command)
-	  command))
-      (consp current-prefix-arg)))
-    (kill-matching-buffers "^\*vterm-compilation*\*" nil t)
-    (let ((buffer (generate-new-buffer (or name "*vterm-compilation*"))))
-      (with-current-buffer buffer
-        (let ((vterm-shell command))
-          (insert "-*- mode: vterm"
-		  "; default-directory: "
-                  (prin1-to-string (abbreviate-file-name default-directory))
-		  " -*-\n"
-		  (format "%s started at %s\n\n"
-                          mode-name
-			  (substring (current-time-string) 0 19))
-		  command "\n")
-          (vterm-mode)
-          (compilation-minor-mode))
-        (pop-to-buffer buffer)))))
+(use-package vterm-toggle
+  :when (memq window-system '(mac ns x))
+  :bind (([f8] . vterm-toggle)
+         ([f9] . vterm-compile)
+         :map vterm-mode-map
+         ([f8] . vterm-toggle)
+         ([(control return)] . vterm-toggle-insert-cd))
+  :config
+  (setq vterm-toggle-cd-auto-create-buffer nil)
+  (defvar vterm-compile-buffer nil)
+  (defun vterm-compile ()
+    "Compile the program including the current buffer in `vterm'."
+    (interactive)
+    (let ((command (eval compile-command))
+          (w (vterm-toggle--get-window))
+          (dir (expand-file-name default-directory)))
+      (setq compile-command (compilation-read-command command))
+      (if (not w) ;; No `vterm' window visible
+          (let ((vterm-toggle-use-dedicated-buffer t)
+                (vterm-toggle--vterm-dedicated-buffer vterm-compile-buffer))
+            (with-current-buffer (vterm-toggle-cd)
+              (setq vterm-compile-buffer (current-buffer))
+              (rename-buffer "term compile")
+              (compilation-shell-minor-mode 1)
+              (vterm-send-M-w)
+              (vterm-send-string compile-command t)
+              (vterm-send-return)))
+        (select-window w)
+        (vterm-send-M-w)
+        (if (not (string= (buffer-name (window-buffer w)) "*vterm*"))
+            (vterm-toggle-insert-cd)
+          (message "Compiling in the \*vterm\* buffer.")
+          (vterm-send-string (format "cd %s" dir))
+          (vterm-send-return))
+        (vterm-send-string compile-command t)
+        (vterm-send-return)))))
 
 
 ;;; Org-mode config
