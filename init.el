@@ -338,7 +338,7 @@ This is useful when followed by an immediate kill."
         ([tab] . smarter-tab-to-complete)
         ("TAB" . smarter-tab-to-complete))
   :init
-  (corfu-global-mode)
+  (global-corfu-mode)
   :preface
   (defun smarter-tab-to-complete ()
     "Try to `org-cycle', `yas-expand', and `yas-next-field' at current cursor position.
