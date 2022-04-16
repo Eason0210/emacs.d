@@ -716,7 +716,7 @@ Call a second time to restore the original window configuration."
 
 ;;; Editing utils
 
-(progn
+(progn ;  favorite default
   (setq-default
    use-short-answers t
    blink-cursor-interval 0.4
@@ -732,11 +732,19 @@ Call a second time to restore the original window configuration."
    scroll-preserve-screen-position 'always
    set-mark-command-repeat-pop t
    truncate-partial-width-windows nil
-   tooltip-delay 1.5)
-  (bind-key "C-x x p" 'pop-to-mark-command)
-  (add-hook 'after-init-hook 'delete-selection-mode)
-  (add-hook 'after-init-hook 'electric-pair-mode)
-  (add-hook 'after-init-hook 'electric-indent-mode))
+   tooltip-delay 1.5))
+
+(use-package delsel
+  :config
+  (delete-selection-mode))
+
+(use-package elec-pair
+  :config
+  (electric-pair-mode))
+
+(use-package electric
+  :config
+  (electric-indent-mode))
 
 (use-package autorevert
   :diminish
@@ -744,7 +752,6 @@ Call a second time to restore the original window configuration."
   :config
   (setq global-auto-revert-non-file-buffers t
         auto-revert-verbose nil))
-
 
 ;; Huge files
 
