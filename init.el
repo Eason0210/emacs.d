@@ -1603,11 +1603,10 @@ typical word processor."
   (eldoc-add-command 'paredit-backward-delete
                      'paredit-close-round))
 
+
 ;;; Emacs lisp settings, and common config for other lisps
 
-;; Make C-x C-e run 'eval-region if the region is active
-
-(use-package lisp-mode
+(use-package elisp-mode
   :bind (([remap eval-expression] . pp-eval-expression)
          :map emacs-lisp-mode-map
          ("C-x C-e" . sanityinc/eval-last-sexp-or-region)
@@ -1619,6 +1618,9 @@ typical word processor."
   (setq-default debugger-bury-or-kill 'kill)
   (setq-default initial-scratch-message
                 (concat ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
+
+  ;; Require error
+  (add-to-list 'elisp-flymake-byte-compile-load-path load-path)
 
   ;; Make C-x C-e run 'eval-region if the region is active
   (defun sanityinc/eval-last-sexp-or-region (prefix)
@@ -1691,13 +1693,8 @@ there is no current file, eval the current buffer."
   (add-to-list 'hippie-expand-try-functions-list 'try-complete-lisp-symbol t)
   (add-to-list 'hippie-expand-try-functions-list 'try-complete-lisp-symbol-partially t))
 
-(defun sanityinc/enable-check-parens-on-save ()
-  "Run `check-parens' when the current buffer is saved."
-  (add-hook 'after-save-hook #'check-parens nil t))
-
 (defvar sanityinc/lispy-modes-hook
-  '(enable-paredit-mode
-    sanityinc/enable-check-parens-on-save)
+  '(enable-paredit-mode)
   "Hook run in all Lisp modes.")
 
 (use-package aggressive-indent
@@ -1710,11 +1707,7 @@ there is no current file, eval the current buffer."
 
 (defun sanityinc/emacs-lisp-setup ()
   "Enable features useful when working with elisp."
-  (set-up-hippie-expand-for-elisp)
-  ;; require error
-  (setq elisp-flymake-byte-compile-load-path
-        (append elisp-flymake-byte-compile-load-path
-                load-path)))
+  (set-up-hippie-expand-for-elisp))
 
 (defconst sanityinc/elispy-modes
   '(emacs-lisp-mode ielm-mode)
@@ -1725,19 +1718,11 @@ there is no current file, eval the current buffer."
           '(lisp-mode inferior-lisp-mode lisp-interaction-mode))
   "All lispy major modes.")
 
-(require 'derived)
-
 (dolist (hook (mapcar #'derived-mode-hook-name sanityinc/lispy-modes))
   (add-hook hook 'sanityinc/lisp-setup))
 
 (dolist (hook (mapcar #'derived-mode-hook-name sanityinc/elispy-modes))
   (add-hook hook 'sanityinc/emacs-lisp-setup))
-
-(when (boundp 'eval-expression-minibuffer-setup-hook)
-  (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode))
-
-(add-to-list 'auto-mode-alist '("\\.emacs-project\\'" . emacs-lisp-mode))
-(add-to-list 'auto-mode-alist '("archive-contents\\'" . emacs-lisp-mode))
 
 
 ;;; Spell check settings
