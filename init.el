@@ -1686,44 +1686,44 @@ there is no current file, eval the current buffer."
 
 
 ;; Enable desired features for all lisp modes
+(use-package lisp-mode
+  :config
+  (defun set-up-hippie-expand-for-elisp ()
+    "Locally set `hippie-expand' completion functions for use with Emacs Lisp."
+    (make-local-variable 'hippie-expand-try-functions-list)
+    (add-to-list 'hippie-expand-try-functions-list 'try-complete-lisp-symbol t)
+    (add-to-list 'hippie-expand-try-functions-list 'try-complete-lisp-symbol-partially t))
 
-(defun set-up-hippie-expand-for-elisp ()
-  "Locally set `hippie-expand' completion functions for use with Emacs Lisp."
-  (make-local-variable 'hippie-expand-try-functions-list)
-  (add-to-list 'hippie-expand-try-functions-list 'try-complete-lisp-symbol t)
-  (add-to-list 'hippie-expand-try-functions-list 'try-complete-lisp-symbol-partially t))
+  (defvar sanityinc/lispy-modes-hook
+    '(enable-paredit-mode)
+    "Hook run in all Lisp modes.")
 
-(defvar sanityinc/lispy-modes-hook
-  '(enable-paredit-mode)
-  "Hook run in all Lisp modes.")
+  (defun sanityinc/lisp-setup ()
+    "Enable features useful in any Lisp mode."
+    (run-hooks 'sanityinc/lispy-modes-hook))
+
+  (defun sanityinc/emacs-lisp-setup ()
+    "Enable features useful when working with elisp."
+    (set-up-hippie-expand-for-elisp))
+
+  (defconst sanityinc/elispy-modes
+    '(emacs-lisp-mode ielm-mode)
+    "Major modes relating to elisp.")
+
+  (defconst sanityinc/lispy-modes
+    (append sanityinc/elispy-modes
+            '(lisp-mode inferior-lisp-mode lisp-interaction-mode))
+    "All lispy major modes.")
+
+  (dolist (hook (mapcar #'derived-mode-hook-name sanityinc/lispy-modes))
+    (add-hook hook 'sanityinc/lisp-setup))
+
+  (dolist (hook (mapcar #'derived-mode-hook-name sanityinc/elispy-modes))
+    (add-hook hook 'sanityinc/emacs-lisp-setup)))
 
 (use-package aggressive-indent
   :config
   (add-to-list 'sanityinc/lispy-modes-hook 'aggressive-indent-mode))
-
-(defun sanityinc/lisp-setup ()
-  "Enable features useful in any Lisp mode."
-  (run-hooks 'sanityinc/lispy-modes-hook))
-
-(defun sanityinc/emacs-lisp-setup ()
-  "Enable features useful when working with elisp."
-  (set-up-hippie-expand-for-elisp))
-
-(defconst sanityinc/elispy-modes
-  '(emacs-lisp-mode ielm-mode)
-  "Major modes relating to elisp.")
-
-(defconst sanityinc/lispy-modes
-  (append sanityinc/elispy-modes
-          '(lisp-mode inferior-lisp-mode lisp-interaction-mode))
-  "All lispy major modes.")
-
-(dolist (hook (mapcar #'derived-mode-hook-name sanityinc/lispy-modes))
-  (add-hook hook 'sanityinc/lisp-setup))
-
-(dolist (hook (mapcar #'derived-mode-hook-name sanityinc/elispy-modes))
-  (add-hook hook 'sanityinc/emacs-lisp-setup))
-
 
 ;;; Spell check settings
 
