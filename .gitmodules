@@ -20,6 +20,8 @@
 [submodule "cape"]
 	path = lib/cape
 	url = git@github.com:minad/cape.git
+	no-byte-compile = cape-char.el
+	no-byte-compile = cape-keyword.el
 [submodule "closql"]
 	path = lib/closql
 	url = git@github.com:emacscollective/closql.git

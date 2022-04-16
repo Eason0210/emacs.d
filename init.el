@@ -371,23 +371,18 @@ If all failed, try to complete the common part with `corfu-complete'"
          ("C-c p t" . complete-tag)
          ("C-c p d" . cape-dabbrev)
          ("C-c p f" . cape-file)
-         ("C-c p k" . cape-keyword)
          ("C-c p s" . cape-symbol)
          ("C-c p a" . cape-abbrev)
          ("C-c p i" . cape-ispell)
          ("C-c p l" . cape-line)
-         ("C-c p w" . cape-dict)
-         ("C-c p \\" . cape-tex)
-         ("C-c p _" . cape-tex)
-         ("C-c p ^" . cape-tex)
-         ("C-c p &" . cape-sgml)
-         ("C-c p r" . cape-rfc1345))
+         ("C-c p w" . cape-dict))
+  :hook (emacs-lisp-mode . cape-symbol-capf)
   :init
   ;; Add `completion-at-point-functions', used by `completion-at-point'.
   (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-tex)
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  (add-to-list 'completion-at-point-functions #'cape-keyword))
+  (defun cape-symbol-capf ()
+    (add-to-list 'completion-at-point-functions #'cape-symbol)))
 
 (use-package consult
   :defer 0.5
