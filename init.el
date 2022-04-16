@@ -142,7 +142,6 @@
         (light)
       (dark))))
 
-
 ;;; GUI frames
 
 (when *is-a-mac*
@@ -158,7 +157,6 @@
 (progn ; `pixel-scroll'
   (if (boundp 'pixel-scroll-precision-mode)
       (pixel-scroll-precision-mode t)))
-
 
 ;;; Dired mode
 
@@ -216,7 +214,6 @@ This is useful when followed by an immediate kill."
     (isearch-exit)
     (goto-char isearch-other-end)))
 
-
 ;;; Configure uniquification of buffer names
 
 ;; Nicer naming of buffers for files with identical names
@@ -226,7 +223,6 @@ This is useful when followed by an immediate kill."
   (setq uniquify-separator " • ")
   (setq uniquify-after-kill-buffer-p t)
   (setq uniquify-ignore-buffers-re "^\\*"))
-
 
 ;;; Ibuffer settings
 
@@ -263,13 +259,13 @@ This is useful when followed by an immediate kill."
 
   (setq ibuffer-filter-group-name-face 'font-lock-doc-face))
 
+;;; A universal on-the-fly syntax checker
 
-;;; Configure Flymake
 (use-package flymake
   :hook (emacs-lisp-mode . flymake-mode))
 
-
 ;;; minibufer configuration
+
 (use-package vertico
   :demand t
   :init
@@ -299,7 +295,6 @@ This is useful when followed by an immediate kill."
         #'command-completion-default-include-p)
 
   (setq enable-recursive-minibuffers t))
-
 
 ;; YASnippet
 (use-package yasnippet
@@ -378,7 +373,6 @@ If all failed, try to complete the common part with `corfu-complete'"
          ("C-c p w" . cape-dict))
   :hook (emacs-lisp-mode . cape-symbol-capf)
   :init
-  ;; Add `completion-at-point-functions', used by `completion-at-point'.
   (add-to-list 'completion-at-point-functions #'cape-file)
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (defun cape-symbol-capf ()
@@ -471,10 +465,8 @@ If all failed, try to complete the common part with `corfu-complete'"
           (when-let (project (project-current))
             (car (project-roots project))))))
 
-
 (use-package marginalia
   :init (marginalia-mode))
-
 
 ;; Integration Embark with `vertico' and `consult'
 ;; The command `embark-dwim' executes the default action at point.
@@ -531,10 +523,8 @@ targets."
                  nil
                  (window-parameters (mode-line-format . none)))))
 
-
 (use-package avy
   :bind ("C-;" . avy-goto-char-timer))
-
 
 ;;; Settings for hippie-expand
 
@@ -548,8 +538,8 @@ targets."
           try-expand-dabbrev-all-buffers
           try-expand-dabbrev-from-kill)))
 
-
 ;;; Working with Windows within frames
+
 (use-package window
   :bind (("C-x |" . split-window-horizontally-instead)
          ("C-x _" . split-window-vertically-instead)
@@ -627,7 +617,6 @@ Call a second time to restore the original window configuration."
   :config
   (setq-default switch-window-shortcut-style 'alphabet)
   (setq-default switch-window-timeout nil))
-
 
 ;;; Settings for tracking recent files
 
@@ -716,7 +705,7 @@ Call a second time to restore the original window configuration."
 
 ;;; Editing utils
 
-(progn ;  favorite default
+(progn ; favorite default
   (setq-default
    use-short-answers t
    blink-cursor-interval 0.4
@@ -754,7 +743,6 @@ Call a second time to restore the original window configuration."
         auto-revert-verbose nil))
 
 ;; Huge files
-
 (use-package so-long
   :config
   (progn
@@ -784,7 +772,6 @@ Call a second time to restore the original window configuration."
   :config
   (beacon-mode 1))
 
-
 ;; Show line number
 (use-package display-line-numbers
   :hook (prog-mode . display-line-numbers-mode)
@@ -793,15 +780,13 @@ Call a second time to restore the original window configuration."
 
 ;; Display buffer boundaries and fill column indicator
 (use-package prog-mode
-  :config (global-prettify-symbols-mode)
+  :config (global-prettify-symbols-mode))
+
+(progn ; `buffer'
   (defun indicate-buffer-boundaries-left ()
     (setq indicate-buffer-boundaries 'left))
-  (add-hook 'prog-mode-hook 'indicate-buffer-boundaries-left))
-
-
-(progn ;; `text-mode'
+  (add-hook 'prog-mode-hook 'indicate-buffer-boundaries-left)
   (add-hook 'text-mode-hook 'indicate-buffer-boundaries-left))
-
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
@@ -814,9 +799,9 @@ Call a second time to restore the original window configuration."
               ("M-n" . symbol-overlay-jump-next)
               ("M-p" . symbol-overlay-jump-prev)))
 
-
 ;; Zap *up* to char is a handy pair for zap-to-char
-(bind-key "M-Z" 'zap-up-to-char)
+(use-package misc
+  :bind ("M-Z" . zap-up-to-char))
 
 ;; Show matching parens
 (use-package paren
@@ -825,18 +810,18 @@ Call a second time to restore the original window configuration."
   :config
   (show-paren-mode))
 
-;; Handy key bindings
-;; (bind-key "C-." 'set-mark-command)
-(bind-key "C-x C-." 'pop-global-mark)
-
-(defun kill-back-to-indentation ()
-  "Kill from point back to the first non-whitespace character on the line."
-  (interactive)
-  (let ((prev-pos (point)))
-    (back-to-indentation)
-    (kill-region (point) prev-pos)))
-
-(bind-key "C-M-<backspace>" 'kill-back-to-indentation)
+(progn ; Handy key bindings
+  (defun kill-back-to-indentation ()
+    "Kill from point back to the first non-whitespace character on the line."
+    (interactive)
+    (let ((prev-pos (point)))
+      (back-to-indentation)
+      (kill-region (point) prev-pos)))
+  (bind-key "C-M-<backspace>" 'kill-back-to-indentation)
+  (bind-key "C-x C-." 'pop-global-mark)
+  (bind-key "C-x x p" 'pop-to-mark-command)
+  ;; M-^ is inconvenient, so also bind M-j
+  (bind-key "M-j" 'join-line))
 
 ;; Multiple cursors
 (use-package multiple-cursors
@@ -860,9 +845,6 @@ Call a second time to restore the original window configuration."
   :diminish whole-line-or-region-local-mode
   :hook (after-init . whole-line-or-region-global-mode))
 
-;; M-^ is inconvenient, so also bind M-j
-(bind-key "M-j" 'join-line)
-
 ;; Highlight escape sequences
 (use-package highlight-escape-sequences
   :hook (after-init . hes-mode))
@@ -878,25 +860,21 @@ Call a second time to restore the original window configuration."
 (use-package sudo-edit
   :bind ("C-c C-r" . sudo-edit))
 
-
 ;;; Whitespace
 
-(setq-default show-trailing-whitespace nil)
-
-(defun sanityinc/show-trailing-whitespace ()
-  "Enable display of trailing whitespace in this buffer."
-  (setq-local show-trailing-whitespace t))
-
-(dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
-  (add-hook hook 'sanityinc/show-trailing-whitespace))
-
-(bind-key [remap just-one-space] 'cycle-spacing)
+(progn ; show trailing whitespace
+  (setq-default show-trailing-whitespace nil)
+  (defun sanityinc/show-trailing-whitespace ()
+    "Enable display of trailing whitespace in this buffer."
+    (setq-local show-trailing-whitespace t))
+  (dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
+    (add-hook hook 'sanityinc/show-trailing-whitespace))
+  (bind-key [remap just-one-space] 'cycle-spacing))
 
 ;; An unobtrusive way to trim spaces from end of line
 (use-package ws-butler
   :diminish
   :hook (after-init . ws-butler-global-mode))
-
 
 ;;; Version control
 
@@ -953,7 +931,6 @@ Call a second time to restore the original window configuration."
     (transient-replace-suffix 'magit-commit 'magit-commit-autofixup
       '("x" "Absorb changes" magit-commit-absorb))))
 
-
 ;;; Helpers for M-x compile
 
 (use-package compile
@@ -975,7 +952,6 @@ Call a second time to restore the original window configuration."
                    "%e %a"))
       (:remove  . ("%e")))
     :default "c++"))
-
 
 ;;; Terminal
 (use-package vterm
@@ -1019,7 +995,6 @@ Call a second time to restore the original window configuration."
         (vterm-send-M-w)
         (vterm-send-string compile-command t)
         (vterm-send-return)))))
-
 
 ;;; Org-mode config
 
@@ -1138,7 +1113,6 @@ Call a second time to restore the original window configuration."
   ;; Allow refile to create parent tasks with confirmation
   (setq org-refile-allow-creating-parent-nodes 'confirm)
 
-
   ;; To-do settings
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")
@@ -1149,7 +1123,6 @@ Call a second time to restore the original window configuration."
   (setq org-todo-keyword-faces
         (quote (("NEXT" :inherit warning)
                 ("PROJECT" :inherit font-lock-string-face))))
-
 
   ;; Agenda views
 
@@ -1239,9 +1212,7 @@ Call a second time to restore the original window configuration."
               ;;             (org-match-list-sublevels t)))
               )))))
 
-
   (add-hook 'org-agenda-mode-hook 'hl-line-mode)
-
 
   ;; Org clock
 
@@ -1262,7 +1233,6 @@ Call a second time to restore the original window configuration."
   (setq org-time-clocksum-format
         '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
 
-
   ;; Show the clocked-in task - if any - in the header line
   (defun sanityinc/show-org-clock-in-header-line ()
     (setq-default header-line-format '((" " org-mode-line-string " "))))
@@ -1278,12 +1248,9 @@ Call a second time to restore the original window configuration."
     (define-key org-clock-mode-line-map [header-line mouse-2] 'org-clock-goto)
     (define-key org-clock-mode-line-map [header-line mouse-1] 'org-clock-menu))
 
-
   ;; Archiving
-
   (setq org-archive-mark-done nil)
   (setq org-archive-location "%s_archive::* Archive")
-
 
   ;; Babel
   (setq org-confirm-babel-evaluate nil
@@ -1326,7 +1293,6 @@ Call a second time to restore the original window configuration."
                              docx-file
                              template-file))
       (message "Convert finish: %s" docx-file))))
-
 
 ;; Writing mode similar to the famous Writeroom editor for OS X
 (use-package writeroom-mode
@@ -1378,55 +1344,47 @@ typical word processor."
   :hook (org-mode . valign-mode))
 
 ;; Roam
-(when (and (executable-find "sqlite3") (executable-find "cc"))
-  (use-package org-roam
-    :diminish
-    :bind (("C-c n a" . org-id-get-create)
-           ("C-c n l" . org-roam-buffer-toggle)
-           ("C-c n f" . org-roam-node-find)
-           ("C-c n g" . org-roam-graph)
-           ("C-c n i" . org-roam-node-insert)
-           ("C-c n c" . org-roam-capture)
-           ("C-c n j" . org-roam-dailies-capture-today)
-           ("C-c n r" . org-roam-ref-find)
-           ("C-c n R" . org-roam-ref-add)
-           ("C-c n s" . org-roam-db-sync))
-    :init
-    (setq org-roam-directory (file-truename "~/.org/org-roam")
-          org-roam-db-location "~/.org/org-roam.db"
-          org-roam-db-gc-threshold most-positive-fixnum
-          org-roam-v2-ack t)
+(use-package org-roam
+  :when (and (executable-find "sqlite3") (executable-find "cc"))
+  :diminish
+  :bind (("C-c n a" . org-id-get-create)
+         ("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ("C-c n j" . org-roam-dailies-capture-today)
+         ("C-c n r" . org-roam-ref-find)
+         ("C-c n R" . org-roam-ref-add)
+         ("C-c n s" . org-roam-db-sync))
+  :init
+  (setq org-roam-directory (file-truename "~/.org/org-roam")
+        org-roam-db-location "~/.org/org-roam.db"
+        org-roam-db-gc-threshold most-positive-fixnum
+        org-roam-v2-ack t)
 
-    (unless (file-exists-p org-roam-directory)
-      (make-directory org-roam-directory t))
-    :config
-    (org-roam-db-autosync-enable)
-    (add-to-list 'display-buffer-alist
-                 '("\\*org-roam\\*"
-                   (display-buffer-in-direction)
-                   (direction . right)
-                   (window-width . 0.33)
-                   (window-height . fit-window-to-buffer)))))
+  (unless (file-exists-p org-roam-directory)
+    (make-directory org-roam-directory t))
+  :config
+  (org-roam-db-autosync-enable)
+  (add-to-list 'display-buffer-alist
+               '("\\*org-roam\\*"
+                 (display-buffer-in-direction)
+                 (direction . right)
+                 (window-width . 0.33)
+                 (window-height . fit-window-to-buffer))))
 
-
-;;; Working with crontabs
+;;; Other editing mode
 
 (use-package crontab-mode
   :mode "\\.?cron\\(tab\\)?\\'")
 
-
-;;; Edit Textile markup
-
 (use-package textile-mode
   :mode "\\.textile\\'")
-
-
-;;; Markdown support
 
 (use-package markdown-mode
   :mode (("\\.md\\.html\\'" . markdown-mode)
          ("README\\.md\\'" . gfm-mode)))
-
 
 ;;; Web configurations
 
@@ -1468,11 +1426,9 @@ typical word processor."
 (use-package typescript-mode
   :mode ("\\.ts[x]\\'" . typescript-mode))
 
+;;; Programming languages support
 
-;;;; Programming languages support
-
-;;; C/C++ Mode
-
+;; C/C++ Mode
 (use-package cc-mode
   :bind (:map c-mode-base-map
               ("C-c c" . compile))
@@ -1486,8 +1442,7 @@ typical word processor."
 (use-package cmake-mode
   :defer t)
 
-;;; Haskell mode
-
+;; Haskell mode
 (use-package haskell-mode
   :bind (:map haskell-mode-map
               ("C-c C-f" . ormolu-buffer))
@@ -1508,8 +1463,7 @@ typical word processor."
     :program "ormolu"
     :lighter " Orm"))
 
-
-;;; Python mode
+;; Python mode
 (use-package python
   :defer t
   :config
@@ -1539,32 +1493,24 @@ typical word processor."
         (list (lambda ()
                 (setq python-shell-interpreter "python3")))))
 
-
-;;; Support Yaml files
-
+;; Support Yaml files
 (use-package yaml-mode
   :mode "\\.ya?ml\\'"
   :hook (yaml-mode . goto-address-prog-mode))
 
-
-;;; Lua mode
-
+;; Lua mode
 (use-package lua-mode
   :mode "\\.lua\\'")
 
-
-;;; Support MSCL mode
-
+;; Support MSCL mode
 (use-package mscl-mode
   :mode "\\.pwx?macro\\'")
 
-;;; Support for the Rust language
+;; Support for the Rust language
 (use-package rust-mode
   :mode "\\.rs\\'")
 
-
 ;;; Languages Server Protocol(LSP)
-
 (use-package eglot
   :defer t
   :bind (:map eglot-mode-map
@@ -1575,7 +1521,6 @@ typical word processor."
   :config
   (setq read-process-output-max (* 1024 1024))
   (setq completion-category-defaults nil))
-
 
 ;;; Configure paredit structured editing
 
@@ -1602,7 +1547,6 @@ typical word processor."
   :config
   (eldoc-add-command 'paredit-backward-delete
                      'paredit-close-round))
-
 
 ;;; Emacs lisp settings, and common config for other lisps
 
@@ -1683,7 +1627,6 @@ there is no current file, eval the current buffer."
 (use-package ert
   :bind (:map ert-results-mode-map
               ("g" . ert-results-rerun-all-tests)))
-
 
 ;; Enable desired features for all lisp modes
 (use-package lisp-mode
@@ -1772,7 +1715,6 @@ there is no current file, eval the current buffer."
   (setq save-silently t)
   (super-save-mode 1))
 
-
 ;;; Toggle system input method automatically
 (use-package sis
   :demand t
@@ -1833,6 +1775,7 @@ there is no current file, eval the current buffer."
                               :parser (gts-google-summary-parser))
                     :render (gts-kill-ring-render)))))
 
+;;; Builtin packages
 
 (use-package dash
   :config (global-dash-fontify-mode 1))
@@ -1860,9 +1803,8 @@ there is no current file, eval the current buffer."
 (use-package smerge-mode
   :defer t
   :config
-  (when (>= emacs-major-version 27)
-    (set-face-attribute 'smerge-refined-removed nil :extend t)
-    (set-face-attribute 'smerge-refined-added   nil :extend t)))
+  (set-face-attribute 'smerge-refined-removed nil :extend t)
+  (set-face-attribute 'smerge-refined-added   nil :extend t))
 
 (use-package tramp
   :defer t
@@ -1879,7 +1821,6 @@ there is no current file, eval the current buffer."
 (use-package tramp-sh
   :defer t
   :config (cl-pushnew 'tramp-own-remote-path tramp-remote-path))
-
 
 (progn ; `fontset'
   (defun font-installed-p (font)
@@ -1931,7 +1872,7 @@ there is no current file, eval the current buffer."
                                           before-user-init-time))))
             t))
 
-(progn ;; personalize
+(progn ; personalize
   (let ((file (expand-file-name "private.el" user-emacs-directory)))
     (when (file-exists-p file)
       (load file))))
