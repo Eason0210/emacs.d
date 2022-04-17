@@ -69,6 +69,10 @@
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git
 	no-byte-compile = emacsql-pg.el
+[submodule "emacsql-sqlite-builtin"]
+	path = lib/emacsql-sqlite-builtin
+	url = git@github.com:emacscollective/emacsql-sqlite-builtin.git
+	no-byte-compile = emacsql-sqlite-module.el
 [submodule "embark"]
 	path = lib/embark
 	url = git@github.com:oantolin/embark.git

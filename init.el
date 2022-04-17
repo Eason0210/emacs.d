@@ -1345,7 +1345,6 @@ typical word processor."
 
 ;; Roam
 (use-package org-roam
-  :when (and (executable-find "sqlite3") (executable-find "cc"))
   :diminish
   :bind (("C-c n a" . org-id-get-create)
          ("C-c n l" . org-roam-buffer-toggle)
@@ -1357,15 +1356,14 @@ typical word processor."
          ("C-c n r" . org-roam-ref-find)
          ("C-c n R" . org-roam-ref-add)
          ("C-c n s" . org-roam-db-sync))
-  :init
-  (setq org-roam-directory (file-truename "~/.org/org-roam")
-        org-roam-db-location "~/.org/org-roam.db"
-        org-roam-db-gc-threshold most-positive-fixnum
-        org-roam-v2-ack t)
-
+  :custom
+  (org-roam-database-connector 'sqlite-builtin)
+  (org-roam-directory (file-truename "~/.org/org-roam"))
+  (org-roam-db-location "~/.org/org-roam.db")
+  (org-roam-db-gc-threshold most-positive-fixnum)
+  :config
   (unless (file-exists-p org-roam-directory)
     (make-directory org-roam-directory t))
-  :config
   (org-roam-db-autosync-enable)
   (add-to-list 'display-buffer-alist
                '("\\*org-roam\\*"
