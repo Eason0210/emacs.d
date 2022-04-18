@@ -371,12 +371,9 @@ If all failed, try to complete the common part with `corfu-complete'"
          ("C-c p i" . cape-ispell)
          ("C-c p l" . cape-line)
          ("C-c p w" . cape-dict))
-  :hook (emacs-lisp-mode . cape-symbol-capf)
   :init
   (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  (defun cape-symbol-capf ()
-    (add-to-list 'completion-at-point-functions #'cape-symbol)))
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev))
 
 (use-package consult
   :defer 0.5
