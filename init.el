@@ -952,7 +952,7 @@ Call a second time to restore the original window configuration."
 
 ;;; Terminal
 (use-package vterm
-  :when (memq window-system '(mac ns x))
+  :when (memq window-system '(mac ns x pgtk))
   :bind (:map vterm-mode-map
               ("C-y" . vterm-yank)
               ("M-y" . vterm-yank-pop)
@@ -968,7 +968,7 @@ Call a second time to restore the original window configuration."
     (vterm-send-key "k" nil nil t)))
 
 (use-package vterm-toggle
-  :when (memq window-system '(mac ns x))
+  :when (memq window-system '(mac ns x pgtk))
   :bind (([f8] . vterm-toggle)
          ([f9] . vterm-compile)
          :map vterm-mode-map
