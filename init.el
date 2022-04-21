@@ -1879,6 +1879,7 @@ there is no current file, eval the current buffer."
     (set-charset-priority 'unicode))
   (prefer-coding-system 'utf-8)
   (setq locale-coding-system 'utf-8)
+  (setq system-time-locale "C")
   (unless (eq system-type 'windows-nt)
     (set-selection-coding-system 'utf-8)))
 
