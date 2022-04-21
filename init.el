@@ -1559,7 +1559,9 @@ typical word processor."
                 (concat ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
 
   ;; Require error
-  (add-to-list 'elisp-flymake-byte-compile-load-path load-path)
+  (setq elisp-flymake-byte-compile-load-path
+        (append elisp-flymake-byte-compile-load-path
+                load-path))
 
   ;; Make C-x C-e run 'eval-region if the region is active
   (defun sanityinc/eval-last-sexp-or-region (prefix)
