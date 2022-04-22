@@ -140,7 +140,9 @@
     (interactive)
     (if (eq (car custom-enabled-themes) 'sanityinc-tomorrow-bright)
         (light)
-      (dark))))
+      (dark))
+    (if (featurep 'kind-icon)
+        (kind-icon-reset-cache))))
 
 ;;; GUI frames
 
