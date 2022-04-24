@@ -18,10 +18,10 @@
 	url = git@github.com:emacscollective/borg.git
 	info-path = docs
 [submodule "cape"]
-	path = lib/cape
-	url = git@github.com:minad/cape.git
 	no-byte-compile = cape-char.el
 	no-byte-compile = cape-keyword.el
+	path = lib/cape
+	url = git@github.com:minad/cape.git
 [submodule "closql"]
 	path = lib/closql
 	url = git@github.com:emacscollective/closql.git
@@ -32,10 +32,10 @@
 	path = lib/color-theme-sanityinc-tomorrow
 	url = git@github.com:purcell/color-theme-sanityinc-tomorrow.git
 [submodule "consult"]
+	no-byte-compile = consult-selectrum.el
 	path = lib/consult
 	url = git@github.com:minad/consult.git
 	branch = main
-	no-byte-compile = consult-selectrum.el
 [submodule "consult-yasnippet"]
 	path = lib/consult-yasnippet
 	url = git@github.com:mohkale/consult-yasnippet.git
@@ -46,10 +46,10 @@
 	path = lib/crontab-mode
 	url = git@github.com:emacs-pe/crontab-mode.git
 [submodule "dash"]
-	path = lib/dash
-	url = git@github.com:magnars/dash.el.git
 	no-byte-compile = dash-functional.el
 	no-makeinfo = dash-template.texi
+	path = lib/dash
+	url = git@github.com:magnars/dash.el.git
 [submodule "diff-hl"]
 	path = lib/diff-hl
 	url = git@github.com:dgutov/diff-hl.git
@@ -66,13 +66,13 @@
 	path = lib/eglot
 	url = git@github.com:joaotavora/eglot.git
 [submodule "emacsql"]
+	no-byte-compile = emacsql-pg.el
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git
-	no-byte-compile = emacsql-pg.el
 [submodule "emacsql-sqlite-builtin"]
+	no-byte-compile = emacsql-sqlite-module.el
 	path = lib/emacsql-sqlite-builtin
 	url = git@github.com:emacscollective/emacsql-sqlite-builtin.git
-	no-byte-compile = emacsql-sqlite-module.el
 [submodule "embark"]
 	path = lib/embark
 	url = git@github.com:oantolin/embark.git
@@ -84,13 +84,13 @@
 	path = lib/exec-path-from-shell
 	url = git@github.com:purcell/exec-path-from-shell.git
 [submodule "flyspell-correct"]
-	path = lib/flyspell-correct
-	url = git@github.com:d12frosted/flyspell-correct.git
 	no-byte-compile = flyspell-correct-avy-menu.el
 	no-byte-compile = flyspell-correct-helm.el
 	no-byte-compile = flyspell-correct-ido.el
 	no-byte-compile = flyspell-correct-ivy.el
 	no-byte-compile = flyspell-correct-popup.el
+	path = lib/flyspell-correct
+	url = git@github.com:d12frosted/flyspell-correct.git
 [submodule "git-link"]
 	path = lib/git-link
 	url = git@github.com:sshaw/git-link.git
@@ -104,9 +104,9 @@
 	path = lib/go-translate
 	url = git@github.com:lorniu/go-translate.git
 [submodule "haskell-mode"]
+	info-path = doc
 	path = lib/haskell-mode
 	url = git@github.com:haskell/haskell-mode.git
-	info-path = doc
 [submodule "highlight-escape-sequences"]
 	path = lib/highlight-escape-sequences
 	url = git@github.com:dgutov/highlight-escape-sequences.git
@@ -141,10 +141,10 @@
 	path = lib/macrostep
 	url = git@github.com:joddie/macrostep.git
 [submodule "magit"]
-	path = lib/magit
-	url = git@github.com:magit/magit.git
 	no-byte-compile = lisp/magit-libgit.el
 	info-path = docs
+	path = lib/magit
+	url = git@github.com:magit/magit.git
 [submodule "marginalia"]
 	path = lib/marginalia
 	url = git@github.com:minad/marginalia.git
@@ -174,9 +174,9 @@
 	path = lib/orderless
 	url = git@github.com:oantolin/orderless.git
 [submodule "org-roam"]
+	info-path = doc
 	path = lib/org-roam
 	url = git@github.com:org-roam/org-roam.git
-	info-path = doc
 [submodule "paredit"]
 	path = lib/paredit
 	url = https://mumble.net/~campbell/git/paredit.git
@@ -242,9 +242,9 @@
 	path = lib/textile-mode
 	url = git@github.com:juba/textile-mode.git
 [submodule "transient"]
+	info-path = docs
 	path = lib/transient
 	url = git@github.com:magit/transient.git
-	info-path = docs
 [submodule "typescript-mode"]
 	path = lib/typescript-mode
 	url = git@github.com:emacs-typescript/typescript.el.git
@@ -266,12 +266,12 @@
 	path = lib/vlf
 	url = git@github.com:m00natic/vlfi.git
 [submodule "vterm"]
-	path = lib/vterm
-	url = git@github.com:akermu/emacs-libvterm.git
 	build-step = mkdir -p build
 	build-step = cd build && cmake .. && make
 	build-step = borg-compile
         build-step = borg-update-autoloads
+	path = lib/vterm
+	url = git@github.com:akermu/emacs-libvterm.git
 [submodule "vterm-toggle"]
 	path = lib/vterm-toggle
 	url = git@github.com:jixiuf/vterm-toggle.git
@@ -282,9 +282,9 @@
 	path = lib/whole-line-or-region
 	url = git@github.com:purcell/whole-line-or-region.git
 [submodule "with-editor"]
+	info-path = docs
 	path = lib/with-editor
 	url = git@github.com:magit/with-editor.git
-	info-path = docs
 [submodule "writeroom-mode"]
 	path = lib/writeroom-mode
 	url = git@github.com:joostkremers/writeroom-mode.git
