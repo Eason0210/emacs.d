@@ -1663,6 +1663,8 @@ there is no current file, eval the current buffer."
             '(lisp-mode inferior-lisp-mode lisp-interaction-mode))
     "All lispy major modes.")
 
+  (require 'derived)
+
   (dolist (hook (mapcar #'derived-mode-hook-name sanityinc/lispy-modes))
     (add-hook hook 'sanityinc/lisp-setup))
 
