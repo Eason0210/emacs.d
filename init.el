@@ -73,8 +73,10 @@
     (load custom-file)))
 
 (use-package server
-  :commands (server-running-p)
-  :config (or (server-running-p) (server-mode)))
+  :custom
+  (server-client-instructions nil)
+  :config (unless (or (daemonp) (server-running-p))
+            (server-start)))
 
 (progn ; `startup'
   (message "Loading early birds...done (%.3fs)"
