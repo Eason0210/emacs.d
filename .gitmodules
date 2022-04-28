@@ -79,6 +79,9 @@
 	path = lib/embark
 	url = git@github.com:oantolin/embark.git
 [submodule "epkg"]
+	build-step = (require 'compat-26)
+	build-step = borg-compile
+        build-step = borg-update-autoloads
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
 [submodule "exec-path-from-shell"]
@@ -142,6 +145,10 @@
 	url = git@github.com:joddie/macrostep.git
 [submodule "magit"]
 	no-byte-compile = lisp/magit-libgit.el
+	build-step = (require 'compat-26)
+	build-step = (require 'compat-27)
+	build-step = borg-compile
+        build-step = borg-update-autoloads
 	path = lib/magit
 	url = git@github.com:magit/magit.git
 [submodule "marginalia"]
@@ -173,6 +180,10 @@
 	path = lib/orderless
 	url = git@github.com:oantolin/orderless.git
 [submodule "org-roam"]
+	build-step = (require 'compat-26)
+	build-step = (require 'compat-27)
+	build-step = borg-compile
+        build-step = borg-update-autoloads
 	path = lib/org-roam
 	url = git@github.com:org-roam/org-roam.git
 [submodule "paredit"]
