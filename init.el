@@ -1718,6 +1718,7 @@ there is no current file, eval the current buffer."
   :defer 0.5
   :config
   (add-to-list 'super-save-triggers 'switch-window)
+  (setq super-save-max-buffer-size 200000)
   (setq super-save-exclude '(".gpg"))
   (setq super-save-idle-duration 1)
   (setq super-save-auto-save-when-idle t)
