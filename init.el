@@ -1531,27 +1531,31 @@ typical word processor."
 
 (use-package paredit
   :diminish paredit-mode " Par"
-  :hook ((lisp-mode emacs-lisp-mode) . paredit-mode)
-  :bind (:map paredit-mode-map
-              ("[")
-              ;; ("M-k"   . paredit-raise-sexp)
-              ("M-I"   . paredit-splice-sexp)
-              ;; ("C-M-l" . paredit-recentre-on-sexp)
-              ("C-c ( n"   . paredit-add-to-next-list)
-              ("C-c ( p"   . paredit-add-to-previous-list)
-              ("C-c ( j"   . paredit-join-with-next-list)
-              ("C-c ( J"   . paredit-join-with-previous-list))
-  :bind (:map lisp-mode-map       ("<return>" . paredit-newline))
-  ;; :bind (:map emacs-lisp-mode-map ("<return>" . paredit-newline))
-  :hook (paredit-mode
-         . (lambda ()
-             (unbind-key [M-up] paredit-mode-map)
-             (unbind-key [M-down] paredit-mode-map)
-             (unbind-key "M-r" paredit-mode-map)
-             (unbind-key "M-s" paredit-mode-map)))
+  :hook ((minibuffer-setup . sanityinc/conditionally-enable-paredit-mode)
+         (paredit-mode . sanityinc/maybe-map-paredit-newline)
+         (paredit-mode
+          . (lambda ()
+              (unbind-key [C-left] paredit-mode-map)
+              (unbind-key [C-right] paredit-mode-map)
+              (unbind-key "M-?" paredit-mode-map)
+              (unbind-key "M-s" paredit-mode-map))))
   :config
-  (eldoc-add-command 'paredit-backward-delete
-                     'paredit-close-round))
+  (defun sanityinc/maybe-map-paredit-newline ()
+    (unless (or (memq major-mode '(inferior-emacs-lisp-mode))
+                (minibufferp))
+      (local-set-key (kbd "RET") 'paredit-newline)))
+
+  (defvar paredit-minibuffer-commands '(eval-expression
+                                        pp-eval-expression
+                                        eval-expression-with-eldoc
+                                        ibuffer-do-eval
+                                        ibuffer-do-view-and-eval)
+    "Interactive commands for which paredit should be enabled in the minibuffer.")
+
+  (defun sanityinc/conditionally-enable-paredit-mode ()
+    "Enable paredit during lisp-related minibuffer commands."
+    (if (memq this-command paredit-minibuffer-commands)
+        (enable-paredit-mode))))
 
 ;;; Emacs lisp settings, and common config for other lisps
 
