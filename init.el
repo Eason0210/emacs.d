@@ -627,7 +627,8 @@ Call a second time to restore the original window configuration."
 (use-package desktop
   :config
   (setq desktop-path (list user-emacs-directory)
-        desktop-auto-save-timeout 600)
+        desktop-auto-save-timeout 600
+        desktop-load-locked-desktop 'check-pid)
 
   (advice-add 'desktop-read :around 'sanityinc/desktop-time-restore)
   (advice-add 'desktop-create-buffer :around 'sanityinc/desktop-time-buffer-create)
