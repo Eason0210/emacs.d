@@ -1794,6 +1794,7 @@ there is no current file, eval the current buffer."
 
 (use-package help
   :defer t
+  :custom (help-window-select t)
   :config (temp-buffer-resize-mode))
 
 (use-package man
