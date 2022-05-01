@@ -52,6 +52,9 @@
 	no-makeinfo = dash-template.texi
 	path = lib/dash
 	url = git@github.com:magnars/dash.el.git
+[submodule "dhall-mode"]
+	path = lib/dhall-mode
+	url = git@github.com:psibi/dhall-mode.git
 [submodule "diff-hl"]
 	path = lib/diff-hl
 	url = git@github.com:dgutov/diff-hl.git
