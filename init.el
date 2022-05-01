@@ -1431,6 +1431,10 @@ typical word processor."
 (use-package typescript-mode
   :mode ("\\.ts[x]\\'" . typescript-mode))
 
+;; PureScript
+(use-package purescript-mode
+  :hook (purescript-mode . turn-on-purescript-indentation))
+
 ;;; Programming languages support
 
 ;; C/C++ Mode

@@ -189,6 +189,9 @@
 [submodule "paredit"]
 	path = lib/paredit
 	url = https://mumble.net/~campbell/git/paredit.git
+[submodule "purescript-mode"]
+	path = lib/purescript-mode
+	url = git@github.com:purescript-emacs/purescript-mode.git
 [submodule "pyvenv"]
 	path = lib/pyvenv
 	url = git@github.com:jorgenschaefer/pyvenv.git
