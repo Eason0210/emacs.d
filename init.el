@@ -382,8 +382,7 @@ If all failed, try to complete the common part with `corfu-complete'"
          ("C-c p l" . cape-line)
          ("C-c p w" . cape-dict))
   :init
-  (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev))
+  (add-to-list 'completion-at-point-functions #'cape-file))
 
 (use-package consult
   :defer 0.5
