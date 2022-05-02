@@ -266,14 +266,9 @@ This is useful when followed by an immediate kill."
 ;;; A universal on-the-fly syntax checker
 
 (use-package flymake
-  :hook (emacs-lisp-mode . flymake-mode))
-
-(use-package flymake-proc
+  :hook (emacs-lisp-mode . flymake-mode)
   :config
-  (progn
-    ;; flymake-proc adds this legacy backend automatically but (1) I
-    ;; don't seem to use it and (2) it triggers warnings in *Flymake log*.
-    (remove-hook 'flymake-diagnostic-functions #'flymake-proc-legacy-flymake)))
+  (remove-hook 'flymake-diagnostic-functions #'flymake-proc-legacy-flymake))
 
 ;;; minibufer configuration
 
