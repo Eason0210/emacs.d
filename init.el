@@ -42,10 +42,10 @@
 
 (progn ; `use-package'
   (setq use-package-enable-imenu-support t)
-  (setq use-package-minimum-reported-time 0)
+  (setq use-package-expand-minimally t)
   (setq use-package-verbose nil)
   (setq use-package-compute-statistics nil)
-  (require  'use-package))
+  (require 'use-package))
 
 ;; Set up exec-path to help Emacs find programs
 (use-package exec-path-from-shell
