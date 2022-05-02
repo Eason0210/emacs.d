@@ -338,10 +338,11 @@ This is useful when followed by an immediate kill."
   :custom
   (corfu-auto t)
   (corfu-max-width 110)
-  :bind
-  (:map corfu-map
-        ([tab] . smarter-tab-to-complete)
-        ("TAB" . smarter-tab-to-complete))
+  :bind (:map corfu-map
+              ([tab] . smarter-tab-to-complete)
+              ("TAB" . smarter-tab-to-complete)
+              ("C-d" . corfu-info-documentation)
+              ("M-." . corfu-info-location))
   :init
   (global-corfu-mode)
   :preface

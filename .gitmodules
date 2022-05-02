@@ -42,8 +42,14 @@
 	path = lib/consult-yasnippet
 	url = git@github.com:mohkale/consult-yasnippet.git
 [submodule "corfu"]
+	load-path = .
+	load-path = extensions
+	no-byte-compile = extensions/corfu-history.el
+	no-byte-compile = extensions/corfu-indexed.el
+	no-byte-compile = extensions/corfu-quick.el
 	path = lib/corfu
 	url = git@github.com:minad/corfu.git
+	branch = main
 [submodule "crontab-mode"]
 	path = lib/crontab-mode
 	url = git@github.com:emacs-pe/crontab-mode.git
