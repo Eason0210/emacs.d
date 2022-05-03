@@ -270,7 +270,7 @@ This is useful when followed by an immediate kill."
   :config
   (remove-hook 'flymake-diagnostic-functions #'flymake-proc-legacy-flymake))
 
-;;; minibufer configuration
+;;; Minibuffer and completion
 
 (use-package minibuffer
   :custom
@@ -476,7 +476,6 @@ If all failed, try to complete the common part with `corfu-complete'"
          ("M-." . embark-dwim)
          ("C-h B" . embark-bindings))
   :config
-  ;; Use which key like a key menu prompt
   (defun embark-which-key-indicator ()
     "An embark indicator that displays keymaps using which-key.
 The which-key help message will show the type and value of the
