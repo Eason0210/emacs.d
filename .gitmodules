@@ -128,9 +128,6 @@
 [submodule "ibuffer-vc"]
 	path = lib/ibuffer-vc
 	url = git@github.com:purcell/ibuffer-vc.git
-[submodule "immortal-scratch"]
-	path = lib/immortal-scratch
-	url = git@github.com:jpkotta/immortal-scratch.git
 [submodule "js2-mode"]
 	path = lib/js2-mode
 	url = git@github.com:mooz/js2-mode.git
