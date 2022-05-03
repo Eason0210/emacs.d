@@ -216,10 +216,6 @@
 [submodule "rust-mode"]
 	path = lib/rust-mode
 	url = git@github.com:rust-lang/rust-mode.git
-[submodule "scratch"]
-	path = lib/scratch
-	url = git@github.com:ieure/scratch-el.git
-	branch = main
 [submodule "shift-number"]
 	path = lib/shift-number
 	url = git@github.com:alezost/shift-number.el.git

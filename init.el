@@ -103,9 +103,6 @@
   (add-hook (derived-mode-hook-name mode)
             (apply-partially 'sanityinc/set-major-mode-name name)))
 
-(use-package scratch
-  :defer t)
-
 (use-package color-theme-sanityinc-tomorrow
   :hook (after-init . reapply-themes)
   :bind ("C-c t b" . sanityinc-tomorrow-themes-toggle)
