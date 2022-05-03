@@ -101,7 +101,9 @@
   "Override the major MODE with a new NAME."
   (add-hook (derived-mode-hook-name mode)
             (apply-partially 'sanityinc/set-major-mode-name name)))
+
 ;;; Theme
+
 (use-package color-theme-sanityinc-tomorrow
   :hook (after-init . reapply-themes)
   :bind ("C-c t b" . sanityinc-tomorrow-themes-toggle)
@@ -310,7 +312,6 @@ This is useful when followed by an immediate kill."
   :custom (vertico-cycle t)
   :config (vertico-mode))
 
-;; YASnippet
 (use-package yasnippet
   :diminish yas-minor-mode
   :hook ((prog-mode org-mode) . yas-minor-mode)
@@ -688,7 +689,6 @@ Call a second time to restore the original window configuration."
                    (abbreviate-file-name filename)))))))
 
 ;; Restore histories and registers after saving
-
 (use-package savehist
   :config (savehist-mode))
 
@@ -936,7 +936,6 @@ Call a second time to restore the original window configuration."
         (lambda (buffer &optional args)
           (select-window (get-buffer-window buffer)))))
 
-;;Configuration for quickrun
 (use-package quickrun
   :bind (("<f5>" . quickrun)
          ("C-<f5>" . quickrun-shell))
@@ -1336,7 +1335,6 @@ typical word processor."
 (use-package valign
   :hook (org-mode . valign-mode))
 
-;; Roam
 (use-package org-roam
   :diminish
   :bind (("C-c n a" . org-id-get-create)
@@ -1389,7 +1387,6 @@ typical word processor."
     (sanityinc/major-mode-lighter 'js2-mode "JS2")
     (sanityinc/major-mode-lighter 'js2-jsx-mode "JSX2")))
 
-;; JSON mode
 (use-package json-mode
   :mode "\\.json\\'")
 
@@ -1409,21 +1406,17 @@ typical word processor."
          (web-mode . skewer-html-mode)
          (html-mode . skewer-html-mode)))
 
-;; LESS
 (use-package skewer-less
   :hook (less-css-mode . skewer-less-mode))
 
-;; TypeScript
 (use-package typescript-mode
   :mode ("\\.ts[x]\\'" . typescript-mode))
 
-;; PureScript
 (use-package purescript-mode
   :hook (purescript-mode . turn-on-purescript-indentation))
 
 ;;; Programming languages support
 
-;; C/C++ Mode
 (use-package cc-mode
   :bind (:map c-mode-base-map
               ("C-c c" . compile))
@@ -1437,7 +1430,6 @@ typical word processor."
 (use-package cmake-mode
   :defer t)
 
-;; Haskell mode
 (use-package haskell-mode
   :bind (:map haskell-mode-map
               ("C-c C-f" . ormolu-buffer))
@@ -1458,7 +1450,6 @@ typical word processor."
     :program "ormolu"
     :lighter " Orm"))
 
-;; Python mode
 (use-package python
   :defer t
   :config
@@ -1488,20 +1479,16 @@ typical word processor."
         (list (lambda ()
                 (setq python-shell-interpreter "python3")))))
 
-;; Support Yaml files
 (use-package yaml-mode
   :mode "\\.ya?ml\\'"
   :hook (yaml-mode . goto-address-prog-mode))
 
-;; Lua mode
 (use-package lua-mode
   :mode "\\.lua\\'")
 
-;; Support MSCL mode
 (use-package mscl-mode
   :mode "\\.pwx?macro\\'")
 
-;; Support for the Rust language
 (use-package rust-mode
   :mode "\\.rs\\'")
 
@@ -1702,7 +1689,6 @@ there is no current file, eval the current buffer."
   :bind (("C-c +" . shift-number-up)
          ("C-c -" . shift-number-down)))
 
-;; Auto save
 (use-package super-save
   :diminish
   :defer 0.5
@@ -1716,6 +1702,7 @@ there is no current file, eval the current buffer."
   (super-save-mode 1))
 
 ;;; Toggle system input method automatically
+
 (use-package sis
   :demand t
   :bind ("C-<f9>" . sis-switch)
