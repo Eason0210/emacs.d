@@ -57,6 +57,7 @@
     (add-to-list 'exec-path-from-shell-variables var))
   (exec-path-from-shell-initialize))
 
+(use-package diminish)
 (use-package dash)
 (use-package eieio)
 
@@ -89,8 +90,6 @@
 
 ;;; Long tail
 
-(use-package diminish)
-
 ;;; Elisp helper functions and commands
 
 ;; Like diminish, but for major modes
@@ -102,7 +101,7 @@
   "Override the major MODE with a new NAME."
   (add-hook (derived-mode-hook-name mode)
             (apply-partially 'sanityinc/set-major-mode-name name)))
-
+;;; Theme
 (use-package color-theme-sanityinc-tomorrow
   :hook (after-init . reapply-themes)
   :bind ("C-c t b" . sanityinc-tomorrow-themes-toggle)
@@ -1776,7 +1775,7 @@ there is no current file, eval the current buffer."
                               :parser (gts-google-summary-parser))
                     :render (gts-kill-ring-render)))))
 
-;;; Builtin packages
+;;; Built-in packages
 
 (use-package dash
   :config (global-dash-fontify-mode 1))
@@ -1860,6 +1859,17 @@ there is no current file, eval the current buffer."
       (when (font-installed-p font)
         (set-fontset-font t 'unicode font nil 'append)))))
 
+;;; Configure default locale
+
+(progn ; `charset'
+  (when (fboundp 'set-charset-priority)
+    (set-charset-priority 'unicode))
+  (prefer-coding-system 'utf-8)
+  (setq locale-coding-system 'utf-8)
+  (setq system-time-locale "C")
+  (unless (eq system-type 'windows-nt)
+    (set-selection-coding-system 'utf-8)))
+
 ;;; Tequila worms
 
 (progn ; `startup'
@@ -1878,17 +1888,6 @@ there is no current file, eval the current buffer."
   (let ((file (expand-file-name "private.el" user-emacs-directory)))
     (when (file-exists-p file)
       (load file))))
-
-;;; Configure default locale
-
-(progn ; `charset'
-  (when (fboundp 'set-charset-priority)
-    (set-charset-priority 'unicode))
-  (prefer-coding-system 'utf-8)
-  (setq locale-coding-system 'utf-8)
-  (setq system-time-locale "C")
-  (unless (eq system-type 'windows-nt)
-    (set-selection-coding-system 'utf-8)))
 
 
 ;; Local Variables:
