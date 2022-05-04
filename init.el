@@ -447,29 +447,22 @@ If all failed, try to complete the common part with `corfu-complete'"
          ("M-s e" . consult-isearch)
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi))
-  :init
-  (setq register-preview-delay 0
-        register-preview-function #'consult-register-format)
-  (advice-add #'register-preview :override #'consult-register-window)
-  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
-
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
+  :custom
+  (register-preview-delay 0.5)
+  (register-preview-function #'consult-register-format)
+  (consult-narrow-key "<")
+  (xref-show-xrefs-function #'consult-xref)
+  (xref-show-definitions-function #'consult-xref)
   :config
   (consult-customize
    consult-theme
    :preview-key '(:debounce 0.2 any)
    consult-ripgrep consult-git-grep consult-grep
    consult-bookmark consult-recent-file consult-xref
-   consult--source-recent-file consult--source-project-recent-file consult--source-bookmark
+   consult--source-bookmark consult--source-recent-file
+   consult--source-project-recent-file
    :preview-key (kbd "M-."))
-
-  (setq consult-narrow-key "<")
-
-  (setq consult-project-root-function
-        (lambda ()
-          (when-let (project (project-current))
-            (car (project-roots project))))))
+  (advice-add #'register-preview :override #'consult-register-window))
 
 (use-package marginalia
   :init (marginalia-mode))
