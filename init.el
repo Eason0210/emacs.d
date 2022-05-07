@@ -323,8 +323,8 @@ This is useful when followed by an immediate kill."
   :config (vertico-mode))
 
 (use-package yasnippet
+  :demand t
   :diminish yas-minor-mode
-  :hook ((prog-mode org-mode) . yas-minor-mode)
   :bind (("C-c y i" . yas-insert-snippet)
          ("C-c y f" . yas-visit-snippet-file)
          ("C-c y n" . yas-new-snippet)
@@ -336,15 +336,11 @@ This is useful when followed by an immediate kill."
          ("C-c y x" . yas-expand)
          :map yas-keymap
          ("C-i" . yas-next-field-or-maybe-expand))
-  :config
-  (yas-reload-all))
+  :config (yas-global-mode 1))
 
-(use-package yasnippet-snippets
-  :defer t
-  :after yasnippet)
+(use-package yasnippet-snippets :defer t)
 
 (use-package consult-yasnippet
-  :defer t
   :after (consult yasnippet)
   :bind ("M-s y" . consult-yasnippet))
 
