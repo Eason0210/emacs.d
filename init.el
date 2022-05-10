@@ -449,6 +449,7 @@ If all failed, try to complete the common part with `corfu-complete'"
   (consult-narrow-key "<")
   (xref-show-xrefs-function #'consult-xref)
   (xref-show-definitions-function #'consult-xref)
+  (consult-after-jump-hook '(recenter-on-top reveal-entry))
   :config
   (consult-customize
    consult-theme
@@ -458,7 +459,22 @@ If all failed, try to complete the common part with `corfu-complete'"
    consult--source-bookmark consult--source-recent-file
    consult--source-project-recent-file
    :preview-key (kbd "M-."))
-  (advice-add #'register-preview :override #'consult-register-window))
+  (advice-add #'register-preview :override #'consult-register-window)
+  :preface
+  (defun recenter-on-top ()
+    "`recenter' on top"
+    (interactive)
+    (recenter 0))
+  (defun reveal-entry ()
+    "Reveal Org or Outline entry and recenter on top."
+    (cond
+     ((and (eq major-mode 'org-mode)
+           (org-at-heading-p))
+      (org-show-entry))
+     ((and (or (eq major-mode 'outline-mode)
+               (bound-and-true-p outline-minor-mode))
+           (outline-on-heading-p))
+      (outline-show-entry)))))
 
 (use-package marginalia
   :init (marginalia-mode))
