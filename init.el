@@ -760,11 +760,11 @@ Call a second time to restore the original window configuration."
 
 ;; A light will shine on top of cursor when window scrolls
 (use-package beacon
-  :init
-  (setq-default beacon-lighter "")
-  (setq-default beacon-size 20)
-  :config
-  (beacon-mode 1))
+  :custom
+  (beacon-lighter "")
+  (beacon-size 20)
+  (beacon-blink-when-window-scrolls nil)
+  :config (beacon-mode 1))
 
 ;; Show line number
 (use-package display-line-numbers
