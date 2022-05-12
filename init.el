@@ -551,10 +551,10 @@ targets."
 ;;; Working with Windows within frames
 
 (use-package window
-  :bind (("C-x |" . split-window-horizontally-instead)
-         ("C-x _" . split-window-vertically-instead)
-         ([f7] . sanityinc/split-window)
-         ("C-c <down>". sanityinc/toggle-current-window-dedication))
+  :bind (([f7] . sanityinc/split-window)
+         ("C-c <down>". sanityinc/toggle-current-window-dedication)
+         :map ctl-x-4-map
+         ("s" . toggle-window-split))
   :config
   (bind-key "C-x 2" (split-window-func-with-other-buffer 'split-window-vertically))
   (bind-key "C-x 3" (split-window-func-with-other-buffer 'split-window-horizontally))
@@ -571,24 +571,19 @@ targets."
         (unless arg
           (select-window target-window)))))
 
-  ;; Rearrange split windows
-  (defun split-window-horizontally-instead ()
-    "Kill any other windows and re-split such that the current window is on the top half of the frame."
+  (defun toggle-window-split ()
+    "Toggle window split from vertical to horizontal."
     (interactive)
-    (let ((other-buffer (and (next-window) (window-buffer (next-window)))))
-      (delete-other-windows)
-      (split-window-horizontally)
-      (when other-buffer
-        (set-window-buffer (next-window) other-buffer))))
-
-  (defun split-window-vertically-instead ()
-    "Kill any other windows and re-split such that the current window is on the left half of the frame."
-    (interactive)
-    (let ((other-buffer (and (next-window) (window-buffer (next-window)))))
-      (delete-other-windows)
-      (split-window-vertically)
-      (when other-buffer
-        (set-window-buffer (next-window) other-buffer))))
+    (if (> (length (window-list)) 2)
+        (error "Can't toggle with more than 2 windows")
+      (let ((was-full-height (window-full-height-p)))
+        (delete-other-windows)
+        (if was-full-height
+            (split-window-vertically)
+          (split-window-horizontally))
+        (save-selected-window
+          (other-window 1)
+          (switch-to-buffer (other-buffer))))))
 
   ;; Borrowed from http://postmomentum.ch/blog/201304/blog-on-emacs
   (defun sanityinc/split-window()
