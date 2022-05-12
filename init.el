@@ -618,7 +618,9 @@ Call a second time to restore the original window configuration."
 
 ;; Make "C-x o" prompt for a target window when there are more than 2
 (use-package switch-window
-  :bind ("C-x o" . switch-window)
+  :bind (("C-x o" . switch-window)
+         :map ctl-x-4-map
+         ("t" . switch-window-then-swap-buffer))
   :config
   (setq-default switch-window-shortcut-style 'alphabet)
   (setq-default switch-window-timeout nil))
